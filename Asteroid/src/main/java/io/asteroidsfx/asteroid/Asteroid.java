@@ -15,12 +15,13 @@ import java.util.Random;
 
 public class Asteroid extends Entity{
 
-    public Asteroid(){
+    public Asteroid(int maxX, int maxY) { this(0, maxX, 0, maxY); }
+    public Asteroid(int minX, int maxX, int minY, int maxY){
         Random random = new Random();
 
         PositionComponent positionComponent = new PositionComponent();
-        positionComponent.x = 100;
-        positionComponent.y = 100;
+        positionComponent.x = random.nextInt(minX, maxX);
+        positionComponent.y = random.nextInt(minY, maxY);
 
         this.components.add(positionComponent);
 

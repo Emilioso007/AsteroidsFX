@@ -48,7 +48,11 @@ public class Game {
 
 
         // SETUP ENTITIES
-        World.getInstance().addEntity(new Asteroid());
+        World.getInstance().addEntity(new Asteroid(World.getInstance().width, World.getInstance().height));
+        World.getInstance().addEntity(new Asteroid(World.getInstance().width, World.getInstance().height));
+        World.getInstance().addEntity(new Asteroid(World.getInstance().width, World.getInstance().height));
+        World.getInstance().addEntity(new Asteroid(World.getInstance().width, World.getInstance().height));
+        World.getInstance().addEntity(new Asteroid(World.getInstance().width, World.getInstance().height));
 
 
         // LOOP
