@@ -20,6 +20,7 @@ public final class World {
     private World(){
         entities = new HashSet<>();
         systems = new HashSet<>();
+        keysPressed = new HashSet<>();
     }
 
     public static World getInstance(){

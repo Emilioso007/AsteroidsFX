@@ -25,9 +25,7 @@ public class Asteroid extends Entity{
 
         this.components.add(positionComponent);
 
-        VelocityComponent velocityComponent = new VelocityComponent();
-        velocityComponent.dx = random.nextDouble(50, 200);
-        velocityComponent.dy = random.nextDouble(50, 200);
+        VelocityComponent velocityComponent = VelocityComponent.fromAngleWithSpeed(random.nextDouble(Math.PI*2), random.nextDouble(50, 250));
 
         this.components.add(velocityComponent);
 
