@@ -26,20 +26,27 @@ public class WraparoundSystem extends System {
     public void tick(float dt, HashSet<Entity> entities) {
         for (Entity entity : entities){
             PositionComponent positionComponent = entity.getComponent(PositionComponent.class);
-
-            if (positionComponent == null) {
+            WrapComponent wrapComponent = entity.getComponent(WrapComponent.class);
+            if (positionComponent == null || wrapComponent == null) {
                 continue;
             }
 
-            // Skip entities with NoWrapComponent
-            if (entity.getComponent(NoWrapComponent.class) != null) {
-                continue;
-            }
+            double leftEdge = positionComponent.x + wrapComponent.leftExtent;
+            double rightEdge = positionComponent.x + wrapComponent.rightExtent;
+            double topEdge = positionComponent.y + wrapComponent.topExtent;
+            double bottomEdge = positionComponent.y + wrapComponent.bottomExtent;
 
-            if(positionComponent.x < minX) positionComponent.x = maxX;
-            if(positionComponent.x > maxX) positionComponent.x = minX;
-            if(positionComponent.y < minY) positionComponent.y = maxY;
-            if(positionComponent.y > maxY) positionComponent.y = minY;
+            if (wrapComponent.wrapOutside) {
+                if(rightEdge < minX) positionComponent.x = maxX - wrapComponent.leftExtent;
+                if(leftEdge > maxX) positionComponent.x = minX - wrapComponent.rightExtent;
+                if(bottomEdge < minY) positionComponent.y = maxY - wrapComponent.topExtent;
+                if(topEdge > maxY) positionComponent.y = minY - wrapComponent.bottomExtent;
+            } else {
+                if(leftEdge <= minX) positionComponent.x = maxX - wrapComponent.rightExtent;
+                if(rightEdge >= maxX) positionComponent.x = minX - wrapComponent.leftExtent;
+                if(topEdge <= minY) positionComponent.y = maxY - wrapComponent.bottomExtent;
+                if(bottomEdge >= maxY) positionComponent.y = minY - wrapComponent.topExtent;
+            }
         }
     }
 

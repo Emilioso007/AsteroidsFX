@@ -4,7 +4,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class Polygon {
-    private double[] x, y;
+    public double[] x;
+    public double[] y;
     private Color fill;
     private Color stroke;
     private double weight;

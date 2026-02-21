@@ -5,5 +5,6 @@ module Core {
     requires RenderingSystem;
     requires MovementSystem;
     requires Asteroid;
+    requires WraparoundSystem;
     exports io.asteroidsfx;
 }

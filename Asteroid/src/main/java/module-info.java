@@ -4,4 +4,6 @@ module Asteroid {
     requires PositionComponent;
     requires RenderComponent;
     requires javafx.graphics;
+    requires VelocityComponent;
+    requires WraparoundSystem;
 }

@@ -3,6 +3,7 @@ package io.asteroidsfx;
 import io.asteroidsfx.asteroid.Asteroid;
 import io.asteroidsfx.movementsystem.MovementSystem;
 import io.asteroidsfx.renderingsystem.RenderingSystem;
+import io.asteroidsfx.wraparoundsystem.WraparoundSystem;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -33,6 +34,7 @@ public class Game {
         // SETUP ENTITIES AND SYSTEMS
         World.getInstance().addSystem(new RenderingSystem(gc));
         World.getInstance().addSystem(new MovementSystem());
+        World.getInstance().addSystem(new WraparoundSystem(World.getInstance().width, World.getInstance().height));
 
         World.getInstance().addEntity(new Asteroid());
 
