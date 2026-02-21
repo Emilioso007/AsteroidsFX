@@ -1,5 +1,6 @@
 package io.asteroidsfx.renderingsystem;
 
+import io.asteroidsfx.anglecomponent.AngleComponent;
 import io.asteroidsfx.common.Entity;
 import io.asteroidsfx.common.System;
 import io.asteroidsfx.positioncomponent.PositionComponent;
@@ -29,16 +30,23 @@ public class RenderingSystem extends System{
             if (renderComponent == null) {
                 continue;
             }
-            // If entity has position, use translation to draw at position
+
+            // If entity has position and/or rotation, use translation/rotation to draw
             PositionComponent positionComponent = entity.getComponent(PositionComponent.class);
+            AngleComponent angleComponent = entity.getComponent(AngleComponent.class);
+
+            gc.save();
+
             if(positionComponent != null){
-                gc.save();
                 gc.translate(positionComponent.x, positionComponent.y);
-                renderComponent.polygon.display(gc);
-                gc.restore();
-            } else {
-                renderComponent.polygon.display(gc);
             }
+            if(angleComponent != null){
+                gc.rotate(Math.toDegrees(angleComponent.angle));
+            }
+
+            renderComponent.polygon.display(gc);
+
+            gc.restore();
         }
     }
 }

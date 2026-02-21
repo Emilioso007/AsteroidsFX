@@ -20,7 +20,6 @@ public class MovementSystem extends System{
 
             positionComponent.x += velocityComponent.dx * dt;
             positionComponent.y += velocityComponent.dy * dt;
-
         }
     }
 }

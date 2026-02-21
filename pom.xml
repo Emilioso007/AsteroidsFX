@@ -19,6 +19,8 @@
         <module>Asteroid</module>
         <module>WraparoundSystem</module>
         <module>RotationComponent</module>
+        <module>AngleComponent</module>
+        <module>RotateSystem</module>
     </modules>
 
     <properties>

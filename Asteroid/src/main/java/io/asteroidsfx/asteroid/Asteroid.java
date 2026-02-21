@@ -1,9 +1,11 @@
 package io.asteroidsfx.asteroid;
 
+import io.asteroidsfx.anglecomponent.AngleComponent;
 import io.asteroidsfx.common.Entity;
 import io.asteroidsfx.common.Polygon;
 import io.asteroidsfx.positioncomponent.PositionComponent;
 import io.asteroidsfx.rendercomponent.RenderComponent;
+import io.asteroidsfx.rotationcomponent.RotationComponent;
 import io.asteroidsfx.velocitycomponent.VelocityComponent;
 import io.asteroidsfx.wraparoundsystem.WrapComponent;
 import javafx.scene.paint.Color;
@@ -28,6 +30,16 @@ public class Asteroid extends Entity{
 
         this.components.add(velocityComponent);
 
+        AngleComponent angleComponent = new AngleComponent();
+        angleComponent.angle = 0;
+
+        this.components.add(angleComponent);
+
+        RotationComponent rotationComponent = new RotationComponent();
+        rotationComponent.dAngle = Math.toRadians(random.nextInt(45, 135));
+
+        this.components.add(rotationComponent);
+
         RenderComponent renderComponent = new RenderComponent();
 
         int points = random.nextInt(4, 13);
@@ -46,10 +58,11 @@ public class Asteroid extends Entity{
         this.components.add(renderComponent);
 
         WrapComponent wrapComponent = new WrapComponent();
-        wrapComponent.rightExtent = (int) Arrays.stream(renderComponent.polygon.x).max().orElse(0);
-        wrapComponent.leftExtent = (int) Arrays.stream(renderComponent.polygon.x).min().orElse(0);
-        wrapComponent.bottomExtent = (int) Arrays.stream(renderComponent.polygon.y).max().orElse(0);
-        wrapComponent.topExtent = (int) Arrays.stream(renderComponent.polygon.y).min().orElse(0);
+        int buffer = 50; // a buffer to counteract the rotation
+        wrapComponent.rightExtent = (int) Arrays.stream(renderComponent.polygon.x).max().orElse(0) + buffer;
+        wrapComponent.leftExtent = (int) Arrays.stream(renderComponent.polygon.x).min().orElse(0) - buffer;
+        wrapComponent.bottomExtent = (int) Arrays.stream(renderComponent.polygon.y).max().orElse(0) + buffer;
+        wrapComponent.topExtent = (int) Arrays.stream(renderComponent.polygon.y).min().orElse(0) - buffer;
         wrapComponent.wrapOutside = true;
 
         this.components.add(wrapComponent);
