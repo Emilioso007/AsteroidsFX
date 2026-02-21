@@ -8,5 +8,6 @@ module Core {
     requires RotateSystem;
     requires InputSystem;
     requires AsteroidEntity;
+    requires PlayerEntity;
     exports io.asteroidsfx;
 }

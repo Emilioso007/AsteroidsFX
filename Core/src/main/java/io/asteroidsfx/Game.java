@@ -3,6 +3,7 @@ package io.asteroidsfx;
 import io.asteroidsfx.asteroidentity.AsteroidEntity;
 import io.asteroidsfx.inputsystem.InputSystem;
 import io.asteroidsfx.movementsystem.MovementSystem;
+import io.asteroidsfx.playerentity.PlayerEntity;
 import io.asteroidsfx.renderingsystem.RenderingSystem;
 import io.asteroidsfx.rotatesystem.RotateSystem;
 import io.asteroidsfx.wraparoundsystem.WraparoundSystem;
@@ -51,10 +52,7 @@ public class Game {
 
         // SETUP ENTITIES
         World.getInstance().addEntity(new AsteroidEntity(World.getInstance().width, World.getInstance().height));
-        World.getInstance().addEntity(new AsteroidEntity(World.getInstance().width, World.getInstance().height));
-        World.getInstance().addEntity(new AsteroidEntity(World.getInstance().width, World.getInstance().height));
-        World.getInstance().addEntity(new AsteroidEntity(World.getInstance().width, World.getInstance().height));
-        World.getInstance().addEntity(new AsteroidEntity(World.getInstance().width, World.getInstance().height));
+        World.getInstance().addEntity(new PlayerEntity(World.getInstance().width/2, World.getInstance().height/2));
 
 
         // LOOP

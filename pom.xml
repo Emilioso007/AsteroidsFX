@@ -23,6 +23,10 @@
         <module>InputSystem</module>
         <module>AsteroidEntity</module>
         <module>Core</module>
+        <module>PlayerEntity</module>
+        <module>LinearVelocityComponent</module>
+        <module>LinearAccelerationComponent</module>
+        <module>DragComponent</module>
     </modules>
 
     <properties>

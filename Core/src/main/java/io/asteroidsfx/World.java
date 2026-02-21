@@ -31,7 +31,7 @@ public final class World {
     }
 
     public void tick(float dt){
-        for(io.asteroidsfx.common.System system : systems){
+        for(System system : systems){
             system.tick(dt, entities);
         }
     }
