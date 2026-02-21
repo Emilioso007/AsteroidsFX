@@ -1,0 +1,3 @@
+module VelocityComponent {
+    requires Common;
+}
