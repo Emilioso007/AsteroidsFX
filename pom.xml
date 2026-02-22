@@ -33,6 +33,8 @@
         <module>BulletEntity</module>
         <module>ShootComponent</module>
         <module>ShootSystem</module>
+        <module>OutOfBoundsComponent</module>
+        <module>OutOfBoundsSystem</module>
     </modules>
 
     <properties>
