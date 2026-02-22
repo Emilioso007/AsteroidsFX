@@ -8,15 +8,16 @@ import io.asteroidsfx.positioncomponent.PositionComponent;
 import io.asteroidsfx.shootcomponent.ShootComponent;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class ShootSystem extends System {
 
     @Override
-    public void tick(float dt, ArrayList<Entity> entities) {
+    public void tick(float dt, HashSet<Entity> entities) {
 
-        for(int i = 0; i < entities.size(); i++){
+        ArrayList<Entity> entitiesToAdd = new ArrayList<>();
 
-            Entity entity = entities.get(i);
+        for(Entity entity : entities){
 
             PositionComponent positionComponent = entity.getComponent(PositionComponent.class);
             AngleComponent angleComponent = entity.getComponent(AngleComponent.class);
@@ -33,9 +34,11 @@ public class ShootSystem extends System {
             if(millisSinceLastFired >= millisBetweenFires) {
                 shootComponent.msLastFired = java.lang.System.currentTimeMillis();
                 BulletEntity bulletEntity = new BulletEntity(positionComponent.x, positionComponent.y, angleComponent.angle, shootComponent.velocity);
-                entities.add(bulletEntity);
+                entitiesToAdd.add(bulletEntity);
             }
         }
+
+        entities.addAll(entitiesToAdd);
 
     }
 }

@@ -5,7 +5,7 @@ import io.asteroidsfx.common.Entity;
 import io.asteroidsfx.common.System;
 import io.asteroidsfx.positioncomponent.PositionComponent;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 public class CollisionSystem<T1 extends Entity, T2 extends Entity> extends System {
 
@@ -20,11 +20,9 @@ public class CollisionSystem<T1 extends Entity, T2 extends Entity> extends Syste
     }
 
     @Override
-    public void tick(float dt, ArrayList<Entity> entities) {
+    public void tick(float dt, HashSet<Entity> entities) {
 
-        for(int i = entities.size()-1; i >= 0; i--){
-
-            Entity collider = entities.get(i);
+        for(Entity collider : entities){
 
             if(!this.collider.isInstance(collider)) continue;
 
@@ -33,9 +31,9 @@ public class CollisionSystem<T1 extends Entity, T2 extends Entity> extends Syste
 
             if(colliderPosition == null || colliderCircle == null) continue;
 
-            for(int j = entities.size()-1; j >= 0; j--){
+            for(Entity target : entities){
 
-                Entity target = entities.get(j);
+                if(collider == target) continue;
 
                 if(!this.target.isInstance(target)) continue;
 

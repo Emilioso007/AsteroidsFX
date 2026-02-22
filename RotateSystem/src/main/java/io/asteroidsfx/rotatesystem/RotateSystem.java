@@ -5,12 +5,12 @@ import io.asteroidsfx.common.Entity;
 import io.asteroidsfx.common.System;
 import io.asteroidsfx.rotationcomponent.RotationComponent;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 public class RotateSystem extends System {
 
     @Override
-    public void tick(float dt, ArrayList<Entity> entities) {
+    public void tick(float dt, HashSet<Entity> entities) {
         for(Entity entity : entities){
             AngleComponent angleComponent = entity.getComponent(AngleComponent.class);
             RotationComponent rotationComponent = entity.getComponent(RotationComponent.class);

@@ -7,7 +7,7 @@ import io.asteroidsfx.positioncomponent.PositionComponent;
 import io.asteroidsfx.rendercomponent.RenderComponent;
 import javafx.scene.canvas.GraphicsContext;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 public class RenderingSystem extends System{
     private GraphicsContext gc;
@@ -21,7 +21,7 @@ public class RenderingSystem extends System{
     }
 
     @Override
-    public void tick(float dt, ArrayList<Entity> entities) {
+    public void tick(float dt, HashSet<Entity> entities) {
         if (gc == null) {
             return;
         }

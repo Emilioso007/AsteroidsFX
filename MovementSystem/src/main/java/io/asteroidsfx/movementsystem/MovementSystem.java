@@ -10,11 +10,11 @@ import io.asteroidsfx.linearvelocitycomponent.LinearVelocityComponent;
 import io.asteroidsfx.positioncomponent.PositionComponent;
 import io.asteroidsfx.velocitycomponent.VelocityComponent;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 public class MovementSystem extends System{
     @Override
-    public void tick(float dt, ArrayList<Entity> entities) {
+    public void tick(float dt, HashSet<Entity> entities) {
         for(Entity entity : entities){
             PositionComponent positionComponent = entity.getComponent(PositionComponent.class);
 
