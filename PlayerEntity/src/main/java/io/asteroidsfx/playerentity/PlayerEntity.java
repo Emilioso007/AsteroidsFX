@@ -10,6 +10,7 @@ import io.asteroidsfx.linearaccelerationcomponent.LinearAccelerationComponent;
 import io.asteroidsfx.linearvelocitycomponent.LinearVelocityComponent;
 import io.asteroidsfx.positioncomponent.PositionComponent;
 import io.asteroidsfx.rendercomponent.RenderComponent;
+import io.asteroidsfx.shootcomponent.ShootComponent;
 import io.asteroidsfx.wraparoundsystem.WrapComponent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
@@ -65,6 +66,12 @@ public class PlayerEntity extends Entity {
         this.components.add(wrapComponent);
 
 
+        ShootComponent shootComponent = new ShootComponent();
+        shootComponent.roundsPerSecond = 5;
+        shootComponent.velocity = 10;
+        this.components.add(shootComponent);
+
+
         InputComponent inputComponent = new InputComponent();
         inputComponent.inputActionHashMap = new HashMap<>();
 
@@ -88,9 +95,15 @@ public class PlayerEntity extends Entity {
         inputComponent.inputActionHashMap.put(KeyCode.UP, (entity, dt) -> {
             LinearAccelerationComponent acceleration = entity.getComponent(LinearAccelerationComponent.class);
             if(acceleration != null){
-                acceleration.acceleration += 0.25;
+                acceleration.acceleration += 0.125;
             }
         });
+
+        // When spacebar is pressed, request shooting
+        inputComponent.inputActionHashMap.put(KeyCode.SPACE, ((entity, dt) -> {
+            ShootComponent shoot = entity.getComponent(ShootComponent.class);
+            shoot.shootRequested = true;
+        }));
 
         this.components.add(inputComponent);
 

@@ -11,4 +11,5 @@ module PlayerEntity {
     requires DragComponent;
     requires WraparoundSystem;
     requires CircleColliderComponent;
+    requires ShootComponent;
 }

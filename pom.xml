@@ -30,6 +30,9 @@
         <module>AccelerationComponent</module>
         <module>CircleColliderComponent</module>
         <module>CollisionSystem</module>
+        <module>BulletEntity</module>
+        <module>ShootComponent</module>
+        <module>ShootSystem</module>
     </modules>
 
     <properties>

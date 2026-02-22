@@ -1,12 +1,14 @@
 package io.asteroidsfx;
 
 import io.asteroidsfx.asteroidentity.AsteroidEntity;
+import io.asteroidsfx.bulletentity.BulletEntity;
 import io.asteroidsfx.collisionsystem.CollisionSystem;
 import io.asteroidsfx.inputsystem.InputSystem;
 import io.asteroidsfx.movementsystem.MovementSystem;
 import io.asteroidsfx.playerentity.PlayerEntity;
 import io.asteroidsfx.renderingsystem.RenderingSystem;
 import io.asteroidsfx.rotatesystem.RotateSystem;
+import io.asteroidsfx.shootsystem.ShootSystem;
 import io.asteroidsfx.wraparoundsystem.WraparoundSystem;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
@@ -41,12 +43,19 @@ public class Game {
 
         // SETUP SYSTEMS
         World.getInstance().addSystem(new InputSystem(World.getInstance().keysPressed));
+        World.getInstance().addSystem(new ShootSystem());
         World.getInstance().addSystem(new MovementSystem());
         World.getInstance().addSystem(new WraparoundSystem(World.getInstance().width, World.getInstance().height));
         World.getInstance().addSystem(new RotateSystem());
 
         // if asteroid hits player, remove player
-        World.getInstance().addSystem(new CollisionSystem<>(AsteroidEntity.class, PlayerEntity.class, (collider, target) -> World.getInstance().entities.remove(target)));
+        World.getInstance().addSystem(new CollisionSystem<>(AsteroidEntity.class, PlayerEntity.class,
+                (collider, target) -> World.getInstance().entities.remove(target)));
+
+        // if bullet hits asteroid, remove asteroid
+        World.getInstance().addSystem(new CollisionSystem<>(BulletEntity.class, AsteroidEntity.class,
+                (collider, target) -> World.getInstance().entities.remove(target)));
+
 
         World.getInstance().addSystem(new RenderingSystem(gc));
 
