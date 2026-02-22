@@ -4,11 +4,12 @@ import io.asteroidsfx.anglecomponent.AngleComponent;
 import io.asteroidsfx.circlecollidercomponent.CircleColliderComponent;
 import io.asteroidsfx.common.Entity;
 import io.asteroidsfx.common.Polygon;
+import io.asteroidsfx.outofboundscomponent.BoundsAction;
+import io.asteroidsfx.outofboundscomponent.OutOfBoundsComponent;
 import io.asteroidsfx.positioncomponent.PositionComponent;
 import io.asteroidsfx.rendercomponent.RenderComponent;
 import io.asteroidsfx.rotationcomponent.RotationComponent;
 import io.asteroidsfx.velocitycomponent.VelocityComponent;
-import io.asteroidsfx.wraparoundsystem.WrapComponent;
 import javafx.scene.paint.Color;
 
 import java.util.Arrays;
@@ -57,15 +58,15 @@ public class AsteroidEntity extends Entity{
 
         this.components.add(renderComponent);
 
-        WrapComponent wrapComponent = new WrapComponent();
+        OutOfBoundsComponent outOfBoundsComponent = new OutOfBoundsComponent();
         int buffer = 50; // a buffer to counteract the rotation
-        wrapComponent.rightExtent = (int) Arrays.stream(renderComponent.polygon.x).max().orElse(0) + buffer;
-        wrapComponent.leftExtent = (int) Arrays.stream(renderComponent.polygon.x).min().orElse(0) - buffer;
-        wrapComponent.bottomExtent = (int) Arrays.stream(renderComponent.polygon.y).max().orElse(0) + buffer;
-        wrapComponent.topExtent = (int) Arrays.stream(renderComponent.polygon.y).min().orElse(0) - buffer;
-        wrapComponent.wrapOutside = true;
+        outOfBoundsComponent.rightExtent = (int) Arrays.stream(renderComponent.polygon.x).max().orElse(0) + buffer;
+        outOfBoundsComponent.leftExtent = (int) Arrays.stream(renderComponent.polygon.x).min().orElse(0) - buffer;
+        outOfBoundsComponent.bottomExtent = (int) Arrays.stream(renderComponent.polygon.y).max().orElse(0) + buffer;
+        outOfBoundsComponent.topExtent = (int) Arrays.stream(renderComponent.polygon.y).min().orElse(0) - buffer;
+        outOfBoundsComponent.boundsAction = BoundsAction.WRAP;
 
-        this.components.add(wrapComponent);
+        this.components.add(outOfBoundsComponent);
 
         CircleColliderComponent circleColliderComponent = new CircleColliderComponent();
         circleColliderComponent.radius = 50;

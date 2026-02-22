@@ -9,7 +9,7 @@ module PlayerEntity {
     requires LinearVelocityComponent;
     requires LinearAccelerationComponent;
     requires DragComponent;
-    requires WraparoundSystem;
     requires CircleColliderComponent;
     requires ShootComponent;
+    requires OutOfBoundsComponent;
 }

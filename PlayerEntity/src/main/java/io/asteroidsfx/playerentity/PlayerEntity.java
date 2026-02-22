@@ -8,10 +8,11 @@ import io.asteroidsfx.dragcomponent.DragComponent;
 import io.asteroidsfx.inputcomponent.InputComponent;
 import io.asteroidsfx.linearaccelerationcomponent.LinearAccelerationComponent;
 import io.asteroidsfx.linearvelocitycomponent.LinearVelocityComponent;
+import io.asteroidsfx.outofboundscomponent.BoundsAction;
+import io.asteroidsfx.outofboundscomponent.OutOfBoundsComponent;
 import io.asteroidsfx.positioncomponent.PositionComponent;
 import io.asteroidsfx.rendercomponent.RenderComponent;
 import io.asteroidsfx.shootcomponent.ShootComponent;
-import io.asteroidsfx.wraparoundsystem.WrapComponent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 
@@ -61,9 +62,9 @@ public class PlayerEntity extends Entity {
         this.components.add(renderComponent);
 
 
-        WrapComponent wrapComponent = new WrapComponent();
-        wrapComponent.wrapOutside = true;
-        this.components.add(wrapComponent);
+        OutOfBoundsComponent outOfBoundsComponent = new OutOfBoundsComponent();
+        outOfBoundsComponent.boundsAction = BoundsAction.WRAP;
+        this.components.add(outOfBoundsComponent);
 
 
         ShootComponent shootComponent = new ShootComponent();

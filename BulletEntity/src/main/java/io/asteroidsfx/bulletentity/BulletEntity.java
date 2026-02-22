@@ -5,6 +5,8 @@ import io.asteroidsfx.circlecollidercomponent.CircleColliderComponent;
 import io.asteroidsfx.common.Entity;
 import io.asteroidsfx.common.Polygon;
 import io.asteroidsfx.linearvelocitycomponent.LinearVelocityComponent;
+import io.asteroidsfx.outofboundscomponent.BoundsAction;
+import io.asteroidsfx.outofboundscomponent.OutOfBoundsComponent;
 import io.asteroidsfx.positioncomponent.PositionComponent;
 import io.asteroidsfx.rendercomponent.RenderComponent;
 import javafx.scene.paint.Color;
@@ -39,6 +41,14 @@ public class BulletEntity extends Entity {
         }
         renderComponent.polygon = new Polygon(xs, ys, Color.LIGHTGRAY, Color.TRANSPARENT, 0);
         components.add(renderComponent);
+
+        OutOfBoundsComponent outOfBoundsComponent = new OutOfBoundsComponent();
+        outOfBoundsComponent.leftExtent = 2;
+        outOfBoundsComponent.rightExtent = 2;
+        outOfBoundsComponent.topExtent = 2;
+        outOfBoundsComponent.bottomExtent = 2;
+        outOfBoundsComponent.boundsAction = BoundsAction.REMOVE;
+        components.add(outOfBoundsComponent);
 
     }
 

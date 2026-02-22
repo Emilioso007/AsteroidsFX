@@ -36,42 +36,51 @@ public class OutOfBoundsSystem extends System {
 
             if(positionComponent == null || outOfBoundsComponent == null) continue;
 
-            double leftEdge = positionComponent.x + outOfBoundsComponent.leftExtent;
-            double rightEdge = positionComponent.x + outOfBoundsComponent.rightExtent;
-            double topEdge = positionComponent.y + outOfBoundsComponent.topExtent;
-            double bottomEdge = positionComponent.y + outOfBoundsComponent.bottomExtent;
+            double leftEdge = positionComponent.x + outOfBoundsComponent.leftExtent; // x + negativeExtent
+            double rightEdge = positionComponent.x + outOfBoundsComponent.rightExtent; // x + positiveExtent
+            double topEdge = positionComponent.y + outOfBoundsComponent.topExtent; // y + negativeExtent
+            double bottomEdge = positionComponent.y + outOfBoundsComponent.bottomExtent; // y + positiveExtent
 
+            // For WRAP and REMOVE: check if completely outside
             boolean exitLeft = rightEdge < minX;
             boolean exitRight = leftEdge > maxX;
             boolean exitTop = bottomEdge < minY;
             boolean exitBottom = topEdge > maxY;
 
+            // For BOUNCE: check if touching or crossing the boundary
+            boolean hitLeft = leftEdge <= minX;
+            boolean hitRight = rightEdge >= maxX;
+            boolean hitTop = topEdge <= minY;
+            boolean hitBottom = bottomEdge >= maxY;
+
             switch (outOfBoundsComponent.boundsAction){
+
                 case WRAP:
-                    if(exitLeft) positionComponent.x = maxX - outOfBoundsComponent.leftExtent;
-                    if(exitRight) positionComponent.x = minX - outOfBoundsComponent.rightExtent;
-                    if(exitTop) positionComponent.y = minY - outOfBoundsComponent.topExtent;
-                    if(exitBottom) positionComponent.y = maxY - outOfBoundsComponent.bottomExtent;
+                    if(exitLeft) positionComponent.x = maxX + outOfBoundsComponent.rightExtent;
+                    if(exitRight) positionComponent.x = minX + outOfBoundsComponent.leftExtent;
+                    if(exitTop) positionComponent.y = maxY + outOfBoundsComponent.topExtent;
+                    if(exitBottom) positionComponent.y = minY + outOfBoundsComponent.bottomExtent;
                     break;
+
                 case BOUNCE:
 
                     // 2D movement
                     VelocityComponent velocityComponent = entity.getComponent(VelocityComponent.class);
                     if(velocityComponent != null){
-                        if(exitLeft) {
+                        if(hitLeft) {
                             positionComponent.x = minX - outOfBoundsComponent.leftExtent;
                             velocityComponent.dx *= -1;
                         }
-                        if(exitRight) {
+                        if(hitRight) {
                             positionComponent.x = maxX - outOfBoundsComponent.rightExtent;
                             velocityComponent.dx *= -1;
                         }
-                        if(exitTop) {
+                        if(hitTop) {
                             positionComponent.y = minY - outOfBoundsComponent.topExtent;
                             velocityComponent.dy *= -1;
                         }
-                        if(exitBottom) {
-                            positionComponent.y = minY - outOfBoundsComponent.bottomExtent;
+                        if(hitBottom) {
+                            positionComponent.y = maxY - outOfBoundsComponent.bottomExtent;
                             velocityComponent.dy *= -1;
                         }
                     }
@@ -80,18 +89,20 @@ public class OutOfBoundsSystem extends System {
                     AngleComponent angleComponent = entity.getComponent(AngleComponent.class);
                     LinearVelocityComponent linearVelocityComponent = entity.getComponent(LinearVelocityComponent.class);
                     if(angleComponent != null && linearVelocityComponent != null){
-                        if(exitLeft || exitRight){
-                            angleComponent.angle = Math.PI- angleComponent.angle;
+                        if(hitLeft || hitRight){
+                            angleComponent.angle = Math.PI - angleComponent.angle;
                         }
-                        if(exitTop || exitBottom){
+                        if(hitTop || hitBottom){
                             angleComponent.angle = -angleComponent.angle;
                         }
                     }
 
                     break;
+
                 case REMOVE:
                     entity.toBeRemoved = (exitLeft || exitRight || exitTop || exitBottom);
                     break;
+
             }
         }
     }

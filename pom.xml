@@ -16,7 +16,6 @@
         <module>AngleComponent</module>
         <module>RotationComponent</module>
         <module>InputComponent</module>
-        <module>WraparoundSystem</module>
         <module>RenderingSystem</module>
         <module>MovementSystem</module>
         <module>RotateSystem</module>

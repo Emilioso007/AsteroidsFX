@@ -4,7 +4,6 @@ module Core {
     requires Common;
     requires RenderingSystem;
     requires MovementSystem;
-    requires WraparoundSystem;
     requires RotateSystem;
     requires InputSystem;
     requires AsteroidEntity;
@@ -12,5 +11,6 @@ module Core {
     requires CollisionSystem;
     requires ShootSystem;
     requires BulletEntity;
+    requires OutOfBoundsSystem;
     exports io.asteroidsfx;
 }

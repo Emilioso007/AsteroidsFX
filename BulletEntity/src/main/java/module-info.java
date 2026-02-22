@@ -6,5 +6,6 @@ module BulletEntity {
     requires LinearVelocityComponent;
     requires PositionComponent;
     requires RenderComponent;
+    requires OutOfBoundsComponent;
     exports io.asteroidsfx.bulletentity;
 }

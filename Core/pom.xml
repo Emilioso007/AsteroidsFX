@@ -76,12 +76,6 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>io.asteroidsfx.wraparoundsystem</groupId>
-            <artifactId>WraparoundSystem</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>io.asteroidsfx.rotatesystem</groupId>
             <artifactId>RotateSystem</artifactId>
             <version>1.0-SNAPSHOT</version>
@@ -114,6 +108,12 @@
         <dependency>
             <groupId>io.asteroidsfx.shootsystem</groupId>
             <artifactId>ShootSystem</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.asteroidsfx.outofboundssystem</groupId>
+            <artifactId>OutOfBoundsSystem</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

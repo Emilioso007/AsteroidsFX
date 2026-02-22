@@ -5,11 +5,11 @@ import io.asteroidsfx.bulletentity.BulletEntity;
 import io.asteroidsfx.collisionsystem.CollisionSystem;
 import io.asteroidsfx.inputsystem.InputSystem;
 import io.asteroidsfx.movementsystem.MovementSystem;
+import io.asteroidsfx.outofboundssystem.OutOfBoundsSystem;
 import io.asteroidsfx.playerentity.PlayerEntity;
 import io.asteroidsfx.renderingsystem.RenderingSystem;
 import io.asteroidsfx.rotatesystem.RotateSystem;
 import io.asteroidsfx.shootsystem.ShootSystem;
-import io.asteroidsfx.wraparoundsystem.WraparoundSystem;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -45,7 +45,7 @@ public class Game {
         World.getInstance().addSystem(new InputSystem(World.getInstance().keysPressed));
         World.getInstance().addSystem(new ShootSystem());
         World.getInstance().addSystem(new MovementSystem());
-        World.getInstance().addSystem(new WraparoundSystem(World.getInstance().width, World.getInstance().height));
+        World.getInstance().addSystem(new OutOfBoundsSystem(World.getInstance().width, World.getInstance().height));
         World.getInstance().addSystem(new RotateSystem());
 
         // if asteroid hits player, remove player

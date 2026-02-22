@@ -5,9 +5,9 @@ module AsteroidEntity {
     requires RenderComponent;
     requires javafx.graphics;
     requires VelocityComponent;
-    requires WraparoundSystem;
     requires AngleComponent;
     requires RotationComponent;
     requires InputComponent;
     requires CircleColliderComponent;
+    requires OutOfBoundsComponent;
 }
