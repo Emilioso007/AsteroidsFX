@@ -34,7 +34,7 @@ public class RenderingSystem extends System{
             gc.save();
 
             if(positionComponent != null){
-                gc.translate(positionComponent.x, positionComponent.y);
+                gc.translate(positionComponent.pos.x, positionComponent.pos.y);
             }
             if(angleComponent != null){
                 gc.rotate(Math.toDegrees(angleComponent.angle));

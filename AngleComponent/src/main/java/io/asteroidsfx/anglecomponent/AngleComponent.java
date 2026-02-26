@@ -4,6 +4,6 @@ import io.asteroidsfx.common.Component;
 
 public class AngleComponent extends Component {
 
-    public double angle;
+    public float angle;
 
 }

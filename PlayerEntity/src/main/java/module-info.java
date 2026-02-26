@@ -9,12 +9,12 @@ module PlayerEntity {
     requires PositionComponent;
     requires AngleComponent;
     requires RenderComponent;
-    requires LinearVelocityComponent;
-    requires LinearAccelerationComponent;
     requires DragComponent;
     requires CircleColliderComponent;
     requires ShootComponent;
     requires OutOfBoundsComponent;
+    requires VelocityComponent;
+    requires AccelerationComponent;
 
     provides EntitySpi with PlayerEntityProvider;
 }

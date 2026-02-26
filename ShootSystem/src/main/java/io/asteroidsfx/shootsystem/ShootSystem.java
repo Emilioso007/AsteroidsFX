@@ -38,7 +38,7 @@ public class ShootSystem extends System {
             long millisBetweenFires = (long)(1000/shootComponent.roundsPerSecond);
             if(millisSinceLastFired >= millisBetweenFires) {
                 shootComponent.msLastFired = java.lang.System.currentTimeMillis();
-                BulletEntity bulletEntity = new BulletEntity(positionComponent.x, positionComponent.y, angleComponent.angle, shootComponent.velocity);
+                BulletEntity bulletEntity = new BulletEntity(positionComponent.pos.x, positionComponent.pos.y, angleComponent.angle, shootComponent.velocity);
                 entitiesToAdd.add(bulletEntity);
             }
         }

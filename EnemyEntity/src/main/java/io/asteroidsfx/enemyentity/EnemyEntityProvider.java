@@ -1,16 +1,16 @@
-package io.asteroidsfx.playerentity;
+package io.asteroidsfx.enemyentity;
 
 import io.asteroidsfx.common.EntitySpi;
 import io.asteroidsfx.common.World;
 
-public class PlayerEntityProvider implements EntitySpi {
+public class EnemyEntityProvider implements EntitySpi {
     @Override
     public void start(World world) {
-        world.addEntity(new PlayerEntity(world.width/2, world.height/2));
+        world.addEntity(new EnemyEntity());
     }
 
     @Override
     public int getPriority() {
-        return 0;
+        return 10;
     }
 }

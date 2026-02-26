@@ -1,13 +1,9 @@
 package io.asteroidsfx.movementsystem;
 
 import io.asteroidsfx.accelerationcomponent.AccelerationComponent;
-import io.asteroidsfx.anglecomponent.AngleComponent;
 import io.asteroidsfx.common.Component;
 import io.asteroidsfx.common.Entity;
 import io.asteroidsfx.common.System;
-import io.asteroidsfx.dragcomponent.DragComponent;
-import io.asteroidsfx.linearaccelerationcomponent.LinearAccelerationComponent;
-import io.asteroidsfx.linearvelocitycomponent.LinearVelocityComponent;
 import io.asteroidsfx.positioncomponent.PositionComponent;
 import io.asteroidsfx.velocitycomponent.VelocityComponent;
 
@@ -18,7 +14,7 @@ public class MovementSystem extends System{
 
     @Override
     public List<Class<? extends Component>> getSignature() {
-        return List.of(PositionComponent.class);
+        return List.of(PositionComponent.class, VelocityComponent.class);
     }
 
     @Override
@@ -26,7 +22,17 @@ public class MovementSystem extends System{
 
         for(Entity entity : entities){
             PositionComponent positionComponent = entity.getComponent(PositionComponent.class);
+            VelocityComponent velocityComponent = entity.getComponent(VelocityComponent.class);
 
+            AccelerationComponent accelerationComponent = entity.getComponent(AccelerationComponent.class);
+            if (accelerationComponent != null){
+                velocityComponent.vel.add(accelerationComponent.acc);
+                accelerationComponent.acc.mult(0);
+            }
+
+            positionComponent.pos.add(velocityComponent.vel.copy().mult(dt));
+
+            /*
             // Apply velocity
             VelocityComponent velocityComponent = entity.getComponent(VelocityComponent.class);
             if (velocityComponent != null) {
@@ -63,6 +69,7 @@ public class MovementSystem extends System{
             if(linearVelocityComponent != null && dragComponent != null){
                 linearVelocityComponent.velocity *= (1 - dragComponent.drag * dt);
             }
+            */
         }
     }
 }

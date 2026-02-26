@@ -12,6 +12,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.util.Comparator;
 import java.util.ServiceLoader;
 
 public class Game {
@@ -20,8 +21,8 @@ public class Game {
 
     public void start(Stage window) {
 
-        World.getInstance().width = (int)(1920*0.8);
-        World.getInstance().height = (int)(1080*0.8);
+        World.getInstance().width = (int)(800);
+        World.getInstance().height = (int)(800);
 
         Canvas canvas = new Canvas(World.getInstance().width, World.getInstance().height);
         gc = canvas.getGraphicsContext2D();
@@ -47,13 +48,12 @@ public class Game {
         // RENDERING SYSTEM IS ADDED MANUALLY
         World.getInstance().addSystem(new RenderingSystem(gc));
 
-
-        // SETUP ENTITIES
         ServiceLoader<EntitySpi> entitySpis = ServiceLoader.load(EntitySpi.class);
-        for (EntitySpi entitySpi : entitySpis){
-            entitySpi.start(World.getInstance());
-        }
 
+        entitySpis.stream()
+        .map(ServiceLoader.Provider::get)
+        .sorted(Comparator.comparingInt(EntitySpi::getPriority))
+        .forEach(entitySpi -> entitySpi.start(World.getInstance()));
 
         // LOOP
         new AnimationTimer() {

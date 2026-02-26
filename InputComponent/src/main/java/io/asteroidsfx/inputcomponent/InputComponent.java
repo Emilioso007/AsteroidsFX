@@ -7,6 +7,6 @@ import java.util.HashMap;
 
 public class InputComponent extends Component{
 
-    public HashMap<KeyCode, InputAction> inputActionHashMap;
+    public HashMap<KeyCode, InputAction> inputActionHashMap = new HashMap<>();
 
 }

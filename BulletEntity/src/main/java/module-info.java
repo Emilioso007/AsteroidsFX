@@ -3,7 +3,7 @@ module BulletEntity {
     requires CircleColliderComponent;
     requires Common;
     requires javafx.graphics;
-    requires LinearVelocityComponent;
+    requires VelocityComponent;
     requires PositionComponent;
     requires RenderComponent;
     requires OutOfBoundsComponent;

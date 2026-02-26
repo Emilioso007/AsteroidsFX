@@ -1,18 +1,19 @@
 package io.asteroidsfx.playerentity;
 
+import io.asteroidsfx.accelerationcomponent.AccelerationComponent;
 import io.asteroidsfx.anglecomponent.AngleComponent;
 import io.asteroidsfx.circlecollidercomponent.CircleColliderComponent;
 import io.asteroidsfx.common.Entity;
 import io.asteroidsfx.common.Polygon;
+import io.asteroidsfx.common.Vector;
 import io.asteroidsfx.dragcomponent.DragComponent;
 import io.asteroidsfx.inputcomponent.InputComponent;
-import io.asteroidsfx.linearaccelerationcomponent.LinearAccelerationComponent;
-import io.asteroidsfx.linearvelocitycomponent.LinearVelocityComponent;
 import io.asteroidsfx.outofboundscomponent.BoundsAction;
 import io.asteroidsfx.outofboundscomponent.OutOfBoundsComponent;
 import io.asteroidsfx.positioncomponent.PositionComponent;
 import io.asteroidsfx.rendercomponent.RenderComponent;
 import io.asteroidsfx.shootcomponent.ShootComponent;
+import io.asteroidsfx.velocitycomponent.VelocityComponent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 
@@ -25,23 +26,20 @@ public class PlayerEntity extends Entity {
         this.components.add(new PlayerTag());
 
         PositionComponent positionComponent = new PositionComponent();
-        positionComponent.x = startX;
-        positionComponent.y = startY;
+        positionComponent.pos = new Vector(startX, startY);
         this.components.add(positionComponent);
 
+        VelocityComponent velocityComponent = new VelocityComponent();
+        velocityComponent.vel = new Vector();
+        this.components.add(velocityComponent);
+
+        AccelerationComponent accelerationComponent = new AccelerationComponent();
+        accelerationComponent.acc = new Vector();
+        this.components.add(accelerationComponent);
 
         AngleComponent angleComponent = new AngleComponent();
         angleComponent.angle = 0;
         this.components.add(angleComponent);
-
-
-        LinearVelocityComponent linearVelocityComponent = new LinearVelocityComponent();
-        this.components.add(linearVelocityComponent);
-
-
-        LinearAccelerationComponent linearAccelerationComponent = new LinearAccelerationComponent();
-        this.components.add(linearAccelerationComponent);
-
 
         DragComponent dragComponent = new DragComponent();
         dragComponent.drag = 5;
@@ -86,7 +84,7 @@ public class PlayerEntity extends Entity {
         inputComponent.inputActionHashMap.put(KeyCode.LEFT, (entity, dt) -> {
             AngleComponent angle = entity.getComponent(AngleComponent.class);
             if (angle != null) {
-                angle.angle -= Math.toRadians(180) * dt; // rotate left
+                angle.angle -= (float) (Math.toRadians(180) * dt); // rotate left
             }
         });
 
@@ -94,16 +92,15 @@ public class PlayerEntity extends Entity {
         inputComponent.inputActionHashMap.put(KeyCode.RIGHT, (entity, dt) -> {
             AngleComponent angle = entity.getComponent(AngleComponent.class);
             if (angle != null) {
-                angle.angle += Math.toRadians(180) * dt; // rotate left
+                angle.angle += (float) (Math.toRadians(180) * dt); // rotate left
             }
         });
 
         // When UP is pressed, add forward thrust
         inputComponent.inputActionHashMap.put(KeyCode.UP, (entity, dt) -> {
-            LinearAccelerationComponent acceleration = entity.getComponent(LinearAccelerationComponent.class);
-            if(acceleration != null){
-                acceleration.acceleration += 25;
-            }
+            AccelerationComponent acceleration = entity.getComponent(AccelerationComponent.class);
+            float angle = entity.getComponent(AngleComponent.class).angle;
+            acceleration.acc.add(Vector.fromAngle(angle).setMag(25));
         });
 
         // When spacebar is pressed, request shooting

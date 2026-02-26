@@ -1,10 +1,8 @@
 package io.asteroidsfx.outofboundssystem;
 
-import io.asteroidsfx.anglecomponent.AngleComponent;
 import io.asteroidsfx.common.Component;
 import io.asteroidsfx.common.Entity;
 import io.asteroidsfx.common.System;
-import io.asteroidsfx.linearvelocitycomponent.LinearVelocityComponent;
 import io.asteroidsfx.outofboundscomponent.OutOfBoundsComponent;
 import io.asteroidsfx.positioncomponent.PositionComponent;
 import io.asteroidsfx.velocitycomponent.VelocityComponent;
@@ -40,10 +38,10 @@ public class OutOfBoundsSystem extends System {
             PositionComponent positionComponent = entity.getComponent(PositionComponent.class);
             OutOfBoundsComponent outOfBoundsComponent = entity.getComponent(OutOfBoundsComponent.class);
 
-            double leftEdge = positionComponent.x + outOfBoundsComponent.leftExtent; // x + negativeExtent
-            double rightEdge = positionComponent.x + outOfBoundsComponent.rightExtent; // x + positiveExtent
-            double topEdge = positionComponent.y + outOfBoundsComponent.topExtent; // y + negativeExtent
-            double bottomEdge = positionComponent.y + outOfBoundsComponent.bottomExtent; // y + positiveExtent
+            double leftEdge = positionComponent.pos.x + outOfBoundsComponent.leftExtent; // x + negativeExtent
+            double rightEdge = positionComponent.pos.x + outOfBoundsComponent.rightExtent; // x + positiveExtent
+            double topEdge = positionComponent.pos.y + outOfBoundsComponent.topExtent; // y + negativeExtent
+            double bottomEdge = positionComponent.pos.y + outOfBoundsComponent.bottomExtent; // y + positiveExtent
 
             // For WRAP and REMOVE: check if completely outside
             boolean exitLeft = rightEdge < minX;
@@ -60,10 +58,10 @@ public class OutOfBoundsSystem extends System {
             switch (outOfBoundsComponent.boundsAction){
 
                 case WRAP:
-                    if(exitLeft) positionComponent.x = maxX - outOfBoundsComponent.leftExtent;
-                    if(exitRight) positionComponent.x = minX - outOfBoundsComponent.rightExtent;
-                    if(exitTop) positionComponent.y = maxY - outOfBoundsComponent.topExtent;
-                    if(exitBottom) positionComponent.y = minY - outOfBoundsComponent.bottomExtent;
+                    if(exitLeft) positionComponent.pos.x = maxX - outOfBoundsComponent.leftExtent;
+                    if(exitRight) positionComponent.pos.x = minX - outOfBoundsComponent.rightExtent;
+                    if(exitTop) positionComponent.pos.y = maxY - outOfBoundsComponent.topExtent;
+                    if(exitBottom) positionComponent.pos.y = minY - outOfBoundsComponent.bottomExtent;
                     break;
 
                 case BOUNCE:
@@ -72,32 +70,20 @@ public class OutOfBoundsSystem extends System {
                     VelocityComponent velocityComponent = entity.getComponent(VelocityComponent.class);
                     if(velocityComponent != null){
                         if(hitLeft) {
-                            positionComponent.x = minX - outOfBoundsComponent.leftExtent;
-                            velocityComponent.dx *= -1;
+                            positionComponent.pos.x = minX - outOfBoundsComponent.leftExtent;
+                            velocityComponent.vel.x *= -1;
                         }
                         if(hitRight) {
-                            positionComponent.x = maxX - outOfBoundsComponent.rightExtent;
-                            velocityComponent.dx *= -1;
+                            positionComponent.pos.x = maxX - outOfBoundsComponent.rightExtent;
+                            velocityComponent.vel.x *= -1;
                         }
                         if(hitTop) {
-                            positionComponent.y = minY - outOfBoundsComponent.topExtent;
-                            velocityComponent.dy *= -1;
+                            positionComponent.pos.y = minY - outOfBoundsComponent.topExtent;
+                            velocityComponent.vel.y *= -1;
                         }
                         if(hitBottom) {
-                            positionComponent.y = maxY - outOfBoundsComponent.bottomExtent;
-                            velocityComponent.dy *= -1;
-                        }
-                    }
-
-                    // Linear movement
-                    AngleComponent angleComponent = entity.getComponent(AngleComponent.class);
-                    LinearVelocityComponent linearVelocityComponent = entity.getComponent(LinearVelocityComponent.class);
-                    if(angleComponent != null && linearVelocityComponent != null){
-                        if(hitLeft || hitRight){
-                            angleComponent.angle = Math.PI - angleComponent.angle;
-                        }
-                        if(hitTop || hitBottom){
-                            angleComponent.angle = -angleComponent.angle;
+                            positionComponent.pos.y = maxY - outOfBoundsComponent.bottomExtent;
+                            velocityComponent.vel.y *= -1;
                         }
                     }
 

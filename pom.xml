@@ -23,8 +23,6 @@
         <module>InputSystem</module>
         <module>AsteroidEntity</module>
         <module>PlayerEntity</module>
-        <module>LinearVelocityComponent</module>
-        <module>LinearAccelerationComponent</module>
         <module>DragComponent</module>
         <module>AccelerationComponent</module>
         <module>CircleColliderComponent</module>
@@ -36,6 +34,7 @@
         <module>OutOfBoundsSystem</module>
         <module>AsteroidBulletCollisionResponseSystem</module>
         <module>AsteroidPlayerCollisionResponseSystem</module>
+        <module>EnemyEntity</module>
     </modules>
 
     <properties>
