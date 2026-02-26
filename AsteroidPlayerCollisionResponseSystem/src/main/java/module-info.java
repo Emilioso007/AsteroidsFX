@@ -3,7 +3,7 @@ import io.asteroidsfx.common.SystemSpi;
 
 module AsteroidPlayerCollisionResponseSystem {
     requires AsteroidEntity;
-    requires CollisionSystem;
+    requires Collision;
     requires Common;
     requires PlayerEntity;
 

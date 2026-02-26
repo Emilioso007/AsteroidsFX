@@ -1,11 +1,11 @@
 package io.asteroidsfx.bulletentity;
 
-import io.asteroidsfx.circlecollidercomponent.CircleColliderComponent;
+import io.asteroidsfx.collision.CircleColliderComponent;
 import io.asteroidsfx.common.Entity;
 import io.asteroidsfx.common.Polygon;
 import io.asteroidsfx.common.Vector;
-import io.asteroidsfx.outofboundscomponent.BoundsAction;
-import io.asteroidsfx.outofboundscomponent.OutOfBoundsComponent;
+import io.asteroidsfx.outofbounds.BoundsAction;
+import io.asteroidsfx.outofbounds.OutOfBoundsComponent;
 import io.asteroidsfx.positioncomponent.PositionComponent;
 import io.asteroidsfx.rendercomponent.RenderComponent;
 import io.asteroidsfx.velocitycomponent.VelocityComponent;

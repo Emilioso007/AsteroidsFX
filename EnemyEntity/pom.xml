@@ -49,12 +49,6 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>io.asteroidsfx.outofboundscomponent</groupId>
-            <artifactId>OutOfBoundsComponent</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>io.asteroidsfx.shootcomponent</groupId>
             <artifactId>ShootComponent</artifactId>
             <version>1.0-SNAPSHOT</version>

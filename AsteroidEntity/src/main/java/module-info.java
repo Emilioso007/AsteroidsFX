@@ -11,8 +11,8 @@ module AsteroidEntity {
     requires AngleComponent;
     requires RotationComponent;
     requires InputComponent;
-    requires CircleColliderComponent;
-    requires OutOfBoundsComponent;
+    requires OutOfBounds;
+    requires Collision;
 
     provides EntitySpi with AsteroidProvider;
 }

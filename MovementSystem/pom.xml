@@ -36,12 +36,6 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>io.asteroidsfx.linearvelocitycomponent</groupId>
-            <artifactId>LinearVelocityComponent</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>io.asteroidsfx.AngleComponent</groupId>
             <artifactId>AngleComponent</artifactId>
             <version>1.0-SNAPSHOT</version>
@@ -50,12 +44,6 @@
         <dependency>
             <groupId>io.asteroidsfx.dragcomponent</groupId>
             <artifactId>DragComponent</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.asteroidsfx.linearaccelerationcomponent</groupId>
-            <artifactId>LinearAccelerationComponent</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

@@ -49,26 +49,8 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>io.asteroidsfx.linearvelocitycomponent</groupId>
-            <artifactId>LinearVelocityComponent</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.asteroidsfx.linearaccelerationcomponent</groupId>
-            <artifactId>LinearAccelerationComponent</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>io.asteroidsfx.dragcomponent</groupId>
             <artifactId>DragComponent</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.asteroidsfx.circlecollidercomponent</groupId>
-            <artifactId>CircleColliderComponent</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
@@ -79,8 +61,8 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>io.asteroidsfx.outofboundscomponent</groupId>
-            <artifactId>OutOfBoundsComponent</artifactId>
+            <groupId>io.asteroidsfx.outofbounds</groupId>
+            <artifactId>OutOfBounds</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
@@ -93,6 +75,12 @@
         <dependency>
             <groupId>io.asteroidsfx.accelerationcomponent</groupId>
             <artifactId>AccelerationComponent</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.asteroidsfx.collision</groupId>
+            <artifactId>Collision</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

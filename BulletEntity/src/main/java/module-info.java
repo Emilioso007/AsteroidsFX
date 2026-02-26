@@ -1,11 +1,11 @@
 module BulletEntity {
     requires AngleComponent;
-    requires CircleColliderComponent;
     requires Common;
     requires javafx.graphics;
     requires VelocityComponent;
     requires PositionComponent;
     requires RenderComponent;
-    requires OutOfBoundsComponent;
+    requires OutOfBounds;
+    requires Collision;
     exports io.asteroidsfx.bulletentity;
 }

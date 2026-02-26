@@ -1,7 +1,7 @@
 package io.asteroidsfx.asteroidplayercollisionresponsesystem;
 
 import io.asteroidsfx.asteroidentity.AsteroidTag;
-import io.asteroidsfx.collisionsystem.CollisionEvent;
+import io.asteroidsfx.collision.CollisionEvent;
 import io.asteroidsfx.common.Component;
 import io.asteroidsfx.common.Entity;
 import io.asteroidsfx.common.System;

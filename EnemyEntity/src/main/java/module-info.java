@@ -8,10 +8,11 @@ module EnemyEntity {
     requires PositionComponent;
     requires RenderComponent;
     requires VelocityComponent;
-    requires OutOfBoundsComponent;
     requires ShootComponent;
     requires InputComponent;
     requires PlayerEntity;
+    requires OutOfBounds;
+    requires Collision;
 
     provides EntitySpi with EnemyEntityProvider;
 }

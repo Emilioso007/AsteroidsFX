@@ -4,7 +4,7 @@ import io.asteroidsfx.common.SystemSpi;
 module AsteroidBulletCollisionResponseSystem {
     requires AsteroidEntity;
     requires BulletEntity;
-    requires CollisionSystem;
+    requires Collision;
     requires Common;
 
     provides SystemSpi with AsteroidBulletCollisionResponseSystemProvider;

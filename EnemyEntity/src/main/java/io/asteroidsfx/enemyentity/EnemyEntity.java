@@ -1,13 +1,14 @@
 package io.asteroidsfx.enemyentity;
 
 import io.asteroidsfx.anglecomponent.AngleComponent;
+import io.asteroidsfx.collision.CircleColliderComponent;
 import io.asteroidsfx.common.Entity;
 import io.asteroidsfx.common.Polygon;
 import io.asteroidsfx.common.Vector;
 import io.asteroidsfx.common.World;
 import io.asteroidsfx.inputcomponent.InputComponent;
-import io.asteroidsfx.outofboundscomponent.BoundsAction;
-import io.asteroidsfx.outofboundscomponent.OutOfBoundsComponent;
+import io.asteroidsfx.outofbounds.BoundsAction;
+import io.asteroidsfx.outofbounds.OutOfBoundsComponent;
 import io.asteroidsfx.playerentity.PlayerTag;
 import io.asteroidsfx.positioncomponent.PositionComponent;
 import io.asteroidsfx.rendercomponent.RenderComponent;
@@ -61,6 +62,10 @@ public class EnemyEntity extends Entity{
            entity.getComponent(ShootComponent.class).shootRequested = true;
         });
         this.components.add(inputComponent);
+
+        CircleColliderComponent circleColliderComponent = new CircleColliderComponent();
+        circleColliderComponent.radius = 25;
+        this.components.add(circleColliderComponent);
     }
 
 }
