@@ -42,7 +42,7 @@ public class PlayerEntity extends Entity {
         this.components.add(angleComponent);
 
         DragComponent dragComponent = new DragComponent();
-        dragComponent.drag = 5;
+        dragComponent.drag = 1f;
         this.components.add(dragComponent);
 
 
@@ -100,7 +100,7 @@ public class PlayerEntity extends Entity {
         inputComponent.inputActionHashMap.put(KeyCode.UP, (entity, dt) -> {
             AccelerationComponent acceleration = entity.getComponent(AccelerationComponent.class);
             float angle = entity.getComponent(AngleComponent.class).angle;
-            acceleration.acc.add(Vector.fromAngle(angle).setMag(25));
+            acceleration.acc.add(Vector.fromAngle(angle).setMag(2500));
         });
 
         // When spacebar is pressed, request shooting
