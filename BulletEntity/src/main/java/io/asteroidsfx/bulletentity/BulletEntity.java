@@ -40,9 +40,9 @@ public class BulletEntity extends Entity {
         this.components.add(renderComponent);
 
         OutOfBoundsComponent outOfBoundsComponent = new OutOfBoundsComponent();
-        outOfBoundsComponent.leftExtent = 2;
+        outOfBoundsComponent.leftExtent = -2;
         outOfBoundsComponent.rightExtent = 2;
-        outOfBoundsComponent.topExtent = 2;
+        outOfBoundsComponent.topExtent = -2;
         outOfBoundsComponent.bottomExtent = 2;
         outOfBoundsComponent.boundsAction = BoundsAction.REMOVE;
         this.components.add(outOfBoundsComponent);

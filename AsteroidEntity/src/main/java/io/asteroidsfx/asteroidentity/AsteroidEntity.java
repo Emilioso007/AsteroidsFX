@@ -13,7 +13,6 @@ import io.asteroidsfx.rotationcomponent.RotationComponent;
 import io.asteroidsfx.velocitycomponent.VelocityComponent;
 import javafx.scene.paint.Color;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class AsteroidEntity extends Entity{
@@ -30,7 +29,7 @@ public class AsteroidEntity extends Entity{
         this.components.add(positionComponent);
 
         VelocityComponent velocityComponent = new VelocityComponent();
-        velocityComponent.vel = Vector.fromAngle(random.nextFloat((float) (Math.PI*2))).setMag(random.nextFloat(50, 250));
+        velocityComponent.vel = Vector.fromAngle(random.nextDouble(Math.PI*2)).setMag(random.nextDouble(50, 250));
         this.components.add(velocityComponent);
 
         AngleComponent angleComponent = new AngleComponent();
@@ -58,11 +57,10 @@ public class AsteroidEntity extends Entity{
         this.components.add(renderComponent);
 
         OutOfBoundsComponent outOfBoundsComponent = new OutOfBoundsComponent();
-        int buffer = 50; // a buffer to counteract the rotation
-        outOfBoundsComponent.rightExtent = (int) Arrays.stream(renderComponent.polygon.x).max().orElse(0) + buffer;
-        outOfBoundsComponent.leftExtent = (int) Arrays.stream(renderComponent.polygon.x).min().orElse(0) - buffer;
-        outOfBoundsComponent.bottomExtent = (int) Arrays.stream(renderComponent.polygon.y).max().orElse(0) + buffer;
-        outOfBoundsComponent.topExtent = (int) Arrays.stream(renderComponent.polygon.y).min().orElse(0) - buffer;
+        outOfBoundsComponent.rightExtent = 100;
+        outOfBoundsComponent.leftExtent = -100;
+        outOfBoundsComponent.bottomExtent = 100;
+        outOfBoundsComponent.topExtent = -100;
         outOfBoundsComponent.boundsAction = BoundsAction.WRAP;
         this.components.add(outOfBoundsComponent);
 

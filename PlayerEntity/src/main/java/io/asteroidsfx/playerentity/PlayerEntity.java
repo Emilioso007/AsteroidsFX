@@ -81,7 +81,7 @@ public class PlayerEntity extends Entity {
         inputComponent.inputActionHashMap.put(KeyCode.LEFT, (entity, dt) -> {
             AngleComponent angle = entity.getComponent(AngleComponent.class);
             if (angle != null) {
-                angle.angle -= (float) (Math.toRadians(180) * dt); // rotate left
+                angle.angle -= Math.toRadians(180) * dt; // rotate left
             }
         });
 
@@ -89,14 +89,14 @@ public class PlayerEntity extends Entity {
         inputComponent.inputActionHashMap.put(KeyCode.RIGHT, (entity, dt) -> {
             AngleComponent angle = entity.getComponent(AngleComponent.class);
             if (angle != null) {
-                angle.angle += (float) (Math.toRadians(180) * dt); // rotate left
+                angle.angle += Math.toRadians(180) * dt; // rotate left
             }
         });
 
         // When UP is pressed, add forward thrust
         inputComponent.inputActionHashMap.put(KeyCode.UP, (entity, dt) -> {
             AccelerationComponent acceleration = entity.getComponent(AccelerationComponent.class);
-            float angle = entity.getComponent(AngleComponent.class).angle;
+            double angle = entity.getComponent(AngleComponent.class).angle;
             acceleration.acc.add(Vector.fromAngle(angle).setMag(2500));
         });
 

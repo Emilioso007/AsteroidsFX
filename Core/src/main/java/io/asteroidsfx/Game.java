@@ -60,7 +60,7 @@ public class Game {
             private long lastFrameTime = 0;
             @Override
             public void handle(long now){
-                float deltaTime = (lastFrameTime == 0) ? 0 : (now - lastFrameTime) / 1_000_000_000f;
+                double deltaTime = (lastFrameTime == 0) ? 0 : (now - lastFrameTime) / 1_000_000_000f;
                 lastFrameTime = now;
 
                 // clear screen

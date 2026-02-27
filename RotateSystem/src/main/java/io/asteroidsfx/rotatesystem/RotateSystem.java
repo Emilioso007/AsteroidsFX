@@ -16,7 +16,7 @@ public class RotateSystem extends System {
     }
 
     @Override
-    public void tick(float dt, List<Entity> entities) {
+    public void tick(double dt, List<Entity> entities) {
         for(Entity entity : entities){
             AngleComponent angleComponent = entity.getComponent(AngleComponent.class);
             RotationComponent rotationComponent = entity.getComponent(RotationComponent.class);

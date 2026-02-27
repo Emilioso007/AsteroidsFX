@@ -14,7 +14,7 @@ public class CollisionSystem extends System {
     }
 
     @Override
-    public void tick(float dt, List<Entity> entities) {
+    public void tick(double dt, List<Entity> entities) {
 
         for(int i = 0; i < entities.size() - 1; i++){
 
@@ -30,8 +30,8 @@ public class CollisionSystem extends System {
                 PositionComponent targetPosition = target.getComponent(PositionComponent.class);
                 CircleColliderComponent targetCircle = target.getComponent(CircleColliderComponent.class);
 
-                float distanceBetweenCenters = Vector.dist(colliderPosition.pos, targetPosition.pos);
-                float radiusSum = colliderCircle.radius + targetCircle.radius;
+                double distanceBetweenCenters = Vector.dist(colliderPosition.pos, targetPosition.pos);
+                double radiusSum = colliderCircle.radius + targetCircle.radius;
                 if(distanceBetweenCenters <= radiusSum){
                     World.getInstance().getEventBus().publish(new CollisionEvent(collider, target));
                 }

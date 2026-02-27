@@ -11,10 +11,10 @@ import javafx.scene.canvas.GraphicsContext;
 import java.util.List;
 
 public class RenderingSystem extends System{
-    private final GraphicsContext gc;
+    private final GraphicsContext graphicsContext;
 
-    public RenderingSystem(GraphicsContext gc) {
-        this.gc = gc;
+    public RenderingSystem(GraphicsContext graphicsContext) {
+        this.graphicsContext = graphicsContext;
     }
 
     @Override
@@ -23,7 +23,7 @@ public class RenderingSystem extends System{
     }
 
     @Override
-    public void tick(float dt, List<Entity> entities) {
+    public void tick(double dt, List<Entity> entities) {
         for(Entity entity : entities){
             RenderComponent renderComponent = entity.getComponent(RenderComponent.class);
 
@@ -31,18 +31,18 @@ public class RenderingSystem extends System{
             PositionComponent positionComponent = entity.getComponent(PositionComponent.class);
             AngleComponent angleComponent = entity.getComponent(AngleComponent.class);
 
-            gc.save();
+            graphicsContext.save();
 
             if(positionComponent != null){
-                gc.translate(positionComponent.pos.x, positionComponent.pos.y);
+                graphicsContext.translate(positionComponent.pos.x, positionComponent.pos.y);
             }
             if(angleComponent != null){
-                gc.rotate(Math.toDegrees(angleComponent.angle));
+                graphicsContext.rotate(Math.toDegrees(angleComponent.angle));
             }
 
-            renderComponent.polygon.display(gc);
+            renderComponent.polygon.display(graphicsContext);
 
-            gc.restore();
+            graphicsContext.restore();
         }
     }
 }

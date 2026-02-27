@@ -33,7 +33,7 @@ public class AsteroidBulletCollisionResponseSystem extends System{
                     AsteroidEntity newAsteroid = new AsteroidEntity(asteroid.getComponent(PositionComponent.class).pos.copy());
                     newAsteroid.getComponent(VelocityComponent.class).vel =
                             bullet.getComponent(VelocityComponent.class).vel.copy()
-                                    .rotate((float) Math.toRadians(60 + i * 240))
+                                    .rotate(Math.toRadians(60 + i * 240))
                                     .setMag(asteroid.getComponent(VelocityComponent.class).vel.mag());
                     newAsteroid.getComponent(AsteroidSizeComponent.class).size = asteroidSize - 1;
                     World.getInstance().queueAddEntity(newAsteroid);
@@ -49,7 +49,7 @@ public class AsteroidBulletCollisionResponseSystem extends System{
     }
 
     @Override
-    public void tick(float dt, List<Entity> entities) {
+    public void tick(double dt, List<Entity> entities) {
 
     }
 }

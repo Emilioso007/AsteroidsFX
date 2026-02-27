@@ -1,22 +1,22 @@
 package io.asteroidsfx.common;
 
 public class Vector {
-    public float x;
-    public float y;
+    public double x;
+    public double y;
 
     public Vector(){
         this(0, 0);
     }
-    public Vector(float x, float y){
+    public Vector(double x, double y){
         this.x = x;
         this.y = y;
     }
 
-    public static Vector fromAngle(float angleInRadians){
-        return new Vector((float) Math.cos(angleInRadians), (float) Math.sin(angleInRadians));
+    public static Vector fromAngle(double angleInRadians){
+        return new Vector(Math.cos(angleInRadians), Math.sin(angleInRadians));
     }
 
-    public Vector set(float x, float y){
+    public Vector set(double x, double y){
         this.x = x;
         this.y = y;
         return this;
@@ -26,10 +26,10 @@ public class Vector {
         return new Vector(this.x, this.y);
     }
 
-    public float mag(){
-        return (float) Math.sqrt( (this.x*this.x) + (this.y*this.y) );
+    public double mag(){
+        return Math.sqrt( (this.x*this.x) + (this.y*this.y) );
     }
-    public float magSq(){
+    public double magSq(){
         return (this.x*this.x) + (this.y*this.y);
     }
 
@@ -37,7 +37,7 @@ public class Vector {
         this.add(v.x, v.y);
         return this;
     }
-    public Vector add(float x, float y){
+    public Vector add(double x, double y){
         this.x += x;
         this.y += y;
         return this;
@@ -46,7 +46,7 @@ public class Vector {
         return new Vector(v1.x + v2.x, v1.y + v2.y);
     }
 
-    public Vector sub(float x, float y){
+    public Vector sub(double x, double y){
         this.x -= x;
         this.y -= y;
         return this;
@@ -59,58 +59,58 @@ public class Vector {
         return new Vector(v1.x - v2.x, v1.y - v2.y);
     }
 
-    public Vector mult(float n){
+    public Vector mult(double n){
         this.x *= n;
         this.y *= n;
         return this;
     }
 
-    public static Vector mult(Vector v, float n){
+    public static Vector mult(Vector v, double n){
         v.mult(n);
         return v;
     }
 
-    public Vector div(float n){
+    public Vector div(double n){
         this.x /= n;
         this.y /= n;
         return this;
     }
 
-    public static Vector div(Vector v, float n){
+    public static Vector div(Vector v, double n){
         v.div(n);
         return v;
     }
 
-    public float dist(Vector v){
-        float dx = x - v.x;
-        float dy = y - v.y;
-        return (float) Math.sqrt(dx*dx + dy*dy);
+    public double dist(Vector v){
+        double dx = x - v.x;
+        double dy = y - v.y;
+        return Math.sqrt(dx*dx + dy*dy);
     }
-    public static float dist(Vector v1, Vector v2) {
-        float dx = v1.x - v2.x;
-        float dy = v1.y - v2.y;
-        return (float) Math.sqrt(dx*dx + dy*dy);
+    public static double dist(Vector v1, Vector v2) {
+        double dx = v1.x - v2.x;
+        double dy = v1.y - v2.y;
+        return Math.sqrt(dx*dx + dy*dy);
     }
 
-    public float dot(Vector v) {
+    public double dot(Vector v) {
         return x*v.x + y*v.y;
     }
-    public float dot(float x, float y) {
+    public double dot(double x, double y) {
         return this.x*x + this.y*y;
     }
-    public static float dot(Vector v1, Vector v2) {
+    public static double dot(Vector v1, Vector v2) {
         return v1.x*v2.x + v1.y*v2.y;
     }
 
     public Vector normalize(){
-        float m = mag();
+        double m = mag();
         if (m != 0 && m != 1) {
             div(m);
         }
         return this;
     }
 
-    public Vector limit(float max) {
+    public Vector limit(double max) {
         if (magSq() > max*max) {
             normalize();
             mult(max);
@@ -118,27 +118,27 @@ public class Vector {
         return this;
     }
 
-    public Vector setMag(float len) {
+    public Vector setMag(double len) {
         normalize();
         mult(len);
         return this;
     }
 
-    public float heading() {
-        return (float) Math.atan2(y, x);
+    public double heading() {
+        return Math.atan2(y, x);
     }
 
-    public Vector setHeading(float angle) {
-        float m = mag();
-        x = (float) (m * Math.cos(angle));
-        y = (float) (m * Math.sin(angle));
+    public Vector setHeading(double angle) {
+        double m = mag();
+        x = m * Math.cos(angle);
+        y = m * Math.sin(angle);
         return this;
     }
 
-    public Vector rotate(float theta) {
-        float temp = x;
-        x = (float) (x*Math.cos(theta) - y*Math.sin(theta));
-        y = (float) (temp*Math.sin(theta) + y*Math.cos(theta));
+    public Vector rotate(double theta) {
+        double temp = x;
+        x = x*Math.cos(theta) - y*Math.sin(theta);
+        y = temp*Math.sin(theta) + y*Math.cos(theta);
         return this;
     }
 

@@ -40,7 +40,7 @@ public final class World {
         return eventBus;
     }
 
-    public void tick(float dt){
+    public void tick(double dt){
         for(System system : systems){
             List<Class<? extends Component>> signature = system.getSignature();
 

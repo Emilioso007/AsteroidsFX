@@ -30,7 +30,7 @@ public class OutOfBoundsSystem extends System {
     }
 
     @Override
-    public void tick(float dt, List<Entity> entities) {
+    public void tick(double dt, List<Entity> entities) {
 
         for (Entity entity : entities){
 
