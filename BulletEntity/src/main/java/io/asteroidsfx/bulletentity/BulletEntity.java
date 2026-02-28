@@ -15,19 +15,19 @@ public class BulletEntity extends Entity {
 
     public BulletEntity(Vector startPosition, Vector velocity) {
 
-        this.components.add(new BulletTag());
+        this.addComponent(new BulletTag());
 
         PositionComponent positionComponent = new PositionComponent();
         positionComponent.pos = startPosition;
-        this.components.add(positionComponent);
+        this.addComponent(positionComponent);
 
         VelocityComponent velocityComponent = new VelocityComponent();
         velocityComponent.vel = velocity;
-        this.components.add(velocityComponent);
+        this.addComponent(velocityComponent);
 
         CircleColliderComponent circleColliderComponent = new CircleColliderComponent();
         circleColliderComponent.radius = 2;
-        this.components.add(circleColliderComponent);
+        this.addComponent(circleColliderComponent);
 
         RenderComponent renderComponent = new RenderComponent();
         double[] xs = new double[6];
@@ -37,7 +37,7 @@ public class BulletEntity extends Entity {
             ys[i] = Math.sin(Math.toRadians(i*360f/6))*2;
         }
         renderComponent.polygon = new Polygon(xs, ys, Color.LIGHTGRAY, Color.TRANSPARENT, 0);
-        this.components.add(renderComponent);
+        this.addComponent(renderComponent);
 
         OutOfBoundsComponent outOfBoundsComponent = new OutOfBoundsComponent();
         outOfBoundsComponent.leftExtent = -2;
@@ -45,7 +45,7 @@ public class BulletEntity extends Entity {
         outOfBoundsComponent.topExtent = -2;
         outOfBoundsComponent.bottomExtent = 2;
         outOfBoundsComponent.boundsAction = BoundsAction.REMOVE;
-        this.components.add(outOfBoundsComponent);
+        this.addComponent(outOfBoundsComponent);
 
     }
 

@@ -19,26 +19,26 @@ public class AsteroidEntity extends Entity{
 
     public AsteroidEntity(Vector startPosition){
 
-        this.components.add(new AsteroidTag());
-        this.components.add(new AsteroidSizeComponent());
+        this.addComponent(new AsteroidTag());
+        this.addComponent(new AsteroidSizeComponent());
 
         Random random = new Random();
 
         PositionComponent positionComponent = new PositionComponent();
         positionComponent.pos = startPosition;
-        this.components.add(positionComponent);
+        this.addComponent(positionComponent);
 
         VelocityComponent velocityComponent = new VelocityComponent();
         velocityComponent.vel = Vector.fromAngle(random.nextDouble(Math.PI*2)).setMag(random.nextDouble(50, 250));
-        this.components.add(velocityComponent);
+        this.addComponent(velocityComponent);
 
         AngleComponent angleComponent = new AngleComponent();
         angleComponent.angle = 0;
-        this.components.add(angleComponent);
+        this.addComponent(angleComponent);
 
         RotationComponent rotationComponent = new RotationComponent();
         rotationComponent.dAngle = Math.toRadians(random.nextInt(45, 135));
-        this.components.add(rotationComponent);
+        this.addComponent(rotationComponent);
 
         RenderComponent renderComponent = new RenderComponent();
 
@@ -54,7 +54,7 @@ public class AsteroidEntity extends Entity{
         }
 
         renderComponent.polygon = new Polygon(xs, ys, Color.DARKGRAY, Color.GRAY, 2);
-        this.components.add(renderComponent);
+        this.addComponent(renderComponent);
 
         OutOfBoundsComponent outOfBoundsComponent = new OutOfBoundsComponent();
         outOfBoundsComponent.rightExtent = 100;
@@ -62,11 +62,11 @@ public class AsteroidEntity extends Entity{
         outOfBoundsComponent.bottomExtent = 100;
         outOfBoundsComponent.topExtent = -100;
         outOfBoundsComponent.boundsAction = BoundsAction.WRAP;
-        this.components.add(outOfBoundsComponent);
+        this.addComponent(outOfBoundsComponent);
 
         CircleColliderComponent circleColliderComponent = new CircleColliderComponent();
         circleColliderComponent.radius = 50;
-        this.components.add(circleColliderComponent);
+        this.addComponent(circleColliderComponent);
 
     }
 

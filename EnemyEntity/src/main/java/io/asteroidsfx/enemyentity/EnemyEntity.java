@@ -17,37 +17,37 @@ public class EnemyEntity extends Entity{
 
     public EnemyEntity(){
 
-        this.components.add(new EnemyTag());
+        this.addComponent(new EnemyTag());
 
         PositionComponent positionComponent = new PositionComponent();
         positionComponent.pos = new Vector(World.getInstance().width * 0.25f, World.getInstance().height * 0.5f);
-        this.components.add(positionComponent);
+        this.addComponent(positionComponent);
 
         VelocityComponent velocityComponent = new VelocityComponent();
         velocityComponent.vel = new Vector(50, 0);
-        this.components.add(velocityComponent);
+        this.addComponent(velocityComponent);
 
         AngleComponent angleComponent = new AngleComponent();
         angleComponent.angle = 0;
-        this.components.add(angleComponent);
+        this.addComponent(angleComponent);
 
         RenderComponent renderComponent = new RenderComponent();
         double[] xs = new double[8];
         double[] ys = new double[8];
         for(int i = 0; i < 8; i++){
-            xs[i] = Math.cos(Math.toRadians(i*360f/8)) * 25;
-            ys[i] = Math.sin(Math.toRadians(i*360f/8)) * 25;
+            xs[i] = Math.cos(Math.toRadians(i*360f/8)) * 30;
+            ys[i] = Math.sin(Math.toRadians(i*360f/8)) * 20;
         }
         renderComponent.polygon = new Polygon(xs, ys, Color.DARKRED, Color.RED, 4);
-        this.components.add(renderComponent);
+        this.addComponent(renderComponent);
 
         OutOfBoundsComponent outOfBoundsComponent = new OutOfBoundsComponent();
         outOfBoundsComponent.boundsAction = BoundsAction.WRAP;
-        this.components.add(outOfBoundsComponent);
+        this.addComponent(outOfBoundsComponent);
 
         CircleColliderComponent circleColliderComponent = new CircleColliderComponent();
         circleColliderComponent.radius = 25;
-        this.components.add(circleColliderComponent);
+        this.addComponent(circleColliderComponent);
     }
 
 }

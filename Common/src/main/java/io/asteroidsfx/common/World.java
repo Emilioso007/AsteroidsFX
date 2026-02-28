@@ -85,7 +85,7 @@ public final class World {
         for(Class<? extends Component> requiredType : signature){
             boolean hasComponent = false;
 
-            for (Component c : entity.components){
+            for (Component c : entity.getComponents()){
                 if (requiredType.isAssignableFrom(c.getClass())){
                     hasComponent = true;
                     break;

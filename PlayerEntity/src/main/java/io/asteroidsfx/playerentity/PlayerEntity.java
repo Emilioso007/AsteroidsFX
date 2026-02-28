@@ -27,27 +27,27 @@ public class PlayerEntity extends Entity {
 
     public PlayerEntity(Vector startPosition){
 
-        this.components.add(new PlayerTag());
+        this.addComponent(new PlayerTag());
 
         PositionComponent positionComponent = new PositionComponent();
         positionComponent.pos = startPosition;
-        this.components.add(positionComponent);
+        this.addComponent(positionComponent);
 
         VelocityComponent velocityComponent = new VelocityComponent();
         velocityComponent.vel = new Vector();
-        this.components.add(velocityComponent);
+        this.addComponent(velocityComponent);
 
         AccelerationComponent accelerationComponent = new AccelerationComponent();
         accelerationComponent.acc = new Vector();
-        this.components.add(accelerationComponent);
+        this.addComponent(accelerationComponent);
 
         AngleComponent angleComponent = new AngleComponent();
         angleComponent.angle = 0;
-        this.components.add(angleComponent);
+        this.addComponent(angleComponent);
 
         DragComponent dragComponent = new DragComponent();
         dragComponent.drag = 1f;
-        this.components.add(dragComponent);
+        this.addComponent(dragComponent);
 
 
         RenderComponent renderComponent = new RenderComponent();
@@ -63,7 +63,7 @@ public class PlayerEntity extends Entity {
 
         renderComponent.polygon = new Polygon(xs, ys, Color.BLUE, Color.CYAN, 4);
 
-        this.components.add(renderComponent);
+        this.addComponent(renderComponent);
 
 
         OutOfBoundsComponent outOfBoundsComponent = new OutOfBoundsComponent();
@@ -72,7 +72,7 @@ public class PlayerEntity extends Entity {
         outOfBoundsComponent.leftExtent = -60;
         outOfBoundsComponent.rightExtent = 60;
         outOfBoundsComponent.boundsAction = BoundsAction.WRAP;
-        this.components.add(outOfBoundsComponent);
+        this.addComponent(outOfBoundsComponent);
 
         InputComponent inputComponent = new InputComponent();
         inputComponent.inputActionHashMap = new HashMap<>();
@@ -102,7 +102,7 @@ public class PlayerEntity extends Entity {
 
         TimerComponent shootTimer = new TimerComponent();
         shootTimer.duration = Duration.ofMillis(200);
-        this.components.add(shootTimer);
+        this.addComponent(shootTimer);
 
         // When spacebar is pressed, request shooting
         inputComponent.inputActionHashMap.put(KeyCode.SPACE, ((entity, dt) -> {
@@ -111,16 +111,16 @@ public class PlayerEntity extends Entity {
             BulletEntity bullet = new BulletEntity(position.pos.copy().add(Vector.fromAngle(angle.angle).setMag(60)), Vector.fromAngle(angle.angle).setMag(600));
             SpawnEvent event = new SpawnEvent();
             event.entityToSpawn = bullet;
-            event.components.add(entity.getComponent(TimerComponent.class));
+            event.addComponent(entity.getComponent(TimerComponent.class));
             World.getInstance().getEventBus().publish(event);
         }));
 
-        this.components.add(inputComponent);
+        this.addComponent(inputComponent);
 
         CircleColliderComponent circleColliderComponent = new CircleColliderComponent();
         circleColliderComponent.radius = 50;
 
-        this.components.add(circleColliderComponent);
+        this.addComponent(circleColliderComponent);
 
     }
 
