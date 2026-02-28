@@ -5,4 +5,5 @@ module Common {
     exports io.asteroidsfx.common.ecs;
     exports io.asteroidsfx.common.util;
     exports io.asteroidsfx.common.shapes;
+    exports io.asteroidsfx.common.event.input;
 }

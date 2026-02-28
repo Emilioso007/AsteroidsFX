@@ -4,6 +4,9 @@ import io.asteroidsfx.common.ecs.BaseComponent;
 import io.asteroidsfx.common.ecs.BaseEntity;
 import io.asteroidsfx.common.event.EventBus;
 import io.asteroidsfx.common.ecs.BaseSystem;
+import io.asteroidsfx.common.event.input.KeyDownEvent;
+import io.asteroidsfx.common.event.input.KeyJustPressedEvent;
+import io.asteroidsfx.common.event.input.KeyJustReleasedEvent;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 
@@ -24,6 +27,8 @@ public final class World {
 
     public Set<KeyCode> keysPressed;
 
+    public double deltaTime;
+
     private static World instance = null;
 
     private World(){
@@ -41,16 +46,32 @@ public final class World {
         return instance;
     }
 
+    public void addKeyPressed(KeyCode keyCode){
+        eventBus.publish(new KeyJustPressedEvent(keyCode));
+        keysPressed.add(keyCode);
+    }
+
+    public void removeKeyPressed(KeyCode keyCode){
+        eventBus.publish(new KeyJustReleasedEvent(keyCode));
+        keysPressed.remove(keyCode);
+    }
+
     public EventBus getEventBus(){
         return eventBus;
     }
 
-    public void tick(double dt){
+    public void tick(double deltaTime){
+        this.deltaTime = deltaTime;
+
+        for (KeyCode keyCode : keysPressed){
+            eventBus.publish(new KeyDownEvent(keyCode));
+        }
+
         for(BaseSystem system : systems){
             List<Class<? extends BaseComponent>> signature = system.getSignature();
 
             if(signature == null || signature.isEmpty()){
-                system.update(new ArrayList<>(), dt);
+                system.update(new ArrayList<>(), deltaTime);
                 continue;
             }
 
@@ -60,7 +81,7 @@ public final class World {
                 if(matchesSignature(entity, signature)) filteredEntities.add(entity);
             }
 
-            system.update(filteredEntities, dt);
+            system.update(filteredEntities, deltaTime);
         }
         entities.removeIf(entity -> entity.toBeRemoved);
         entities.addAll(entitiesToAdd);
@@ -75,10 +96,18 @@ public final class World {
         return systems.add(system);
     }
 
-    public List<BaseEntity> getEntitiesWith(Class<? extends BaseComponent> requiredComponent){
+
+    public <T extends BaseComponent> List<BaseEntity> getEntitiesWith(Class<T>... requiredComponents){
         List<BaseEntity> result = new ArrayList<>();
         for (BaseEntity entity : entities){
-            if (entity.getComponent(requiredComponent) != null) result.add(entity);
+            boolean hasAllComponents = true;
+            for(Class<? extends BaseComponent> requiredComponent : requiredComponents){
+                if (!entity.hasComponent(requiredComponent)) {
+                    hasAllComponents = false;
+                    break;
+                }
+            }
+            if (hasAllComponents) result.add(entity);
         }
         return result;
     }

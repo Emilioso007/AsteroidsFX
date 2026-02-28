@@ -6,6 +6,7 @@ import java.util.List;
 
 public abstract class BaseSystem {
     public int priority;
+    public boolean running = true;
     public BaseSystem(){
         this(0);
     }

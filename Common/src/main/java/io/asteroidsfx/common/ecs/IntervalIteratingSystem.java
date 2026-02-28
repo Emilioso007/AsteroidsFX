@@ -8,6 +8,8 @@ public abstract class IntervalIteratingSystem extends BaseSystem {
 
     @Override
     public void update(List<BaseEntity> entities, double deltaTime){
+        if(!running) return;
+
         accumulator += deltaTime;
         if(accumulator >= interval){
             accumulator = 0;

@@ -5,6 +5,8 @@ import java.util.List;
 public abstract class IteratingSystem extends BaseSystem {
     @Override
     public void update(List<BaseEntity> entities, double deltaTime){
+        if(!running) return;
+
         for(BaseEntity entity : entities){
             processEntity(entity, deltaTime);
         }

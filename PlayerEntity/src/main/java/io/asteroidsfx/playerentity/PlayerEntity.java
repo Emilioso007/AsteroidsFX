@@ -1,27 +1,19 @@
 package io.asteroidsfx.playerentity;
 
-import io.asteroidsfx.TimerComponent.TimerComponent;
 import io.asteroidsfx.accelerationcomponent.AccelerationComponent;
 import io.asteroidsfx.anglecomponent.AngleComponent;
-import io.asteroidsfx.bulletentity.BulletEntity;
 import io.asteroidsfx.collision.CircleColliderComponent;
 import io.asteroidsfx.common.ecs.BaseEntity;
 import io.asteroidsfx.common.shapes.Polygon;
 import io.asteroidsfx.common.util.Vector;
-import io.asteroidsfx.common.World;
 import io.asteroidsfx.dragcomponent.DragComponent;
-import io.asteroidsfx.inputcomponent.InputComponent;
 import io.asteroidsfx.outofbounds.BoundsAction;
 import io.asteroidsfx.outofbounds.OutOfBoundsComponent;
 import io.asteroidsfx.positioncomponent.PositionComponent;
 import io.asteroidsfx.rendercomponent.RenderComponent;
-import io.asteroidsfx.spawn.SpawnEvent;
+import io.asteroidsfx.rotationcomponent.RotationComponent;
 import io.asteroidsfx.velocitycomponent.VelocityComponent;
-import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
-
-import java.time.Duration;
-import java.util.HashMap;
 
 public class PlayerEntity extends BaseEntity {
 
@@ -45,6 +37,9 @@ public class PlayerEntity extends BaseEntity {
         angleComponent.angle = 0;
         this.addComponent(angleComponent);
 
+        RotationComponent rotationComponent = new RotationComponent();
+        this.addComponent(rotationComponent);
+
         DragComponent dragComponent = new DragComponent();
         dragComponent.drag = 1f;
         this.addComponent(dragComponent);
@@ -65,7 +60,6 @@ public class PlayerEntity extends BaseEntity {
 
         this.addComponent(renderComponent);
 
-
         OutOfBoundsComponent outOfBoundsComponent = new OutOfBoundsComponent();
         outOfBoundsComponent.topExtent = -60;
         outOfBoundsComponent.bottomExtent = 60;
@@ -73,49 +67,6 @@ public class PlayerEntity extends BaseEntity {
         outOfBoundsComponent.rightExtent = 60;
         outOfBoundsComponent.boundsAction = BoundsAction.WRAP;
         this.addComponent(outOfBoundsComponent);
-
-        InputComponent inputComponent = new InputComponent();
-        inputComponent.inputActionHashMap = new HashMap<>();
-
-        // When LEFT is pressed, rotate counterclockwise
-        inputComponent.inputActionHashMap.put(KeyCode.LEFT, (entity, dt) -> {
-            AngleComponent angle = entity.getComponent(AngleComponent.class);
-            if (angle != null) {
-                angle.angle -= Math.toRadians(180) * dt; // rotate left
-            }
-        });
-
-        // When RIGHT is pressed, rotate clockwise
-        inputComponent.inputActionHashMap.put(KeyCode.RIGHT, (entity, dt) -> {
-            AngleComponent angle = entity.getComponent(AngleComponent.class);
-            if (angle != null) {
-                angle.angle += Math.toRadians(180) * dt; // rotate left
-            }
-        });
-
-        // When UP is pressed, add forward thrust
-        inputComponent.inputActionHashMap.put(KeyCode.UP, (entity, dt) -> {
-            AccelerationComponent acceleration = entity.getComponent(AccelerationComponent.class);
-            double angle = entity.getComponent(AngleComponent.class).angle;
-            acceleration.acc.add(Vector.fromAngle(angle).setMag(2500));
-        });
-
-        TimerComponent shootTimer = new TimerComponent();
-        shootTimer.duration = Duration.ofMillis(200);
-        this.addComponent(shootTimer);
-
-        // When spacebar is pressed, request shooting
-        inputComponent.inputActionHashMap.put(KeyCode.SPACE, ((entity, dt) -> {
-            PositionComponent position = entity.getComponent(PositionComponent.class);
-            AngleComponent angle = entity.getComponent(AngleComponent.class);
-            BulletEntity bullet = new BulletEntity(position.pos.copy().add(Vector.fromAngle(angle.angle).setMag(60)), Vector.fromAngle(angle.angle).setMag(600));
-            SpawnEvent event = new SpawnEvent();
-            event.entityToSpawn = bullet;
-            event.addComponent(entity.getComponent(TimerComponent.class));
-            World.getInstance().getEventBus().publish(event);
-        }));
-
-        this.addComponent(inputComponent);
 
         CircleColliderComponent circleColliderComponent = new CircleColliderComponent();
         circleColliderComponent.radius = 50;

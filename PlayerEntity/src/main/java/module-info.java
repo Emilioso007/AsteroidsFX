@@ -1,5 +1,7 @@
+import io.asteroidsfx.common.ecs.BaseSystem;
 import io.asteroidsfx.common.ecs.EntitySpi;
 import io.asteroidsfx.playerentity.PlayerEntityProvider;
+import io.asteroidsfx.playerentity.PlayerSystem;
 
 module PlayerEntity {
     exports io.asteroidsfx.playerentity;
@@ -17,6 +19,8 @@ module PlayerEntity {
     requires BulletEntity;
     requires Spawn;
     requires TimerComponent;
+    requires RotationComponent;
 
     provides EntitySpi with PlayerEntityProvider;
+    provides BaseSystem with PlayerSystem;
 }
