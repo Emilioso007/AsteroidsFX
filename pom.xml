@@ -16,11 +16,9 @@
         <module>VelocityComponent</module>
         <module>AngleComponent</module>
         <module>RotationComponent</module>
-        <module>InputComponent</module>
         <module>RenderingSystem</module>
         <module>MovementSystem</module>
         <module>RotateSystem</module>
-        <module>InputSystem</module>
         <module>AsteroidEntity</module>
         <module>PlayerEntity</module>
         <module>DragComponent</module>
