@@ -6,8 +6,6 @@ import io.asteroidsfx.common.Component;
 import io.asteroidsfx.common.Entity;
 import io.asteroidsfx.common.World;
 import io.asteroidsfx.common.system.IteratingSystemECS;
-import io.asteroidsfx.common.system.SystemECS;
-import io.asteroidsfx.common.event.EventBus;
 import io.asteroidsfx.playerentity.PlayerTag;
 
 import java.util.List;

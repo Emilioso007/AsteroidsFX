@@ -7,8 +7,6 @@ import io.asteroidsfx.bulletentity.BulletTag;
 import io.asteroidsfx.collision.CollisionEvent;
 import io.asteroidsfx.common.*;
 import io.asteroidsfx.common.system.IteratingSystemECS;
-import io.asteroidsfx.common.system.SystemECS;
-import io.asteroidsfx.common.event.EventBus;
 import io.asteroidsfx.positioncomponent.PositionComponent;
 import io.asteroidsfx.velocitycomponent.VelocityComponent;
 

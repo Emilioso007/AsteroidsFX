@@ -3,7 +3,6 @@ package io.asteroidsfx;
 import io.asteroidsfx.common.EntitySpi;
 import io.asteroidsfx.common.World;
 import io.asteroidsfx.common.system.SystemECS;
-import io.asteroidsfx.renderingsystem.RenderingSystem;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
 import javafx.scene.Scene;
