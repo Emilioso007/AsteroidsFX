@@ -5,9 +5,9 @@ import io.asteroidsfx.accelerationcomponent.AccelerationComponent;
 import io.asteroidsfx.anglecomponent.AngleComponent;
 import io.asteroidsfx.bulletentity.BulletEntity;
 import io.asteroidsfx.collision.CircleColliderComponent;
-import io.asteroidsfx.common.Entity;
-import io.asteroidsfx.common.Polygon;
-import io.asteroidsfx.common.Vector;
+import io.asteroidsfx.common.ecs.BaseEntity;
+import io.asteroidsfx.common.shapes.Polygon;
+import io.asteroidsfx.common.util.Vector;
 import io.asteroidsfx.common.World;
 import io.asteroidsfx.dragcomponent.DragComponent;
 import io.asteroidsfx.inputcomponent.InputComponent;
@@ -23,7 +23,7 @@ import javafx.scene.paint.Color;
 import java.time.Duration;
 import java.util.HashMap;
 
-public class PlayerEntity extends Entity {
+public class PlayerEntity extends BaseEntity {
 
     public PlayerEntity(Vector startPosition){
 
@@ -61,7 +61,7 @@ public class PlayerEntity extends Entity {
         }
         xs[0] = 60;
 
-        renderComponent.polygon = new Polygon(xs, ys, Color.BLUE, Color.CYAN, 4);
+        renderComponent.shape = new Polygon(xs, ys, Color.BLUE, Color.CYAN, 4);
 
         this.addComponent(renderComponent);
 

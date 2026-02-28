@@ -1,7 +1,9 @@
 package io.asteroidsfx.common;
 
+import io.asteroidsfx.common.ecs.BaseComponent;
+import io.asteroidsfx.common.ecs.BaseEntity;
 import io.asteroidsfx.common.event.EventBus;
-import io.asteroidsfx.common.system.SystemECS;
+import io.asteroidsfx.common.ecs.BaseSystem;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 
@@ -15,9 +17,9 @@ public final class World {
     public int width;
     public int height;
     public GraphicsContext graphicsContext;
-    public List<Entity> entities;
-    private List<Entity> entitiesToAdd;
-    public Set<SystemECS> systems;
+    public List<BaseEntity> entities;
+    private final List<BaseEntity> entitiesToAdd;
+    public Set<BaseSystem> systems;
     private final EventBus eventBus;
 
     public Set<KeyCode> keysPressed;
@@ -44,17 +46,17 @@ public final class World {
     }
 
     public void tick(double dt){
-        for(SystemECS system : systems){
-            List<Class<? extends Component>> signature = system.getSignature();
+        for(BaseSystem system : systems){
+            List<Class<? extends BaseComponent>> signature = system.getSignature();
 
             if(signature == null || signature.isEmpty()){
                 system.update(new ArrayList<>(), dt);
                 continue;
             }
 
-            List<Entity> filteredEntities = new ArrayList<>();
+            List<BaseEntity> filteredEntities = new ArrayList<>();
 
-            for(Entity entity : entities){
+            for(BaseEntity entity : entities){
                 if(matchesSignature(entity, signature)) filteredEntities.add(entity);
             }
 
@@ -65,27 +67,27 @@ public final class World {
         entitiesToAdd.clear();
     }
 
-    public boolean addEntity(Entity entity){
+    public boolean addEntity(BaseEntity entity){
         return entities.add(entity);
     }
 
-    public boolean addSystem(SystemECS system){
+    public boolean addSystem(BaseSystem system){
         return systems.add(system);
     }
 
-    public List<Entity> getEntitiesWith(Class<? extends Component> requiredComponent){
-        List<Entity> result = new ArrayList<>();
-        for (Entity entity : entities){
+    public List<BaseEntity> getEntitiesWith(Class<? extends BaseComponent> requiredComponent){
+        List<BaseEntity> result = new ArrayList<>();
+        for (BaseEntity entity : entities){
             if (entity.getComponent(requiredComponent) != null) result.add(entity);
         }
         return result;
     }
 
-    private boolean matchesSignature(Entity entity, List<Class<? extends Component>> signature){
-        for(Class<? extends Component> requiredType : signature){
+    private boolean matchesSignature(BaseEntity entity, List<Class<? extends BaseComponent>> signature){
+        for(Class<? extends BaseComponent> requiredType : signature){
             boolean hasComponent = false;
 
-            for (Component c : entity.getComponents()){
+            for (BaseComponent c : entity.getComponents()){
                 if (requiredType.isAssignableFrom(c.getClass())){
                     hasComponent = true;
                     break;
@@ -97,7 +99,7 @@ public final class World {
         return true;
     }
 
-    public void queueAddEntity(Entity entityToSpawn) {
+    public void queueAddEntity(BaseEntity entityToSpawn) {
         entitiesToAdd.add(entityToSpawn);
     }
 }

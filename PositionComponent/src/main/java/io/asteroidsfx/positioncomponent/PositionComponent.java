@@ -1,8 +1,8 @@
 package io.asteroidsfx.positioncomponent;
 
-import io.asteroidsfx.common.Component;
-import io.asteroidsfx.common.Vector;
+import io.asteroidsfx.common.ecs.BaseComponent;
+import io.asteroidsfx.common.util.Vector;
 
-public class PositionComponent extends Component {
+public class PositionComponent extends BaseComponent {
     public Vector pos;
 }

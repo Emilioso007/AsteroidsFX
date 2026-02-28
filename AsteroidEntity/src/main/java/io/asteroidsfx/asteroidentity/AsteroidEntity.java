@@ -2,9 +2,9 @@ package io.asteroidsfx.asteroidentity;
 
 import io.asteroidsfx.anglecomponent.AngleComponent;
 import io.asteroidsfx.collision.CircleColliderComponent;
-import io.asteroidsfx.common.Entity;
-import io.asteroidsfx.common.Polygon;
-import io.asteroidsfx.common.Vector;
+import io.asteroidsfx.common.ecs.BaseEntity;
+import io.asteroidsfx.common.shapes.Polygon;
+import io.asteroidsfx.common.util.Vector;
 import io.asteroidsfx.outofbounds.BoundsAction;
 import io.asteroidsfx.outofbounds.OutOfBoundsComponent;
 import io.asteroidsfx.positioncomponent.PositionComponent;
@@ -15,7 +15,7 @@ import javafx.scene.paint.Color;
 
 import java.util.Random;
 
-public class AsteroidEntity extends Entity{
+public class AsteroidEntity extends BaseEntity {
 
     public AsteroidEntity(Vector startPosition){
 
@@ -53,7 +53,7 @@ public class AsteroidEntity extends Entity{
             ys[i] = Math.sin(i*angleBetween)*random.nextInt(25, 75);
         }
 
-        renderComponent.polygon = new Polygon(xs, ys, Color.DARKGRAY, Color.GRAY, 2);
+        renderComponent.shape = new Polygon(xs, ys, Color.DARKGRAY, Color.GRAY, 2);
         this.addComponent(renderComponent);
 
         OutOfBoundsComponent outOfBoundsComponent = new OutOfBoundsComponent();

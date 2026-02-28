@@ -1,8 +1,8 @@
 package io.asteroidsfx.rendercomponent;
 
-import io.asteroidsfx.common.Component;
-import io.asteroidsfx.common.Polygon;
+import io.asteroidsfx.common.ecs.BaseComponent;
+import io.asteroidsfx.common.shapes.BaseShape;
 
-public class RenderComponent extends Component{
-    public Polygon polygon;
+public class RenderComponent extends BaseComponent {
+    public BaseShape shape;
 }

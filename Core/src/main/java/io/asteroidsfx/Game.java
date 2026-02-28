@@ -1,8 +1,8 @@
 package io.asteroidsfx;
 
-import io.asteroidsfx.common.EntitySpi;
+import io.asteroidsfx.common.ecs.EntitySpi;
 import io.asteroidsfx.common.World;
-import io.asteroidsfx.common.system.SystemECS;
+import io.asteroidsfx.common.ecs.BaseSystem;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -20,8 +20,8 @@ public class Game {
 
     public void start(Stage window) {
 
-        World.getInstance().width = (int)(800);
-        World.getInstance().height = (int)(800);
+        World.getInstance().width = 800;
+        World.getInstance().height = 800;
 
         Canvas canvas = new Canvas(World.getInstance().width, World.getInstance().height);
         gc = canvas.getGraphicsContext2D();
@@ -40,8 +40,8 @@ public class Game {
         window.show();
 
         // SETUP SYSTEMS
-        ServiceLoader<SystemECS> systems = ServiceLoader.load(SystemECS.class);
-        for (SystemECS system : systems){
+        ServiceLoader<BaseSystem> systems = ServiceLoader.load(BaseSystem.class);
+        for (BaseSystem system : systems){
             World.getInstance().addSystem(system);
             system.start(World.getInstance());
         }

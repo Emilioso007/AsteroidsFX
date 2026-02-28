@@ -1,4 +1,4 @@
-import io.asteroidsfx.common.system.SystemECS;
+import io.asteroidsfx.common.ecs.BaseSystem;
 
 module AsteroidBulletCollisionResponseSystem {
     requires Common;
@@ -8,5 +8,5 @@ module AsteroidBulletCollisionResponseSystem {
     requires PositionComponent;
     requires VelocityComponent;
 
-    provides SystemECS with io.asteroidsfx.asteroidbulletcollisionresponsesystem.AsteroidBulletCollisionResponseSystem;
+    provides BaseSystem with io.asteroidsfx.asteroidbulletcollisionresponsesystem.AsteroidBulletCollisionResponseSystem;
 }

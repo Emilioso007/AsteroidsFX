@@ -1,17 +1,17 @@
 package io.asteroidsfx.movementsystem;
 
 import io.asteroidsfx.accelerationcomponent.AccelerationComponent;
-import io.asteroidsfx.common.Component;
-import io.asteroidsfx.common.Entity;
+import io.asteroidsfx.common.ecs.BaseComponent;
+import io.asteroidsfx.common.ecs.BaseEntity;
 import io.asteroidsfx.common.World;
-import io.asteroidsfx.common.system.IteratingSystemECS;
+import io.asteroidsfx.common.ecs.IteratingSystem;
 import io.asteroidsfx.dragcomponent.DragComponent;
 import io.asteroidsfx.positioncomponent.PositionComponent;
 import io.asteroidsfx.velocitycomponent.VelocityComponent;
 
 import java.util.List;
 
-public class MovementSystem extends IteratingSystemECS {
+public class MovementSystem extends IteratingSystem {
 
     @Override
     public void start(World world) {
@@ -19,12 +19,12 @@ public class MovementSystem extends IteratingSystemECS {
     }
 
     @Override
-    public List<Class<? extends Component>> getSignature() {
+    public List<Class<? extends BaseComponent>> getSignature() {
         return List.of(PositionComponent.class, VelocityComponent.class);
     }
 
     @Override
-    public void processEntity(Entity entity, double deltaTime) {
+    public void processEntity(BaseEntity entity, double deltaTime) {
         PositionComponent positionComponent = entity.getComponent(PositionComponent.class);
         VelocityComponent velocityComponent = entity.getComponent(VelocityComponent.class);
 

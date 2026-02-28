@@ -1,15 +1,15 @@
 package io.asteroidsfx.spawn;
 
 import io.asteroidsfx.TimerComponent.TimerComponent;
-import io.asteroidsfx.common.Component;
-import io.asteroidsfx.common.Entity;
-import io.asteroidsfx.common.system.SystemECS;
+import io.asteroidsfx.common.ecs.BaseComponent;
+import io.asteroidsfx.common.ecs.BaseEntity;
+import io.asteroidsfx.common.ecs.BaseSystem;
 import io.asteroidsfx.common.World;
 
 import java.time.Instant;
 import java.util.List;
 
-public class SpawnSystem extends SystemECS {
+public class SpawnSystem extends BaseSystem {
 
     @Override
     public void start(World world) {
@@ -29,12 +29,12 @@ public class SpawnSystem extends SystemECS {
     }
 
     @Override
-    public List<Class<? extends Component>> getSignature() {
+    public List<Class<? extends BaseComponent>> getSignature() {
         return List.of();
     }
 
     @Override
-    public void update(List<Entity> entities, double deltaTime) {
+    public void update(List<BaseEntity> entities, double deltaTime) {
 
     }
 

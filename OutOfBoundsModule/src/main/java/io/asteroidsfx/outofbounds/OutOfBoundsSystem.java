@@ -1,15 +1,15 @@
 package io.asteroidsfx.outofbounds;
 
-import io.asteroidsfx.common.Component;
-import io.asteroidsfx.common.Entity;
+import io.asteroidsfx.common.ecs.BaseComponent;
+import io.asteroidsfx.common.ecs.BaseEntity;
 import io.asteroidsfx.common.World;
-import io.asteroidsfx.common.system.IteratingSystemECS;
+import io.asteroidsfx.common.ecs.IteratingSystem;
 import io.asteroidsfx.positioncomponent.PositionComponent;
 import io.asteroidsfx.velocitycomponent.VelocityComponent;
 
 import java.util.List;
 
-public class OutOfBoundsSystem extends IteratingSystemECS {
+public class OutOfBoundsSystem extends IteratingSystem {
 
     int minX, maxX, minY, maxY;
 
@@ -22,12 +22,12 @@ public class OutOfBoundsSystem extends IteratingSystemECS {
     }
 
     @Override
-    public List<Class<? extends Component>> getSignature() {
+    public List<Class<? extends BaseComponent>> getSignature() {
         return List.of(PositionComponent.class, OutOfBoundsComponent.class);
     }
 
     @Override
-    public void processEntity(Entity entity, double deltaTime) {
+    public void processEntity(BaseEntity entity, double deltaTime) {
         PositionComponent positionComponent = entity.getComponent(PositionComponent.class);
         OutOfBoundsComponent outOfBoundsComponent = entity.getComponent(OutOfBoundsComponent.class);
 

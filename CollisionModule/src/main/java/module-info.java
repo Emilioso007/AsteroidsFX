@@ -1,9 +1,9 @@
-import io.asteroidsfx.common.system.SystemECS;
+import io.asteroidsfx.common.ecs.BaseSystem;
 
 module Collision {
     exports io.asteroidsfx.collision;
     requires Common;
     requires PositionComponent;
 
-    provides SystemECS with io.asteroidsfx.collision.CollisionSystem;
+    provides BaseSystem with io.asteroidsfx.collision.CollisionSystem;
 }

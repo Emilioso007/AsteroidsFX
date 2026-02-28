@@ -6,13 +6,15 @@ import io.asteroidsfx.asteroidentity.AsteroidTag;
 import io.asteroidsfx.bulletentity.BulletTag;
 import io.asteroidsfx.collision.CollisionEvent;
 import io.asteroidsfx.common.*;
-import io.asteroidsfx.common.system.IteratingSystemECS;
+import io.asteroidsfx.common.ecs.BaseComponent;
+import io.asteroidsfx.common.ecs.BaseEntity;
+import io.asteroidsfx.common.ecs.IteratingSystem;
 import io.asteroidsfx.positioncomponent.PositionComponent;
 import io.asteroidsfx.velocitycomponent.VelocityComponent;
 
 import java.util.List;
 
-public class AsteroidBulletCollisionResponseSystem extends IteratingSystemECS {
+public class AsteroidBulletCollisionResponseSystem extends IteratingSystem {
 
     @Override
     public void start(World world) {
@@ -20,8 +22,8 @@ public class AsteroidBulletCollisionResponseSystem extends IteratingSystemECS {
     }
 
     private void handleCollision(CollisionEvent event){
-        Entity asteroid = event.getEntityWith(AsteroidTag.class);
-        Entity bullet = event.getEntityWith(BulletTag.class);
+        BaseEntity asteroid = event.getEntityWith(AsteroidTag.class);
+        BaseEntity bullet = event.getEntityWith(BulletTag.class);
 
         if(asteroid != null && bullet != null) {
             asteroid.toBeRemoved = true;
@@ -44,12 +46,12 @@ public class AsteroidBulletCollisionResponseSystem extends IteratingSystemECS {
     }
 
     @Override
-    public List<Class<? extends Component>> getSignature() {
+    public List<Class<? extends BaseComponent>> getSignature() {
         return List.of();
     }
 
     @Override
-    public void processEntity(Entity entity, double deltaTime) {
+    public void processEntity(BaseEntity entity, double deltaTime) {
 
     }
 

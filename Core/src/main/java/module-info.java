@@ -1,6 +1,9 @@
+import io.asteroidsfx.common.ecs.BaseSystem;
+import io.asteroidsfx.common.ecs.EntitySpi;
+
 module Core {
-    uses io.asteroidsfx.common.EntitySpi;
-    uses io.asteroidsfx.common.system.SystemECS;
+    uses EntitySpi;
+    uses BaseSystem;
     requires javafx.graphics;
     requires javafx.controls;
     requires Common;

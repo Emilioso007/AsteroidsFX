@@ -1,18 +1,18 @@
 package io.asteroidsfx.enemyentity;
 
 import io.asteroidsfx.bulletentity.BulletEntity;
-import io.asteroidsfx.common.Component;
-import io.asteroidsfx.common.Entity;
-import io.asteroidsfx.common.Vector;
+import io.asteroidsfx.common.ecs.BaseComponent;
+import io.asteroidsfx.common.ecs.BaseEntity;
+import io.asteroidsfx.common.util.Vector;
 import io.asteroidsfx.common.World;
-import io.asteroidsfx.common.system.IntervalIteratingSystemECS;
+import io.asteroidsfx.common.ecs.IntervalIteratingSystem;
 import io.asteroidsfx.playerentity.PlayerTag;
 import io.asteroidsfx.positioncomponent.PositionComponent;
 import io.asteroidsfx.spawn.SpawnEvent;
 
 import java.util.List;
 
-public class EnemySystem extends IntervalIteratingSystemECS {
+public class EnemySystem extends IntervalIteratingSystem {
 
     @Override
     public void start(World world) {
@@ -20,8 +20,8 @@ public class EnemySystem extends IntervalIteratingSystemECS {
     }
 
     @Override
-    public void updateInterval(Entity enemy, double deltaTime) {
-        Entity player = World.getInstance().getEntitiesWith(PlayerTag.class).getFirst();
+    public void updateInterval(BaseEntity enemy, double deltaTime) {
+        BaseEntity player = World.getInstance().getEntitiesWith(PlayerTag.class).getFirst();
         if(player == null) return;
 
         PositionComponent enemyPosition = enemy.getComponent(PositionComponent.class);
@@ -37,7 +37,7 @@ public class EnemySystem extends IntervalIteratingSystemECS {
     }
 
     @Override
-    public List<Class<? extends Component>> getSignature() {
+    public List<Class<? extends BaseComponent>> getSignature() {
         return List.of(EnemyTag.class);
     }
 

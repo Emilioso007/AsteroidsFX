@@ -1,7 +1,7 @@
 package io.asteroidsfx.playerentity;
 
-import io.asteroidsfx.common.EntitySpi;
-import io.asteroidsfx.common.Vector;
+import io.asteroidsfx.common.ecs.EntitySpi;
+import io.asteroidsfx.common.util.Vector;
 import io.asteroidsfx.common.World;
 
 public class PlayerEntityProvider implements EntitySpi {

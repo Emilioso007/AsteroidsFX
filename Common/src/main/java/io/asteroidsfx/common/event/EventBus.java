@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class EventBus {
+public final class EventBus {
 
-    private final Map<Class<? extends Event>, List<EventListener>> listeners = new HashMap<>();
+    private final Map<Class<? extends BaseEvent>, List<EventListener>> listeners = new HashMap<>();
 
-    public <T extends Event> void subscribe(Class<T> eventType, EventListener<T> listener){
+    public <T extends BaseEvent> void subscribe(Class<T> eventType, EventListener<T> listener){
 
         listeners.putIfAbsent(eventType, new ArrayList<>());
 
@@ -17,8 +17,8 @@ public class EventBus {
 
     }
 
-    public void publish(Event event){
-        Class<? extends Event> eventType = event.getClass();
+    public void publish(BaseEvent event){
+        Class<? extends BaseEvent> eventType = event.getClass();
 
         List<EventListener> registeredListeners = listeners.get(eventType);
 

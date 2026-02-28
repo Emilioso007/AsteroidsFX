@@ -1,9 +1,9 @@
-import io.asteroidsfx.common.system.SystemECS;
+import io.asteroidsfx.common.ecs.BaseSystem;
 
 module RotateSystem {
     requires AngleComponent;
     requires Common;
     requires RotationComponent;
 
-    provides SystemECS with io.asteroidsfx.rotatesystem.RotateSystem;
+    provides BaseSystem with io.asteroidsfx.rotatesystem.RotateSystem;
 }

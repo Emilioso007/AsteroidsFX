@@ -1,11 +1,11 @@
 package io.asteroidsfx.outofbounds;
 
-import io.asteroidsfx.common.Component;
+import io.asteroidsfx.common.ecs.BaseComponent;
 
-public class OutOfBoundsComponent extends Component {
+public class OutOfBoundsComponent extends BaseComponent {
     public BoundsAction boundsAction;
-    public int leftExtent;
-    public int rightExtent;
-    public int topExtent;
-    public int bottomExtent;
+    public double leftExtent;
+    public double rightExtent;
+    public double topExtent;
+    public double bottomExtent;
 }

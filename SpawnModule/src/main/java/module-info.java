@@ -1,8 +1,8 @@
-import io.asteroidsfx.common.system.SystemECS;
+import io.asteroidsfx.common.ecs.BaseSystem;
 
 module Spawn {
     requires Common;
     requires TimerComponent;
     exports io.asteroidsfx.spawn;
-    provides SystemECS with io.asteroidsfx.spawn.SpawnSystem;
+    provides BaseSystem with io.asteroidsfx.spawn.SpawnSystem;
 }

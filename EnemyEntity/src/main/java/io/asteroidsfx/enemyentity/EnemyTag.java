@@ -1,6 +1,6 @@
 package io.asteroidsfx.enemyentity;
 
-import io.asteroidsfx.common.Component;
+import io.asteroidsfx.common.ecs.BaseComponent;
 
-public class EnemyTag extends Component {
+public class EnemyTag extends BaseComponent {
 }

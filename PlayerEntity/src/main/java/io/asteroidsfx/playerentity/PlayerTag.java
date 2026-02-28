@@ -1,6 +1,6 @@
 package io.asteroidsfx.playerentity;
 
-import io.asteroidsfx.common.Component;
+import io.asteroidsfx.common.ecs.BaseComponent;
 
-public class PlayerTag extends Component {
+public class PlayerTag extends BaseComponent {
 }

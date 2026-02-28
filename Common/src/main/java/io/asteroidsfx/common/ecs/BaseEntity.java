@@ -1,24 +1,24 @@
-package io.asteroidsfx.common;
+package io.asteroidsfx.common.ecs;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class Entity {
+public abstract class BaseEntity {
     public boolean toBeRemoved = false;
-    private final Set<Component> components = new HashSet<>();
+    private final Set<BaseComponent> components = new HashSet<>();
 
-    public <T extends Component> boolean addComponent(T component){
+    public <T extends BaseComponent> boolean addComponent(T component){
         return components.add(component);
     }
 
-    public <T extends Component> boolean removeComponent(Class<T> componentType){
+    public <T extends BaseComponent> boolean removeComponent(Class<T> componentType){
         T component = getComponent(componentType);
         return component != null && components.remove(component);
     }
 
-    public <T extends Component> T getComponent(Class<T> componentType) {
+    public <T extends BaseComponent> T getComponent(Class<T> componentType) {
 
-        for (Component c : components){
+        for (BaseComponent c : components){
             if (componentType.isAssignableFrom(c.getClass())){
                 return componentType.cast(c);
             }
@@ -27,14 +27,14 @@ public abstract class Entity {
         return null;
     }
 
-    public Set<Component> getComponents(){
+    public Set<BaseComponent> getComponents(){
         return components;
     }
 
-    public <T extends Component> boolean hasComponent(Class<T> componentType) {
+    public <T extends BaseComponent> boolean hasComponent(Class<T> componentType) {
         if(componentType == null) return false;
 
-        for (Component c : components){
+        for (BaseComponent c : components){
             if(componentType.isAssignableFrom(c.getClass())){
                 return true;
             }

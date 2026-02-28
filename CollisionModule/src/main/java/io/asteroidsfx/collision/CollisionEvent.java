@@ -1,19 +1,19 @@
 package io.asteroidsfx.collision;
 
-import io.asteroidsfx.common.Component;
-import io.asteroidsfx.common.Entity;
-import io.asteroidsfx.common.event.Event;
+import io.asteroidsfx.common.ecs.BaseComponent;
+import io.asteroidsfx.common.ecs.BaseEntity;
+import io.asteroidsfx.common.event.BaseEvent;
 
-public class CollisionEvent extends Event{
-    public Entity a;
-    public Entity b;
+public class CollisionEvent extends BaseEvent {
+    public BaseEntity a;
+    public BaseEntity b;
 
-    public CollisionEvent(Entity a, Entity b){
+    public CollisionEvent(BaseEntity a, BaseEntity b){
         this.a = a;
         this.b = b;
     }
 
-    public Entity getEntityWith(Class<? extends Component> componentType){
+    public BaseEntity getEntityWith(Class<? extends BaseComponent> componentType){
         if (a.hasComponent(componentType)){
             return a;
         }

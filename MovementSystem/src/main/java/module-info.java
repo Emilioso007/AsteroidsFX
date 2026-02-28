@@ -1,4 +1,4 @@
-import io.asteroidsfx.common.system.SystemECS;
+import io.asteroidsfx.common.ecs.BaseSystem;
 
 module MovementSystem {
     requires Common;
@@ -8,5 +8,5 @@ module MovementSystem {
     requires DragComponent;
     requires AccelerationComponent;
 
-    provides SystemECS with io.asteroidsfx.movementsystem.MovementSystem;
+    provides BaseSystem with io.asteroidsfx.movementsystem.MovementSystem;
 }

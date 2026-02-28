@@ -1,4 +1,4 @@
-package io.asteroidsfx.common;
+package io.asteroidsfx.common.util;
 
 public class Vector {
     public double x;

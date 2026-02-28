@@ -1,5 +1,5 @@
 import io.asteroidsfx.asteroidentity.AsteroidProvider;
-import io.asteroidsfx.common.EntitySpi;
+import io.asteroidsfx.common.ecs.EntitySpi;
 
 module AsteroidEntity {
     requires AngleComponent;

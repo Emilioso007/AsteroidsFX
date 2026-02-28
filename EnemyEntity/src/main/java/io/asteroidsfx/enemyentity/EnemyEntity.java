@@ -2,9 +2,9 @@ package io.asteroidsfx.enemyentity;
 
 import io.asteroidsfx.anglecomponent.AngleComponent;
 import io.asteroidsfx.collision.CircleColliderComponent;
-import io.asteroidsfx.common.Entity;
-import io.asteroidsfx.common.Polygon;
-import io.asteroidsfx.common.Vector;
+import io.asteroidsfx.common.ecs.BaseEntity;
+import io.asteroidsfx.common.shapes.Ellipse;
+import io.asteroidsfx.common.util.Vector;
 import io.asteroidsfx.common.World;
 import io.asteroidsfx.outofbounds.BoundsAction;
 import io.asteroidsfx.outofbounds.OutOfBoundsComponent;
@@ -13,7 +13,7 @@ import io.asteroidsfx.rendercomponent.RenderComponent;
 import io.asteroidsfx.velocitycomponent.VelocityComponent;
 import javafx.scene.paint.Color;
 
-public class EnemyEntity extends Entity{
+public class EnemyEntity extends BaseEntity {
 
     public EnemyEntity(){
 
@@ -32,13 +32,7 @@ public class EnemyEntity extends Entity{
         this.addComponent(angleComponent);
 
         RenderComponent renderComponent = new RenderComponent();
-        double[] xs = new double[8];
-        double[] ys = new double[8];
-        for(int i = 0; i < 8; i++){
-            xs[i] = Math.cos(Math.toRadians(i*360f/8)) * 30;
-            ys[i] = Math.sin(Math.toRadians(i*360f/8)) * 20;
-        }
-        renderComponent.polygon = new Polygon(xs, ys, Color.DARKRED, Color.RED, 4);
+        renderComponent.shape = new Ellipse(60, 40, Color.DARKRED, Color.RED, 4);
         this.addComponent(renderComponent);
 
         OutOfBoundsComponent outOfBoundsComponent = new OutOfBoundsComponent();

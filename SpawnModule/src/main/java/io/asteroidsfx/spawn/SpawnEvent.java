@@ -1,8 +1,8 @@
 package io.asteroidsfx.spawn;
 
-import io.asteroidsfx.common.Entity;
-import io.asteroidsfx.common.event.Event;
+import io.asteroidsfx.common.ecs.BaseEntity;
+import io.asteroidsfx.common.event.BaseEvent;
 
-public class SpawnEvent extends Event {
-    public Entity entityToSpawn;
+public class SpawnEvent extends BaseEvent {
+    public BaseEntity entityToSpawn;
 }

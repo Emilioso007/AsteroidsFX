@@ -1,4 +1,4 @@
-import io.asteroidsfx.common.system.SystemECS;
+import io.asteroidsfx.common.ecs.BaseSystem;
 
 module OutOfBounds {
     exports io.asteroidsfx.outofbounds;
@@ -7,5 +7,5 @@ module OutOfBounds {
     requires PositionComponent;
     requires VelocityComponent;
 
-    provides SystemECS with io.asteroidsfx.outofbounds.OutOfBoundsSystem;
+    provides BaseSystem with io.asteroidsfx.outofbounds.OutOfBoundsSystem;
 }

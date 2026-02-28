@@ -1,5 +1,5 @@
-import io.asteroidsfx.common.EntitySpi;
-import io.asteroidsfx.common.system.SystemECS;
+import io.asteroidsfx.common.ecs.EntitySpi;
+import io.asteroidsfx.common.ecs.BaseSystem;
 import io.asteroidsfx.enemyentity.EnemyEntityProvider;
 import io.asteroidsfx.enemyentity.EnemySystem;
 
@@ -19,5 +19,5 @@ module EnemyEntity {
     requires TimerComponent;
 
     provides EntitySpi with EnemyEntityProvider;
-    provides SystemECS with EnemySystem;
+    provides BaseSystem with EnemySystem;
 }

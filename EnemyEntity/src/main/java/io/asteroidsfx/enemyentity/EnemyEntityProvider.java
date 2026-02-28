@@ -1,6 +1,6 @@
 package io.asteroidsfx.enemyentity;
 
-import io.asteroidsfx.common.EntitySpi;
+import io.asteroidsfx.common.ecs.EntitySpi;
 import io.asteroidsfx.common.World;
 
 public class EnemyEntityProvider implements EntitySpi {

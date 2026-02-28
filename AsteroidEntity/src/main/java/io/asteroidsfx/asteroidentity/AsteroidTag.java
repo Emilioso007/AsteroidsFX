@@ -1,6 +1,6 @@
 package io.asteroidsfx.asteroidentity;
 
-import io.asteroidsfx.common.Component;
+import io.asteroidsfx.common.ecs.BaseComponent;
 
-public class AsteroidTag extends Component {
+public class AsteroidTag extends BaseComponent {
 }

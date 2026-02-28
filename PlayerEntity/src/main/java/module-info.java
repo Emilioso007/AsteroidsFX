@@ -1,4 +1,4 @@
-import io.asteroidsfx.common.EntitySpi;
+import io.asteroidsfx.common.ecs.EntitySpi;
 import io.asteroidsfx.playerentity.PlayerEntityProvider;
 
 module PlayerEntity {

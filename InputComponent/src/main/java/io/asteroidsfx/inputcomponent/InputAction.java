@@ -1,8 +1,8 @@
 package io.asteroidsfx.inputcomponent;
 
-import io.asteroidsfx.common.Entity;
+import io.asteroidsfx.common.ecs.BaseEntity;
 
 @FunctionalInterface
 public interface InputAction{
-    void execute(Entity entity, double dt);
+    void execute(BaseEntity entity, double dt);
 }
