@@ -32,26 +32,25 @@ public class Game {
         Scene scene = new Scene(root);
 
         scene.setOnKeyPressed(event -> World.getInstance().addKeyPressed(event.getCode()));
-
         scene.setOnKeyReleased(event -> World.getInstance().removeKeyPressed(event.getCode()));
 
         window.setScene(scene);
         window.setTitle("AsteroidsFX");
         window.show();
 
-        // SETUP SYSTEMS
+        // ADD ENTITIES
+        ServiceLoader<EntitySpi> entitySpis = ServiceLoader.load(EntitySpi.class);
+        entitySpis.stream()
+            .map(ServiceLoader.Provider::get)
+            .sorted(Comparator.comparingInt(EntitySpi::getPriority))
+            .forEach(entitySpi -> entitySpi.start(World.getInstance()));
+
+        // START SYSTEMS
         ServiceLoader<BaseSystem> systems = ServiceLoader.load(BaseSystem.class);
         for (BaseSystem system : systems){
             World.getInstance().addSystem(system);
             system.start(World.getInstance());
         }
-
-        ServiceLoader<EntitySpi> entitySpis = ServiceLoader.load(EntitySpi.class);
-
-        entitySpis.stream()
-        .map(ServiceLoader.Provider::get)
-        .sorted(Comparator.comparingInt(EntitySpi::getPriority))
-        .forEach(entitySpi -> entitySpi.start(World.getInstance()));
 
         // LOOP
         new AnimationTimer() {
