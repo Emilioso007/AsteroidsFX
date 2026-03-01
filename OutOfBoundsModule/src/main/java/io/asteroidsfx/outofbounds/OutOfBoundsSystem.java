@@ -4,8 +4,8 @@ import io.asteroidsfx.common.ecs.BaseComponent;
 import io.asteroidsfx.common.ecs.BaseEntity;
 import io.asteroidsfx.common.World;
 import io.asteroidsfx.common.ecs.IteratingSystem;
-import io.asteroidsfx.positioncomponent.PositionComponent;
-import io.asteroidsfx.velocitycomponent.VelocityComponent;
+import io.asteroidsfx.physics.component.PositionComponent;
+import io.asteroidsfx.physics.component.VelocityComponent;
 
 import java.util.List;
 

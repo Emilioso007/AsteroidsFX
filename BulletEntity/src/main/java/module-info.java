@@ -1,10 +1,9 @@
 module BulletEntity {
     requires Common;
     requires javafx.graphics;
-    requires VelocityComponent;
-    requires PositionComponent;
     requires RenderComponent;
     requires OutOfBounds;
     requires Collision;
+    requires Physics;
     exports io.asteroidsfx.bulletentity;
 }

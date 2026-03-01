@@ -1,11 +1,11 @@
 package io.asteroidsfx.renderingsystem;
 
-import io.asteroidsfx.anglecomponent.AngleComponent;
 import io.asteroidsfx.common.ecs.BaseComponent;
 import io.asteroidsfx.common.ecs.BaseEntity;
 import io.asteroidsfx.common.World;
 import io.asteroidsfx.common.ecs.IteratingSystem;
-import io.asteroidsfx.positioncomponent.PositionComponent;
+import io.asteroidsfx.physics.component.AngleComponent;
+import io.asteroidsfx.physics.component.PositionComponent;
 import io.asteroidsfx.rendercomponent.RenderComponent;
 import javafx.scene.canvas.GraphicsContext;
 

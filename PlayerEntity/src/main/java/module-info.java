@@ -7,17 +7,12 @@ module PlayerEntity {
     exports io.asteroidsfx.playerentity;
     requires Common;
     requires javafx.graphics;
-    requires PositionComponent;
-    requires AngleComponent;
     requires RenderComponent;
-    requires DragComponent;
-    requires VelocityComponent;
-    requires AccelerationComponent;
     requires OutOfBounds;
     requires Collision;
     requires BulletEntity;
     requires Spawn;
-    requires RotationComponent;
+    requires Physics;
 
     provides EntitySpi with PlayerEntityProvider;
     provides BaseSystem with PlayerSystem;

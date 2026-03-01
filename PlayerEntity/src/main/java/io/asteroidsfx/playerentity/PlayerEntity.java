@@ -1,18 +1,13 @@
 package io.asteroidsfx.playerentity;
 
-import io.asteroidsfx.accelerationcomponent.AccelerationComponent;
-import io.asteroidsfx.anglecomponent.AngleComponent;
 import io.asteroidsfx.collision.CircleColliderComponent;
 import io.asteroidsfx.common.ecs.BaseEntity;
 import io.asteroidsfx.common.shapes.Polygon;
 import io.asteroidsfx.common.util.Vector;
-import io.asteroidsfx.dragcomponent.DragComponent;
 import io.asteroidsfx.outofbounds.BoundsAction;
 import io.asteroidsfx.outofbounds.OutOfBoundsComponent;
-import io.asteroidsfx.positioncomponent.PositionComponent;
+import io.asteroidsfx.physics.component.*;
 import io.asteroidsfx.rendercomponent.RenderComponent;
-import io.asteroidsfx.rotationcomponent.RotationComponent;
-import io.asteroidsfx.velocitycomponent.VelocityComponent;
 import javafx.scene.paint.Color;
 
 public class PlayerEntity extends BaseEntity {

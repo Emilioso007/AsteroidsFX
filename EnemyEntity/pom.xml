@@ -26,24 +26,6 @@
         </dependency>
         <dependency>
             <groupId>io.asteroidsfx</groupId>
-            <artifactId>PositionComponent</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.asteroidsfx.velocitycomponent</groupId>
-            <artifactId>VelocityComponent</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.asteroidsfx.AngleComponent</groupId>
-            <artifactId>AngleComponent</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.asteroidsfx</groupId>
             <artifactId>RenderComponent</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>

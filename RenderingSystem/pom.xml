@@ -35,20 +35,8 @@
             <version>21.0.2</version>
         </dependency>
         <dependency>
-            <groupId>io.asteroidsfx</groupId>
-            <artifactId>PositionComponent</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.asteroidsfx.rotationcomponent</groupId>
-            <artifactId>RotationComponent</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.asteroidsfx.AngleComponent</groupId>
-            <artifactId>AngleComponent</artifactId>
+            <groupId>io.asteroidsfx.physics</groupId>
+            <artifactId>Physics</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

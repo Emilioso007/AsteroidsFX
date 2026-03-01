@@ -1,7 +1,5 @@
 package io.asteroidsfx.playerentity;
 
-import io.asteroidsfx.accelerationcomponent.AccelerationComponent;
-import io.asteroidsfx.anglecomponent.AngleComponent;
 import io.asteroidsfx.bulletentity.BulletEntity;
 import io.asteroidsfx.common.World;
 import io.asteroidsfx.common.ecs.BaseComponent;
@@ -11,8 +9,10 @@ import io.asteroidsfx.common.event.input.KeyDownEvent;
 import io.asteroidsfx.common.event.input.KeyJustPressedEvent;
 import io.asteroidsfx.common.event.input.KeyJustReleasedEvent;
 import io.asteroidsfx.common.util.Vector;
-import io.asteroidsfx.positioncomponent.PositionComponent;
-import io.asteroidsfx.rotationcomponent.RotationComponent;
+import io.asteroidsfx.physics.component.AccelerationComponent;
+import io.asteroidsfx.physics.component.AngleComponent;
+import io.asteroidsfx.physics.component.PositionComponent;
+import io.asteroidsfx.physics.component.RotationComponent;
 import io.asteroidsfx.spawn.SpawnEvent;
 
 import java.util.List;

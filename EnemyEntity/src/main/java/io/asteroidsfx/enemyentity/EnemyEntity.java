@@ -1,6 +1,5 @@
 package io.asteroidsfx.enemyentity;
 
-import io.asteroidsfx.anglecomponent.AngleComponent;
 import io.asteroidsfx.collision.CircleColliderComponent;
 import io.asteroidsfx.common.ecs.BaseEntity;
 import io.asteroidsfx.common.shapes.Ellipse;
@@ -8,9 +7,10 @@ import io.asteroidsfx.common.util.Vector;
 import io.asteroidsfx.common.World;
 import io.asteroidsfx.outofbounds.BoundsAction;
 import io.asteroidsfx.outofbounds.OutOfBoundsComponent;
-import io.asteroidsfx.positioncomponent.PositionComponent;
+import io.asteroidsfx.physics.component.AngleComponent;
+import io.asteroidsfx.physics.component.PositionComponent;
+import io.asteroidsfx.physics.component.VelocityComponent;
 import io.asteroidsfx.rendercomponent.RenderComponent;
-import io.asteroidsfx.velocitycomponent.VelocityComponent;
 import javafx.scene.paint.Color;
 
 public class EnemyEntity extends BaseEntity {

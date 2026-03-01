@@ -11,18 +11,10 @@
     <modules>
         <module>Core</module>
         <module>Common</module>
-        <module>PositionComponent</module>
         <module>RenderComponent</module>
-        <module>VelocityComponent</module>
-        <module>AngleComponent</module>
-        <module>RotationComponent</module>
         <module>RenderingSystem</module>
-        <module>MovementSystem</module>
-        <module>RotateSystem</module>
         <module>AsteroidEntity</module>
         <module>PlayerEntity</module>
-        <module>DragComponent</module>
-        <module>AccelerationComponent</module>
         <module>CollisionModule</module>
         <module>BulletEntity</module>
         <module>OutOfBoundsModule</module>
@@ -30,6 +22,7 @@
         <module>AsteroidPlayerCollisionResponseSystem</module>
         <module>EnemyEntity</module>
         <module>SpawnModule</module>
+        <module>PhysicsModule</module>
     </modules>
 
     <properties>

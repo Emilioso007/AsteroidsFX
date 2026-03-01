@@ -5,7 +5,7 @@ import io.asteroidsfx.common.ecs.BaseComponent;
 import io.asteroidsfx.common.ecs.BaseEntity;
 import io.asteroidsfx.common.ecs.BaseSystem;
 import io.asteroidsfx.common.util.Vector;
-import io.asteroidsfx.positioncomponent.PositionComponent;
+import io.asteroidsfx.physics.component.PositionComponent;
 
 import java.util.List;
 

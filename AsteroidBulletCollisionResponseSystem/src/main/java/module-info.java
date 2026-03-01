@@ -5,8 +5,7 @@ module AsteroidBulletCollisionResponseSystem {
     requires AsteroidEntity;
     requires BulletEntity;
     requires Collision;
-    requires PositionComponent;
-    requires VelocityComponent;
+    requires Physics;
 
     provides BaseSystem with io.asteroidsfx.asteroidbulletcollisionresponsesystem.AsteroidBulletCollisionResponseSystem;
 }

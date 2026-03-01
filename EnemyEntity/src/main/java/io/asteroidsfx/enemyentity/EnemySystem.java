@@ -6,8 +6,8 @@ import io.asteroidsfx.common.ecs.BaseEntity;
 import io.asteroidsfx.common.util.Vector;
 import io.asteroidsfx.common.World;
 import io.asteroidsfx.common.ecs.IntervalIteratingSystem;
+import io.asteroidsfx.physics.component.PositionComponent;
 import io.asteroidsfx.playerentity.PlayerTag;
-import io.asteroidsfx.positioncomponent.PositionComponent;
 import io.asteroidsfx.spawn.SpawnEvent;
 
 import java.util.List;

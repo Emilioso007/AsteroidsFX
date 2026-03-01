@@ -9,8 +9,8 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>io.asteroidsfx.collision</groupId>
-    <artifactId>Collision</artifactId>
+    <groupId>io.asteroidsfx.physics</groupId>
+    <artifactId>Physics</artifactId>
 
     <properties>
         <maven.compiler.source>22</maven.compiler.source>
@@ -21,12 +21,6 @@
         <dependency>
             <groupId>io.asteroidsfx</groupId>
             <artifactId>Common</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.asteroidsfx.physics</groupId>
-            <artifactId>Physics</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
