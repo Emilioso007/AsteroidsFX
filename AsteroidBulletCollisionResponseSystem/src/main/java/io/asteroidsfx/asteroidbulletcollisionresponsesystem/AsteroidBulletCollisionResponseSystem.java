@@ -6,15 +6,12 @@ import io.asteroidsfx.asteroidentity.AsteroidTag;
 import io.asteroidsfx.bulletentity.BulletTag;
 import io.asteroidsfx.collision.CollisionEvent;
 import io.asteroidsfx.common.*;
-import io.asteroidsfx.common.ecs.BaseComponent;
 import io.asteroidsfx.common.ecs.BaseEntity;
-import io.asteroidsfx.common.ecs.IteratingSystem;
+import io.asteroidsfx.common.ecs.ResponseSystem;
 import io.asteroidsfx.physics.component.PositionComponent;
 import io.asteroidsfx.physics.component.VelocityComponent;
 
-import java.util.List;
-
-public class AsteroidBulletCollisionResponseSystem extends IteratingSystem {
+public class AsteroidBulletCollisionResponseSystem extends ResponseSystem {
 
     @Override
     public void start(World world) {
@@ -43,16 +40,6 @@ public class AsteroidBulletCollisionResponseSystem extends IteratingSystem {
             }
 
         }
-    }
-
-    @Override
-    public List<Class<? extends BaseComponent>> getSignature() {
-        return List.of();
-    }
-
-    @Override
-    public void processEntity(BaseEntity entity, double deltaTime) {
-
     }
 
 }

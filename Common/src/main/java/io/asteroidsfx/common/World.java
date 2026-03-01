@@ -10,10 +10,7 @@ import io.asteroidsfx.common.event.input.KeyJustReleasedEvent;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public final class World {
 
@@ -34,7 +31,10 @@ public final class World {
     private World(){
         entities = new ArrayList<>();
         entitiesToAdd = new ArrayList<>();
-        systems = new HashSet<>();
+        Comparator<BaseSystem> systemComparator =
+                Comparator.comparing(BaseSystem::getPriority)
+                .thenComparingInt(BaseSystem::hashCode);
+        systems = new TreeSet<>(systemComparator);
         keysPressed = new HashSet<>();
         eventBus = new EventBus();
     }
@@ -96,8 +96,12 @@ public final class World {
         return systems.add(system);
     }
 
+    public <T extends BaseComponent> boolean hasEntitiesWith(Class<T> requiredComponent) {
+        return entities.stream().anyMatch(baseEntity -> baseEntity.hasComponent(requiredComponent));
+    }
 
-    public <T extends BaseComponent> List<BaseEntity> getEntitiesWith(Class<T>... requiredComponents){
+    @SafeVarargs
+    public final <T extends BaseComponent> List<BaseEntity> getEntitiesWith(Class<T>... requiredComponents){
         List<BaseEntity> result = new ArrayList<>();
         for (BaseEntity entity : entities){
             boolean hasAllComponents = true;
@@ -131,4 +135,5 @@ public final class World {
     public void queueAddEntity(BaseEntity entityToSpawn) {
         entitiesToAdd.add(entityToSpawn);
     }
+
 }

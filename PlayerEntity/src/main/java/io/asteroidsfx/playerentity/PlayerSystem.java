@@ -29,6 +29,8 @@ public class PlayerSystem extends IntervalIteratingSystem {
     }
 
     private void keyJustPressed(KeyJustPressedEvent event){
+        if(!World.getInstance().hasEntitiesWith(PlayerTag.class)) return;
+
         BaseEntity player = World.getInstance().getEntitiesWith(PlayerTag.class).getFirst();
         switch (event.keyCode){
             case SPACE:
@@ -49,6 +51,8 @@ public class PlayerSystem extends IntervalIteratingSystem {
     }
 
     private void keyDown(KeyDownEvent event){
+        if(!World.getInstance().hasEntitiesWith(PlayerTag.class)) return;
+
         BaseEntity player = World.getInstance().getEntitiesWith(PlayerTag.class).getFirst();
         switch (event.keyCode){
             case UP:
@@ -60,6 +64,8 @@ public class PlayerSystem extends IntervalIteratingSystem {
     }
 
     private void keyJustReleased(KeyJustReleasedEvent event){
+        if(!World.getInstance().hasEntitiesWith(PlayerTag.class)) return;
+
         BaseEntity player = World.getInstance().getEntitiesWith(PlayerTag.class).getFirst();
         switch (event.keyCode){
             case SPACE:

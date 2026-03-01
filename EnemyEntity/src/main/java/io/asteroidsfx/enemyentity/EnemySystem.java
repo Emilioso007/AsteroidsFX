@@ -21,8 +21,9 @@ public class EnemySystem extends IntervalIteratingSystem {
 
     @Override
     public void updateInterval(BaseEntity enemy, double deltaTime) {
+        if(!World.getInstance().hasEntitiesWith(PlayerTag.class)) return;
+
         BaseEntity player = World.getInstance().getEntitiesWith(PlayerTag.class).getFirst();
-        if(player == null) return;
 
         PositionComponent enemyPosition = enemy.getComponent(PositionComponent.class);
         PositionComponent playerPosition = player.getComponent(PositionComponent.class);

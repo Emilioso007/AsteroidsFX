@@ -18,4 +18,8 @@ public abstract class BaseSystem {
     public abstract void update(List<BaseEntity> entities, double deltaTime);
 
     public abstract void start(World world);
+
+    public int getPriority() {
+        return priority;
+    }
 }
