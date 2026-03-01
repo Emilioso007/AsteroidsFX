@@ -23,6 +23,7 @@
         <module>EnemyModule</module>
         <module>SpawnModule</module>
         <module>PhysicsModule</module>
+        <module>OwnershipModule</module>
     </modules>
 
     <properties>

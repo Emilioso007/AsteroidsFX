@@ -5,6 +5,8 @@ import io.asteroidsfx.common.World;
 import java.util.List;
 
 public abstract class BaseSystem {
+
+    /// Systems with lower values are processed first.
     public int priority;
     public boolean running = true;
     public BaseSystem(){

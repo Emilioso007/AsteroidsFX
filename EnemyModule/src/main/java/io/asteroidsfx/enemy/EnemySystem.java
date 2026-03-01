@@ -31,7 +31,7 @@ public class EnemySystem extends IntervalIteratingSystem {
         Vector bulletStart = enemyPosition.pos.copy();
         Vector bulletVelocity = playerPosition.pos.copy().sub(enemyPosition.pos).setMag(600);
 
-        BulletEntity bullet = new BulletEntity(bulletStart, bulletVelocity);
+        BulletEntity bullet = new BulletEntity(enemy, bulletStart, bulletVelocity);
         SpawnEvent event = new SpawnEvent();
         event.entityToSpawn = bullet;
         World.getInstance().getEventBus().publish(event);

@@ -15,7 +15,7 @@ public class MovementSystem extends IteratingSystem {
 
     @Override
     public void start(World world) {
-
+        this.priority = 10;
     }
 
     @Override

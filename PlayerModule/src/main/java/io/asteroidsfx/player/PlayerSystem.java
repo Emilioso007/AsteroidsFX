@@ -79,10 +79,10 @@ public class PlayerSystem extends IntervalIteratingSystem {
     }
 
     @Override
-    public void updateInterval(BaseEntity entity, double deltaTime) {
-        PositionComponent position = entity.getComponent(PositionComponent.class);
-        AngleComponent angle = entity.getComponent(AngleComponent.class);
-        BulletEntity bullet = new BulletEntity(position.pos.copy().add(Vector.fromAngle(angle.angle).setMag(60)), Vector.fromAngle(angle.angle).setMag(600));
+    public void updateInterval(BaseEntity player, double deltaTime) {
+        PositionComponent position = player.getComponent(PositionComponent.class);
+        AngleComponent angle = player.getComponent(AngleComponent.class);
+        BulletEntity bullet = new BulletEntity(player, position.pos.copy().add(Vector.fromAngle(angle.angle).setMag(60)), Vector.fromAngle(angle.angle).setMag(600));
         SpawnEvent event = new SpawnEvent();
         event.entityToSpawn = bullet;
         World.getInstance().getEventBus().publish(event);

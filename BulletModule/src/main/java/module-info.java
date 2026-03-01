@@ -5,5 +5,6 @@ module Bullet {
     requires OutOfBounds;
     requires Collision;
     requires Physics;
+    requires Ownership;
     exports io.asteroidsfx.bullet;
 }

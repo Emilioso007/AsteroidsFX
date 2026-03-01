@@ -1,5 +1,6 @@
 package io.asteroidsfx.bullet;
 
+import io.asteroidsfx.Ownership.OwnershipComponent;
 import io.asteroidsfx.collision.CircleColliderComponent;
 import io.asteroidsfx.common.ecs.BaseEntity;
 import io.asteroidsfx.common.shapes.Ellipse;
@@ -13,7 +14,11 @@ import javafx.scene.paint.Color;
 
 public class BulletEntity extends BaseEntity {
 
-    public BulletEntity(Vector startPosition, Vector velocity) {
+    public BulletEntity(BaseEntity owner, Vector startPosition, Vector velocity) {
+
+        OwnershipComponent ownershipComponent = new OwnershipComponent();
+        ownershipComponent.owner = owner;
+        this.addComponent(ownershipComponent);
 
         this.addComponent(new BulletTag());
 
