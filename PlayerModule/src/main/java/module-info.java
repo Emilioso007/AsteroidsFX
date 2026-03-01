@@ -1,5 +1,6 @@
 import io.asteroidsfx.common.ecs.BaseSystem;
 import io.asteroidsfx.common.ecs.EntitySpi;
+import io.asteroidsfx.player.PlayerCollisionResponseSystem;
 import io.asteroidsfx.player.PlayerEntityProvider;
 import io.asteroidsfx.player.PlayerSystem;
 
@@ -13,7 +14,8 @@ module Player {
     requires Bullet;
     requires Spawn;
     requires Physics;
+    requires Ownership;
 
     provides EntitySpi with PlayerEntityProvider;
-    provides BaseSystem with PlayerSystem;
+    provides BaseSystem with PlayerSystem, PlayerCollisionResponseSystem;
 }

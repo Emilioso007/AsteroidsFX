@@ -18,8 +18,6 @@
         <module>CollisionModule</module>
         <module>BulletModule</module>
         <module>OutOfBoundsModule</module>
-        <module>AsteroidBulletCollisionResponseSystem</module>
-        <module>AsteroidPlayerCollisionResponseSystem</module>
         <module>EnemyModule</module>
         <module>SpawnModule</module>
         <module>PhysicsModule</module>

@@ -1,3 +1,6 @@
+import io.asteroidsfx.bullet.BulletCollisionResponseSystem;
+import io.asteroidsfx.common.ecs.BaseSystem;
+
 module Bullet {
     requires Common;
     requires javafx.graphics;
@@ -7,4 +10,6 @@ module Bullet {
     requires Physics;
     requires Ownership;
     exports io.asteroidsfx.bullet;
+
+    provides BaseSystem with BulletCollisionResponseSystem;
 }

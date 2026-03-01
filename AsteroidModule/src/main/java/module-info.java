@@ -1,4 +1,6 @@
+import io.asteroidsfx.asteroid.AsteroidCollisionResponseSystem;
 import io.asteroidsfx.asteroid.AsteroidProvider;
+import io.asteroidsfx.common.ecs.BaseSystem;
 import io.asteroidsfx.common.ecs.EntitySpi;
 
 module Asteroid {
@@ -11,4 +13,5 @@ module Asteroid {
     exports io.asteroidsfx.asteroid;
 
     provides EntitySpi with AsteroidProvider;
+    provides BaseSystem with AsteroidCollisionResponseSystem;
 }
