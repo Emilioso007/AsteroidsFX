@@ -13,14 +13,14 @@
         <module>Common</module>
         <module>RenderComponent</module>
         <module>RenderingSystem</module>
-        <module>AsteroidEntity</module>
-        <module>PlayerEntity</module>
+        <module>AsteroidModule</module>
+        <module>PlayerModule</module>
         <module>CollisionModule</module>
-        <module>BulletEntity</module>
+        <module>BulletModule</module>
         <module>OutOfBoundsModule</module>
         <module>AsteroidBulletCollisionResponseSystem</module>
         <module>AsteroidPlayerCollisionResponseSystem</module>
-        <module>EnemyEntity</module>
+        <module>EnemyModule</module>
         <module>SpawnModule</module>
         <module>PhysicsModule</module>
     </modules>

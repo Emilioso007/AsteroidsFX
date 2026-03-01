@@ -1,10 +1,10 @@
 import io.asteroidsfx.common.ecs.BaseSystem;
 
 module AsteroidPlayerCollisionResponseSystem {
-    requires AsteroidEntity;
+    requires Asteroid;
     requires Collision;
     requires Common;
-    requires PlayerEntity;
+    requires Player;
 
     provides BaseSystem with io.asteroidsfx.asteroidplayercollisionresponsesystem.AsteroidPlayerCollisionResponseSystem;
 }

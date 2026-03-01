@@ -2,8 +2,8 @@ import io.asteroidsfx.common.ecs.BaseSystem;
 
 module AsteroidBulletCollisionResponseSystem {
     requires Common;
-    requires AsteroidEntity;
-    requires BulletEntity;
+    requires Asteroid;
+    requires Bullet;
     requires Collision;
     requires Physics;
 

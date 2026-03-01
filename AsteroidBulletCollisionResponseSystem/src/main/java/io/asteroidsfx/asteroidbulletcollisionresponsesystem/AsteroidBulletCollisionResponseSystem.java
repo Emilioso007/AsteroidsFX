@@ -1,9 +1,9 @@
 package io.asteroidsfx.asteroidbulletcollisionresponsesystem;
 
-import io.asteroidsfx.asteroidentity.AsteroidEntity;
-import io.asteroidsfx.asteroidentity.AsteroidSizeComponent;
-import io.asteroidsfx.asteroidentity.AsteroidTag;
-import io.asteroidsfx.bulletentity.BulletTag;
+import io.asteroidsfx.asteroid.AsteroidEntity;
+import io.asteroidsfx.asteroid.AsteroidSizeComponent;
+import io.asteroidsfx.asteroid.AsteroidTag;
+import io.asteroidsfx.bullet.BulletTag;
 import io.asteroidsfx.collision.CollisionEvent;
 import io.asteroidsfx.common.*;
 import io.asteroidsfx.common.ecs.BaseEntity;

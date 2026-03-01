@@ -1,11 +1,11 @@
 package io.asteroidsfx.asteroidplayercollisionresponsesystem;
 
-import io.asteroidsfx.asteroidentity.AsteroidTag;
+import io.asteroidsfx.asteroid.AsteroidTag;
 import io.asteroidsfx.collision.CollisionEvent;
 import io.asteroidsfx.common.ecs.BaseEntity;
 import io.asteroidsfx.common.World;
 import io.asteroidsfx.common.ecs.ResponseSystem;
-import io.asteroidsfx.playerentity.PlayerTag;
+import io.asteroidsfx.player.PlayerTag;
 
 public class AsteroidPlayerCollisionResponseSystem extends ResponseSystem {
 

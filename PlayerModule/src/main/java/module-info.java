@@ -1,0 +1,19 @@
+import io.asteroidsfx.common.ecs.BaseSystem;
+import io.asteroidsfx.common.ecs.EntitySpi;
+import io.asteroidsfx.player.PlayerEntityProvider;
+import io.asteroidsfx.player.PlayerSystem;
+
+module Player {
+    exports io.asteroidsfx.player;
+    requires Common;
+    requires javafx.graphics;
+    requires RenderComponent;
+    requires OutOfBounds;
+    requires Collision;
+    requires Bullet;
+    requires Spawn;
+    requires Physics;
+
+    provides EntitySpi with PlayerEntityProvider;
+    provides BaseSystem with PlayerSystem;
+}

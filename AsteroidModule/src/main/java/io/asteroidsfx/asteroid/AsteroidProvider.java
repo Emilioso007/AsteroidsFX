@@ -1,0 +1,21 @@
+package io.asteroidsfx.asteroid;
+
+import io.asteroidsfx.common.ecs.EntitySpi;
+import io.asteroidsfx.common.util.Vector;
+import io.asteroidsfx.common.World;
+
+import java.util.Random;
+
+public class AsteroidProvider implements EntitySpi {
+    @Override
+    public void start(World world) {
+        Random random = new Random();
+        Vector startPosition = new Vector(random.nextDouble(0, world.width), random.nextDouble(0, world.height));
+        world.addEntity(new AsteroidEntity(startPosition));
+    }
+
+    @Override
+    public int getPriority() {
+        return 0;
+    }
+}
