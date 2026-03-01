@@ -35,6 +35,7 @@ public class PlayerSystem extends IntervalIteratingSystem {
         switch (event.keyCode){
             case SPACE:
                 this.running = true;
+                this.accumulator = this.interval; // Make sure a shot is fired immediately
             break;
             case LEFT, A:
                 player.getComponent(RotationComponent.class).dAngle = -Math.PI;

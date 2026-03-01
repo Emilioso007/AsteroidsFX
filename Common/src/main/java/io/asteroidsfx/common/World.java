@@ -47,13 +47,14 @@ public final class World {
     }
 
     public void addKeyPressed(KeyCode keyCode){
-        eventBus.publish(new KeyJustPressedEvent(keyCode));
-        keysPressed.add(keyCode);
+        // Only publish if key does not already exist in array
+        if(keysPressed.add(keyCode))
+            eventBus.publish(new KeyJustPressedEvent(keyCode));
     }
 
     public void removeKeyPressed(KeyCode keyCode){
-        eventBus.publish(new KeyJustReleasedEvent(keyCode));
         keysPressed.remove(keyCode);
+        eventBus.publish(new KeyJustReleasedEvent(keyCode));
     }
 
     public EventBus getEventBus(){

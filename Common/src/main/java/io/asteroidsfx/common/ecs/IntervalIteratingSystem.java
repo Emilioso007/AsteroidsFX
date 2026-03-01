@@ -4,7 +4,7 @@ import java.util.List;
 
 public abstract class IntervalIteratingSystem extends BaseSystem {
     public double interval;
-    private double accumulator;
+    public double accumulator;
 
     @Override
     public void update(List<BaseEntity> entities, double deltaTime){
