@@ -17,7 +17,7 @@ public class RenderingSystem extends IteratingSystem {
     @Override
     public void start(World world) {
         this.setPriority(100);
-        this.graphicsContext = world.graphicsContext;
+        this.graphicsContext = world.getGraphicsContext();
     }
 
     @Override

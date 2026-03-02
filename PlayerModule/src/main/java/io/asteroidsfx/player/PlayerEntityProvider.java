@@ -7,7 +7,7 @@ import io.asteroidsfx.common.World;
 public class PlayerEntityProvider implements EntitySpi {
     @Override
     public void start(World world) {
-        world.addEntity(new PlayerEntity(new Vector(world.width/2.0, world.height/2.0)));
+        world.addEntity(new PlayerEntity(new Vector(world.getWidth() /2.0, world.getHeight() /2.0)));
     }
 
     @Override

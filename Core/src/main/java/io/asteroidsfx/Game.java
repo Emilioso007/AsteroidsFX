@@ -22,13 +22,13 @@ public class Game {
 
     public void start(Stage window) {
 
-        World.getInstance().width = 800;
-        World.getInstance().height = 800;
+        World.getInstance().setWidth(800);
+        World.getInstance().setHeight(800);
 
-        Canvas canvas = new Canvas(World.getInstance().width, World.getInstance().height);
+        Canvas canvas = new Canvas(World.getInstance().getWidth(), World.getInstance().getHeight());
         gc = canvas.getGraphicsContext2D();
 
-        World.getInstance().graphicsContext = gc;
+        World.getInstance().setGraphicsContext(gc);
 
         Group root = new Group(canvas);
         Scene scene = new Scene(root);

@@ -10,7 +10,7 @@ public class AsteroidProvider implements EntitySpi {
     @Override
     public void start(World world) {
         Random random = new Random();
-        Vector startPosition = new Vector(random.nextDouble(0, world.width), random.nextDouble(0, world.height));
+        Vector startPosition = new Vector(random.nextDouble(0, world.getWidth()), random.nextDouble(0, world.getHeight()));
         world.addEntity(new AsteroidEntity(startPosition));
     }
 

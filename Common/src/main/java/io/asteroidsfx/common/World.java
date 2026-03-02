@@ -10,25 +10,25 @@ import java.util.*;
 
 public final class World {
 
-    public int width;
-    public int height;
-    public GraphicsContext graphicsContext;
-    public List<BaseEntity> entities;
+    private int width;
+    private int height;
+    private GraphicsContext graphicsContext;
+    private final List<BaseEntity> entities;
     private final List<BaseEntity> entitiesToAdd;
-    public Set<BaseSystem> systems;
+    private final Set<BaseSystem> systems;
     private final EventBus eventBus;
 
-    public double deltaTime;
+    private double deltaTime;
 
     private static World instance = null;
 
     private World(){
-        entities = new ArrayList<>();
+        this.entities = new ArrayList<>();
         entitiesToAdd = new ArrayList<>();
         Comparator<BaseSystem> systemComparator =
                 Comparator.comparing(BaseSystem::getPriority)
                 .thenComparingInt(BaseSystem::hashCode);
-        systems = new TreeSet<>(systemComparator);
+        this.systems = new TreeSet<>(systemComparator);
         eventBus = new EventBus();
     }
 
@@ -46,7 +46,7 @@ public final class World {
     public void tick(double deltaTime){
         this.deltaTime = deltaTime;
 
-        for(BaseSystem system : systems){
+        for(BaseSystem system : getSystems()){
             List<Class<? extends BaseComponent>> signature = system.getSignature();
 
             if(signature == null || signature.isEmpty()){
@@ -56,33 +56,33 @@ public final class World {
 
             List<BaseEntity> filteredEntities = new ArrayList<>();
 
-            for(BaseEntity entity : entities){
+            for(BaseEntity entity : getEntities()){
                 if(matchesSignature(entity, signature)) filteredEntities.add(entity);
             }
 
             system.update(filteredEntities, deltaTime);
         }
-        entities.removeIf(BaseEntity::isToBeRemoved);
-        entities.addAll(entitiesToAdd);
+        getEntities().removeIf(BaseEntity::isToBeRemoved);
+        getEntities().addAll(entitiesToAdd);
         entitiesToAdd.clear();
     }
 
     public boolean addEntity(BaseEntity entity){
-        return entities.add(entity);
+        return getEntities().add(entity);
     }
 
     public boolean addSystem(BaseSystem system){
-        return systems.add(system);
+        return getSystems().add(system);
     }
 
     public <T extends BaseComponent> boolean hasEntitiesWith(Class<T> requiredComponent) {
-        return entities.stream().anyMatch(baseEntity -> baseEntity.hasComponent(requiredComponent));
+        return getEntities().stream().anyMatch(baseEntity -> baseEntity.hasComponent(requiredComponent));
     }
 
     @SafeVarargs
     public final <T extends BaseComponent> List<BaseEntity> getEntitiesWith(Class<T>... requiredComponents){
         List<BaseEntity> result = new ArrayList<>();
-        for (BaseEntity entity : entities){
+        for (BaseEntity entity : getEntities()){
             boolean hasAllComponents = true;
             for(Class<? extends BaseComponent> requiredComponent : requiredComponents){
                 if (!entity.hasComponent(requiredComponent)) {
@@ -115,4 +115,39 @@ public final class World {
         entitiesToAdd.add(entityToSpawn);
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public GraphicsContext getGraphicsContext() {
+        return graphicsContext;
+    }
+
+    public List<BaseEntity> getEntities() {
+        return entities;
+    }
+
+    public Set<BaseSystem> getSystems() {
+        return systems;
+    }
+
+    public double getDeltaTime() {
+        return deltaTime;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public void setGraphicsContext(GraphicsContext graphicsContext) {
+        this.graphicsContext = graphicsContext;
+    }
 }
