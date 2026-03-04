@@ -30,12 +30,11 @@ public class AsteroidCollisionResponseSystem extends ResponseSystem {
         int asteroidSize = asteroid.getComponent(AsteroidSizeComponent.class).size;
         if (asteroidSize > AsteroidSizeComponent.SMALL){
             for(int i = 0; i < 2; i++){
-                AsteroidEntity newAsteroid = new AsteroidEntity(asteroid.getComponent(PositionComponent.class).pos.copy());
+                AsteroidEntity newAsteroid = new AsteroidEntity(asteroid.getComponent(PositionComponent.class).pos.copy(), asteroidSize - 1);
                 newAsteroid.getComponent(VelocityComponent.class).vel =
                         collider.getComponent(VelocityComponent.class).vel.copy()
                                 .rotate(Math.toRadians(60 + i * 240))
                                 .setMag(asteroid.getComponent(VelocityComponent.class).vel.mag());
-                newAsteroid.getComponent(AsteroidSizeComponent.class).size = asteroidSize - 1;
                 world.queueAddEntity(newAsteroid);
             }
         }

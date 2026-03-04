@@ -17,10 +17,13 @@ import java.util.Random;
 
 public class AsteroidEntity extends BaseEntity {
 
-    public AsteroidEntity(Vector startPosition){
+    public AsteroidEntity(Vector startPosition, int size){
 
         this.addComponent(new AsteroidTag());
-        this.addComponent(new AsteroidSizeComponent());
+
+        AsteroidSizeComponent asteroidSizeComponent = new AsteroidSizeComponent();
+        asteroidSizeComponent.size = size;
+        this.addComponent(asteroidSizeComponent);
 
         Random random = new Random();
 
@@ -48,9 +51,12 @@ public class AsteroidEntity extends BaseEntity {
 
         double angleBetween = Math.toRadians(360f/points);
 
+        int min = 15 + size * 10;
+        int max = 35 + size * 20;
+
         for(int i = 0; i < points; i++){
-            xs[i] = Math.cos(i*angleBetween)*random.nextInt(25, 75);
-            ys[i] = Math.sin(i*angleBetween)*random.nextInt(25, 75);
+            xs[i] = Math.cos(i*angleBetween)*random.nextInt(min, max);
+            ys[i] = Math.sin(i*angleBetween)*random.nextInt(min, max);
         }
 
         renderComponent.shape = new Polygon(xs, ys, Color.DARKGRAY, Color.GRAY, 2);
@@ -65,7 +71,7 @@ public class AsteroidEntity extends BaseEntity {
         this.addComponent(outOfBoundsComponent);
 
         CircleColliderComponent circleColliderComponent = new CircleColliderComponent();
-        circleColliderComponent.radius = 50;
+        circleColliderComponent.radius = (35 + size * 20)/2d;
         this.addComponent(circleColliderComponent);
 
     }

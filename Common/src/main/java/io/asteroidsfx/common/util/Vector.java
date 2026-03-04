@@ -330,4 +330,13 @@ public class Vector {
         return x == v.x && y == v.y;
     }
 
+    /**
+     * Creates a Vector with a magnitude with a random heading.
+     * @param magnitude the magnitude of the Vector.
+     * @return the random Vector with magnitude.
+     */
+    public static Vector randomVector(double magnitude) {
+        return (new Vector(magnitude, 0)).rotate(Math.random()*Math.PI*2);
+    }
+
 }
