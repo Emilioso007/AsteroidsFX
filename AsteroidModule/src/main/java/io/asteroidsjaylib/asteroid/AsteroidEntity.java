@@ -61,6 +61,7 @@ public class AsteroidEntity extends BaseEntity {
 
         BaseShape shape = new Polygon(xs, ys, DARKGRAY, GRAY, 2);
         ShapeComponent shapeComponent = new ShapeComponent(shape);
+        shapeComponent.setzIndex(30);
         this.addComponent(shapeComponent);
 
         OutOfBoundsComponent outOfBoundsComponent = new OutOfBoundsComponent();

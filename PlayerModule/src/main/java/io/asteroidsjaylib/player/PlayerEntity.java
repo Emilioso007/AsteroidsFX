@@ -55,6 +55,7 @@ public class PlayerEntity extends BaseEntity {
         BaseShape shape = new Polygon(xs, ys, BLUE, GetColor(0x00ffffff), 4);
 
         ShapeComponent shapeComponent = new ShapeComponent(shape);
+        shapeComponent.setzIndex(50);
         this.addComponent(shapeComponent);
 
         OutOfBoundsComponent outOfBoundsComponent = new OutOfBoundsComponent();

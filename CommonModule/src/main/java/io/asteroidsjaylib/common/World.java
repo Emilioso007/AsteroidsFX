@@ -92,6 +92,7 @@ public final class World {
 
         // Run all systems in priority order
         for (BaseSystem system : systems) {
+            if(!system.running) continue;
             runSystem(system, deltaTime);
         }
 

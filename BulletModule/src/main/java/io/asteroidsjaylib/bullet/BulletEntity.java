@@ -41,6 +41,7 @@ public class BulletEntity extends BaseEntity {
 
         BaseShape shape = new Ellipse(5, 5, LIGHTGRAY);
         ShapeComponent shapeComponent = new ShapeComponent(shape);
+        shapeComponent.setzIndex(10);
         this.addComponent(shapeComponent);
 
         OutOfBoundsComponent outOfBoundsComponent = new OutOfBoundsComponent();

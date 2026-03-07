@@ -36,6 +36,7 @@ public class EnemyEntity extends BaseEntity {
 
         BaseShape shape = new Ellipse(60, 40, GetColor(0x8b0000ff), RED, 4);
         ShapeComponent shapeComponent = new ShapeComponent(shape);
+        shapeComponent.setzIndex(20);
         this.addComponent(shapeComponent);
 
         OutOfBoundsComponent outOfBoundsComponent = new OutOfBoundsComponent();
