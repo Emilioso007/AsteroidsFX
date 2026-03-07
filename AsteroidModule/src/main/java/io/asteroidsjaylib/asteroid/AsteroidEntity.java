@@ -1,17 +1,15 @@
 package io.asteroidsjaylib.asteroid;
 
-import io.asteroidsjaylib.collision.CircleColliderComponent;
+import io.asteroidsjaylib.asteroidcommon.AsteroidSizeComponent;
+import io.asteroidsjaylib.asteroidcommon.AsteroidTag;
+import io.asteroidsjaylib.collisioncommon.CircleColliderComponent;
 import io.asteroidsjaylib.common.ecs.BaseEntity;
 import io.asteroidsjaylib.common.util.Vector;
-import io.asteroidsjaylib.outofbounds.BoundsAction;
-import io.asteroidsjaylib.outofbounds.OutOfBoundsComponent;
-import io.asteroidsjaylib.physics.component.AngleComponent;
-import io.asteroidsjaylib.physics.component.PositionComponent;
-import io.asteroidsjaylib.physics.component.RotationComponent;
-import io.asteroidsjaylib.physics.component.VelocityComponent;
-import io.asteroidsjaylib.render.component.ShapeComponent;
-import io.asteroidsjaylib.render.shapes.BaseShape;
-import io.asteroidsjaylib.render.shapes.Polygon;
+import io.asteroidsjaylib.outofboundscommon.BoundsAction;
+import io.asteroidsjaylib.outofboundscommon.OutOfBoundsComponent;
+import io.asteroidsjaylib.physicscommon.*;
+import io.asteroidsjaylib.rendercommon.shapes.*;
+import io.asteroidsjaylib.rendercommon.*;
 
 import static com.raylib.Colors.*;
 

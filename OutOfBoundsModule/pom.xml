@@ -19,14 +19,20 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>io.asteroidsjaylib</groupId>
+            <groupId>io.asteroidsjaylib.common</groupId>
             <artifactId>Common</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>io.asteroidsjaylib.physics</groupId>
-            <artifactId>Physics</artifactId>
+            <groupId>io.asteroidsjaylib.physicscommon</groupId>
+            <artifactId>PhysicsCommon</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.asteroidsjaylib.outofboundscommon</groupId>
+            <artifactId>OutOfBoundsCommon</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

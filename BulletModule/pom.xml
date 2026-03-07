@@ -19,46 +19,38 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>io.asteroidsjaylib</groupId>
+            <groupId>io.asteroidsjaylib.common</groupId>
             <artifactId>Common</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>io.asteroidsjaylib.outofbounds</groupId>
-            <artifactId>OutOfBounds</artifactId>
+            <groupId>io.asteroidsjaylib.collisioncommon</groupId>
+            <artifactId>CollisionCommon</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>io.asteroidsjaylib.collision</groupId>
-            <artifactId>Collision</artifactId>
+            <groupId>io.asteroidsjaylib.bulletcommon</groupId>
+            <artifactId>BulletCommon</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>io.asteroidsjaylib.physics</groupId>
-            <artifactId>Physics</artifactId>
+            <groupId>io.asteroidsjaylib.rendercommon</groupId>
+            <artifactId>RenderCommon</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>io.asteroidsjaylib.ownership</groupId>
-            <artifactId>Ownership</artifactId>
+            <groupId>io.asteroidsjaylib.outofboundscommon</groupId>
+            <artifactId>OutOfBoundsCommon</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>io.asteroidsjaylib.lifetime</groupId>
-            <artifactId>Lifetime</artifactId>
+            <groupId>io.asteroidsjaylib.lifetimecommon</groupId>
+            <artifactId>LifetimeCommon</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.asteroidsjaylib.render</groupId>
-            <artifactId>Render</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 

@@ -4,6 +4,7 @@ import io.asteroidsjaylib.common.World;
 import io.asteroidsjaylib.common.ecs.BaseComponent;
 import io.asteroidsjaylib.common.ecs.BaseEntity;
 import io.asteroidsjaylib.common.ecs.IteratingSystem;
+import io.asteroidsjaylib.lifetimecommon.LifetimeComponent;
 
 import java.time.Duration;
 import java.time.Instant;

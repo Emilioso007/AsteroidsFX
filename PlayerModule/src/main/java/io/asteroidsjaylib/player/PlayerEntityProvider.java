@@ -3,7 +3,7 @@ package io.asteroidsjaylib.player;
 import io.asteroidsjaylib.common.ecs.EntitySpi;
 import io.asteroidsjaylib.common.util.Vector;
 import io.asteroidsjaylib.common.World;
-import io.asteroidsjaylib.physics.component.PositionComponent;
+import io.asteroidsjaylib.physicscommon.PositionComponent;
 
 public class PlayerEntityProvider implements EntitySpi {
     @Override

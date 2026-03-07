@@ -4,12 +4,13 @@ import io.asteroidsjaylib.common.ecs.BaseComponent;
 import io.asteroidsjaylib.common.ecs.BaseEntity;
 import io.asteroidsjaylib.common.event.EventBus;
 import io.asteroidsjaylib.common.ecs.BaseSystem;
+import io.asteroidsjaylib.common.util.Vector;
 
-import static com.raylib.Colors.WHITE;
-import static com.raylib.Raylib.*;
-
-import java.io.IOException;
-import java.util.*;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.ArrayList;
 
 public final class World {
 
@@ -17,7 +18,7 @@ public final class World {
     private int height;
     public int screenWidth;
     public int screenHeight;
-    public io.asteroidsjaylib.common.util.Vector cameraLocation;
+    public Vector cameraLocation;
     private final List<BaseEntity> entities;
     private final List<BaseEntity> entitiesToAdd;
     private final Set<BaseSystem> systems;
@@ -25,10 +26,8 @@ public final class World {
 
     private double deltaTime;
 
-    private Texture stars;
-
     public World(){
-        cameraLocation = new io.asteroidsjaylib.common.util.Vector();
+        cameraLocation = new Vector();
         this.entities = new ArrayList<>();
         entitiesToAdd = new ArrayList<>();
         Comparator<BaseSystem> systemComparator =
@@ -36,27 +35,6 @@ public final class World {
                 .thenComparing(system -> system.getClass().getName());
         this.systems = new TreeSet<>(systemComparator);
         eventBus = new EventBus();
-
-        try {
-            // 1. Load from the classpath (works inside JARs and IDEs)
-            var is = getClass().getResourceAsStream("/stars.png");
-            if (is == null) throw new RuntimeException("Could not find stars.png!");
-
-            byte[] data = is.readAllBytes();
-
-            // 2. Load into an Image (RAM) first
-            // Note: ".png" tells Raylib how to decode the byte array
-            Image img = LoadImageFromMemory(".png", data, data.length);
-
-            // 3. Convert to Texture (VRAM)
-            stars = LoadTextureFromImage(img);
-
-            // 4. Clean up the RAM copy
-            UnloadImage(img);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public EventBus getEventBus(){
@@ -68,35 +46,11 @@ public final class World {
 
         eventBus.updateInputBus(this);
 
-        // Enter world-space (camera transform)
-        rlPushMatrix();
-        rlTranslatef(
-            (float)(-cameraLocation.x + screenWidth  / 2.0),
-            (float)(-cameraLocation.y + screenHeight / 2.0),
-            0
-        );
-
-        // Draw tiled background
-        for (int i = -1; i <= 1; i++) {
-            for (int j = -1; j <= 1; j++) {
-                rlPushMatrix();
-                rlTranslatef(i * width, j * height, 0);
-                try (Rectangle src = new Rectangle().x(0).y(0).width(stars.width()).height(stars.height());
-                     Rectangle dst = new Rectangle().x(0).y(0).width(width).height(height);
-                     Vector2 origin = new Vector2().x(0).y(0)) {
-                    DrawTexturePro(stars, src, dst, origin, 0, WHITE);
-                }
-                rlPopMatrix();
-            }
-        }
-
         // Run all systems in priority order
         for (BaseSystem system : systems) {
             if(!system.running) continue;
             runSystem(system, deltaTime);
         }
-
-        rlPopMatrix();
 
         // Cleanup
         getEntities().removeIf(BaseEntity::isToBeRemoved);

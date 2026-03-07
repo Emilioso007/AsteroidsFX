@@ -6,8 +6,9 @@ import io.asteroidsjaylib.common.World;
 import io.asteroidsjaylib.common.ecs.BaseComponent;
 import io.asteroidsjaylib.common.ecs.BaseEntity;
 import io.asteroidsjaylib.common.ecs.BulkSystem;
-import io.asteroidsjaylib.physics.component.AngleComponent;
-import io.asteroidsjaylib.physics.component.PositionComponent;
+import io.asteroidsjaylib.physicscommon.AngleComponent;
+import io.asteroidsjaylib.physicscommon.PositionComponent;
+import io.asteroidsjaylib.rendercommon.RenderComponent;
 
 import java.util.List;
 
@@ -27,6 +28,15 @@ public class RenderSystem extends BulkSystem {
 
     @Override
     public void update(World world, List<BaseEntity> entities, double deltaTime) {
+
+        // Apply camera offset
+        rlPushMatrix();
+        rlTranslatef(
+                (float)(-world.cameraLocation.x + world.screenWidth  / 2.0),
+                (float)(-world.cameraLocation.y + world.screenHeight / 2.0),
+                0
+        );
+
         // Order entities based on their zIndex in ascending order, meaning higher values gets drawn last
         entities.sort((a, b) -> {
             RenderComponent ra = a.getComponent(RenderComponent.class);
@@ -58,5 +68,7 @@ public class RenderSystem extends BulkSystem {
                 }
             }
         }
+
+        rlPopMatrix();
     }
 }

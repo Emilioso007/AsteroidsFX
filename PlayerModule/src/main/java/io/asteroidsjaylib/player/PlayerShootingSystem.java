@@ -1,6 +1,6 @@
 package io.asteroidsjaylib.player;
 
-import io.asteroidsjaylib.bullet.BulletEntity;
+import io.asteroidsjaylib.bulletcommon.BulletSPI;
 import io.asteroidsjaylib.common.World;
 import io.asteroidsjaylib.common.ecs.BaseComponent;
 import io.asteroidsjaylib.common.ecs.BaseEntity;
@@ -8,10 +8,13 @@ import io.asteroidsjaylib.common.ecs.IteratingSystem;
 import io.asteroidsjaylib.common.event.input.KeyPressedEvent;
 import io.asteroidsjaylib.common.event.input.KeyReleasedEvent;
 import io.asteroidsjaylib.common.util.Vector;
-import io.asteroidsjaylib.physics.component.*;
-import io.asteroidsjaylib.spawn.SpawnEvent;
+import io.asteroidsjaylib.physicscommon.AngleComponent;
+import io.asteroidsjaylib.physicscommon.PositionComponent;
+import io.asteroidsjaylib.playercommon.PlayerTag;
+import io.asteroidsjaylib.spawncommon.SpawnEvent;
 
 import java.util.List;
+import java.util.ServiceLoader;
 
 import static com.raylib.Raylib.KEY_SPACE;
 
@@ -74,10 +77,8 @@ public class PlayerShootingSystem extends IteratingSystem {
         Vector startPosition = position.pos.copy().add(Vector.fromAngle(angle.angle).setMag(60));
         Vector velocity = Vector.fromAngle(angle.angle).setMag(600);
 
-        BulletEntity bullet = new BulletEntity(player, startPosition, velocity);
+        BulletSPI bulletSPI = ServiceLoader.load(BulletSPI.class).findFirst().orElseThrow();
+        world.getEventBus().publish(world, new SpawnEvent(bulletSPI.CreateBullet(player, startPosition, velocity)));
 
-        SpawnEvent event = new SpawnEvent();
-        event.entityToSpawn = bullet;
-        world.getEventBus().publish(world, event);
     }
 }

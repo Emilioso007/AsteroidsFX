@@ -1,10 +1,11 @@
 package io.asteroidsjaylib.enemy;
 
-import io.asteroidsjaylib.ownership.OwnershipComponent;
-import io.asteroidsjaylib.collision.CollisionEvent;
+import io.asteroidsjaylib.collisioncommon.CollisionEvent;
 import io.asteroidsjaylib.common.World;
 import io.asteroidsjaylib.common.ecs.BaseEntity;
 import io.asteroidsjaylib.common.ecs.ResponseSystem;
+import io.asteroidsjaylib.enemycommon.EnemyTag;
+import io.asteroidsjaylib.ownershipcommon.OwnershipComponent;
 
 public class EnemyCollisionResponseSystem extends ResponseSystem {
     @Override

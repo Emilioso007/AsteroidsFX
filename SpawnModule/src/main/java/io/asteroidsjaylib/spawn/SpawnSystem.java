@@ -2,6 +2,7 @@ package io.asteroidsjaylib.spawn;
 
 import io.asteroidsjaylib.common.World;
 import io.asteroidsjaylib.common.ecs.ResponseSystem;
+import io.asteroidsjaylib.spawncommon.SpawnEvent;
 
 public class SpawnSystem extends ResponseSystem {
 

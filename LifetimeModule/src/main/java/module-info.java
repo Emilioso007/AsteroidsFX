@@ -3,7 +3,7 @@ import io.asteroidsjaylib.lifetime.LifetimeSystem;
 
 module Lifetime {
     requires Common;
-    exports io.asteroidsjaylib.lifetime;
+    requires LifetimeCommon;
 
     provides BaseSystem with LifetimeSystem;
 }

@@ -1,13 +1,12 @@
 import io.asteroidsjaylib.common.ecs.BaseSystem;
-import io.asteroidsjaylib.physics.system.AccelerationSystem;
-import io.asteroidsjaylib.physics.system.DragSystem;
-import io.asteroidsjaylib.physics.system.RotationSystem;
-import io.asteroidsjaylib.physics.system.VelocitySystem;
+import io.asteroidsjaylib.physics.AccelerationSystem;
+import io.asteroidsjaylib.physics.DragSystem;
+import io.asteroidsjaylib.physics.RotationSystem;
+import io.asteroidsjaylib.physics.VelocitySystem;
 
 module Physics {
-    exports io.asteroidsjaylib.physics.component;
-    exports io.asteroidsjaylib.physics.system;
     requires Common;
+    requires PhysicsCommon;
 
     provides BaseSystem with AccelerationSystem, DragSystem, RotationSystem, VelocitySystem;
 }

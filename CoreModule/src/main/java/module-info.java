@@ -6,5 +6,4 @@ module Core {
     uses BaseSystem;
     requires Common;
     requires jaylib;
-    exports io.asteroidsjaylib;
 }

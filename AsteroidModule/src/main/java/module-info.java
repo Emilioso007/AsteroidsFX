@@ -4,15 +4,13 @@ import io.asteroidsjaylib.common.ecs.BaseSystem;
 import io.asteroidsjaylib.common.ecs.EntitySpi;
 
 module Asteroid {
-    requires Collision;
     requires Common;
-    requires OutOfBounds;
-    requires Physics;
-
+    requires AsteroidCommon;
     requires jaylib;
-    requires Render;
-
-    exports io.asteroidsjaylib.asteroid;
+    requires PhysicsCommon;
+    requires RenderCommon;
+    requires CollisionCommon;
+    requires OutOfBoundsCommon;
 
     provides EntitySpi with AsteroidProvider;
     provides BaseSystem with AsteroidCollisionResponseSystem;

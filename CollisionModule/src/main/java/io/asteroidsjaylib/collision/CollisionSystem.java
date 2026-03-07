@@ -1,11 +1,13 @@
 package io.asteroidsjaylib.collision;
 
+import io.asteroidsjaylib.collisioncommon.CircleColliderComponent;
+import io.asteroidsjaylib.collisioncommon.CollisionEvent;
 import io.asteroidsjaylib.common.*;
 import io.asteroidsjaylib.common.ecs.BaseComponent;
 import io.asteroidsjaylib.common.ecs.BaseEntity;
 import io.asteroidsjaylib.common.ecs.BaseSystem;
 import io.asteroidsjaylib.common.util.Vector;
-import io.asteroidsjaylib.physics.component.PositionComponent;
+import io.asteroidsjaylib.physicscommon.*;
 
 import java.util.List;
 

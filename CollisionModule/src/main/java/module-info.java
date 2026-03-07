@@ -1,9 +1,9 @@
 import io.asteroidsjaylib.common.ecs.BaseSystem;
 
 module Collision {
-    exports io.asteroidsjaylib.collision;
     requires Common;
-    requires Physics;
+    requires PhysicsCommon;
+    requires CollisionCommon;
 
     provides BaseSystem with io.asteroidsjaylib.collision.CollisionSystem;
 }

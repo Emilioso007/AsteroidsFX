@@ -1,23 +1,28 @@
 package io.asteroidsjaylib.bullet;
 
-import io.asteroidsjaylib.ownership.OwnershipComponent;
-import io.asteroidsjaylib.collision.CircleColliderComponent;
+import io.asteroidsjaylib.bulletcommon.BulletSPI;
+import io.asteroidsjaylib.bulletcommon.BulletTag;
+import io.asteroidsjaylib.collisioncommon.CircleColliderComponent;
+import io.asteroidsjaylib.lifetimecommon.LifetimeComponent;
+import io.asteroidsjaylib.outofboundscommon.BoundsAction;
+import io.asteroidsjaylib.outofboundscommon.OutOfBoundsComponent;
+import io.asteroidsjaylib.ownershipcommon.OwnershipComponent;
 import io.asteroidsjaylib.common.ecs.BaseEntity;
 import io.asteroidsjaylib.common.util.Vector;
-import io.asteroidsjaylib.lifetime.LifetimeComponent;
-import io.asteroidsjaylib.outofbounds.BoundsAction;
-import io.asteroidsjaylib.outofbounds.OutOfBoundsComponent;
-import io.asteroidsjaylib.physics.component.PositionComponent;
-import io.asteroidsjaylib.physics.component.VelocityComponent;
-import io.asteroidsjaylib.render.component.ShapeComponent;
-import io.asteroidsjaylib.render.shapes.BaseShape;
-import io.asteroidsjaylib.render.shapes.Ellipse;
+import io.asteroidsjaylib.physicscommon.*;
+import io.asteroidsjaylib.rendercommon.ShapeComponent;
+import io.asteroidsjaylib.rendercommon.shapes.BaseShape;
+import io.asteroidsjaylib.rendercommon.shapes.Ellipse;
 
 import static com.raylib.Colors.*;
 
 import java.time.Duration;
 
-public class BulletEntity extends BaseEntity {
+public class BulletEntity extends BaseEntity implements BulletSPI {
+
+    public BulletEntity(){
+
+    }
 
     public BulletEntity(BaseEntity owner, Vector startPosition, Vector velocity) {
 
@@ -57,4 +62,8 @@ public class BulletEntity extends BaseEntity {
 
     }
 
+    @Override
+    public BaseEntity CreateBullet(BaseEntity owner, Vector startPosition, Vector velocity) {
+        return new BulletEntity(owner, startPosition, velocity);
+    }
 }

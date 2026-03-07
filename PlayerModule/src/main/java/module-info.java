@@ -6,16 +6,17 @@ import io.asteroidsjaylib.player.PlayerMovementSystem;
 import io.asteroidsjaylib.player.PlayerShootingSystem;
 
 module Player {
-    exports io.asteroidsjaylib.player;
+    uses io.asteroidsjaylib.bulletcommon.BulletSPI;
     requires Common;
-    requires OutOfBounds;
-    requires Collision;
-    requires Bullet;
-    requires Spawn;
-    requires Physics;
-    requires Ownership;
+    requires OwnershipCommon;
     requires jaylib;
-    requires Render;
+    requires CollisionCommon;
+    requires PlayerCommon;
+    requires PhysicsCommon;
+    requires RenderCommon;
+    requires OutOfBoundsCommon;
+    requires BulletCommon;
+    requires SpawnCommon;
 
     provides EntitySpi with PlayerEntityProvider;
     provides BaseSystem with PlayerShootingSystem, PlayerMovementSystem, PlayerCollisionResponseSystem;

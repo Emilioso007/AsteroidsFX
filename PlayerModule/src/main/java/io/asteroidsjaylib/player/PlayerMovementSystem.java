@@ -7,9 +7,10 @@ import io.asteroidsjaylib.common.ecs.IteratingSystem;
 import io.asteroidsjaylib.common.event.input.KeyPressedEvent;
 import io.asteroidsjaylib.common.event.input.KeyReleasedEvent;
 import io.asteroidsjaylib.common.util.Vector;
-import io.asteroidsjaylib.physics.component.AccelerationComponent;
-import io.asteroidsjaylib.physics.component.AngleComponent;
-import io.asteroidsjaylib.physics.component.RotationComponent;
+import io.asteroidsjaylib.physicscommon.AccelerationComponent;
+import io.asteroidsjaylib.physicscommon.AngleComponent;
+import io.asteroidsjaylib.physicscommon.RotationComponent;
+import io.asteroidsjaylib.playercommon.PlayerTag;
 
 import static com.raylib.Raylib.*;
 

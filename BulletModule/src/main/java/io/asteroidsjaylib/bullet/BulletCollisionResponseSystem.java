@@ -1,7 +1,8 @@
 package io.asteroidsjaylib.bullet;
 
-import io.asteroidsjaylib.ownership.OwnershipComponent;
-import io.asteroidsjaylib.collision.CollisionEvent;
+import io.asteroidsjaylib.bulletcommon.BulletTag;
+import io.asteroidsjaylib.collisioncommon.CollisionEvent;
+import io.asteroidsjaylib.ownershipcommon.OwnershipComponent;
 import io.asteroidsjaylib.common.World;
 import io.asteroidsjaylib.common.ecs.BaseEntity;
 import io.asteroidsjaylib.common.ecs.ResponseSystem;

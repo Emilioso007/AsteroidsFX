@@ -1,11 +1,12 @@
 package io.asteroidsjaylib.asteroid;
 
-import io.asteroidsjaylib.collision.CollisionEvent;
+import io.asteroidsjaylib.asteroidcommon.AsteroidSizeComponent;
+import io.asteroidsjaylib.asteroidcommon.AsteroidTag;
+import io.asteroidsjaylib.collisioncommon.CollisionEvent;
 import io.asteroidsjaylib.common.World;
 import io.asteroidsjaylib.common.ecs.BaseEntity;
 import io.asteroidsjaylib.common.ecs.ResponseSystem;
-import io.asteroidsjaylib.physics.component.PositionComponent;
-import io.asteroidsjaylib.physics.component.VelocityComponent;
+import io.asteroidsjaylib.physicscommon.*;
 
 public class AsteroidCollisionResponseSystem extends ResponseSystem {
     @Override

@@ -4,8 +4,8 @@ import io.asteroidsjaylib.common.ecs.BaseComponent;
 import io.asteroidsjaylib.common.ecs.BaseEntity;
 import io.asteroidsjaylib.common.World;
 import io.asteroidsjaylib.common.ecs.IteratingSystem;
-import io.asteroidsjaylib.physics.component.PositionComponent;
-import io.asteroidsjaylib.physics.component.VelocityComponent;
+import io.asteroidsjaylib.outofboundscommon.OutOfBoundsComponent;
+import io.asteroidsjaylib.physicscommon.*;
 
 import java.util.List;
 

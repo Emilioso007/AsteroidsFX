@@ -1,18 +1,20 @@
 import io.asteroidsjaylib.bullet.BulletCollisionResponseSystem;
+import io.asteroidsjaylib.bullet.BulletEntity;
+import io.asteroidsjaylib.bulletcommon.BulletSPI;
 import io.asteroidsjaylib.common.ecs.BaseSystem;
 
 module Bullet {
     requires Common;
-    requires OutOfBounds;
-    requires Collision;
-    requires Physics;
-    requires Ownership;
-    requires Lifetime;
+    requires OwnershipCommon;
+    requires CollisionCommon;
+    requires BulletCommon;
 
     requires jaylib;
-    requires Render;
-
-    exports io.asteroidsjaylib.bullet;
+    requires PhysicsCommon;
+    requires RenderCommon;
+    requires OutOfBoundsCommon;
+    requires LifetimeCommon;
 
     provides BaseSystem with BulletCollisionResponseSystem;
+    provides BulletSPI with BulletEntity;
 }

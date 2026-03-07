@@ -1,5 +1,6 @@
 package io.asteroidsjaylib.asteroid;
 
+import io.asteroidsjaylib.asteroidcommon.AsteroidSizeComponent;
 import io.asteroidsjaylib.common.ecs.EntitySpi;
 import io.asteroidsjaylib.common.util.Vector;
 import io.asteroidsjaylib.common.World;

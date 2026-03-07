@@ -1,16 +1,18 @@
 package io.asteroidsjaylib.enemy;
 
-import io.asteroidsjaylib.bullet.BulletEntity;
+import io.asteroidsjaylib.bulletcommon.BulletSPI;
 import io.asteroidsjaylib.common.ecs.BaseComponent;
 import io.asteroidsjaylib.common.ecs.BaseEntity;
 import io.asteroidsjaylib.common.util.Vector;
 import io.asteroidsjaylib.common.World;
 import io.asteroidsjaylib.common.ecs.IntervalIteratingSystem;
-import io.asteroidsjaylib.physics.component.PositionComponent;
-import io.asteroidsjaylib.player.PlayerTag;
-import io.asteroidsjaylib.spawn.SpawnEvent;
+import io.asteroidsjaylib.enemycommon.EnemyTag;
+import io.asteroidsjaylib.physicscommon.PositionComponent;
+import io.asteroidsjaylib.playercommon.PlayerTag;
+import io.asteroidsjaylib.spawncommon.SpawnEvent;
 
 import java.util.List;
+import java.util.ServiceLoader;
 
 public class EnemySystem extends IntervalIteratingSystem {
 
@@ -34,10 +36,9 @@ public class EnemySystem extends IntervalIteratingSystem {
         Vector bulletStart = enemyPosition.pos.copy();
         Vector bulletVelocity = playerPosition.pos.copy().sub(enemyPosition.pos).setMag(400);
 
-        BulletEntity bullet = new BulletEntity(enemy, bulletStart, bulletVelocity);
-        SpawnEvent event = new SpawnEvent();
-        event.entityToSpawn = bullet;
-        world.getEventBus().publish(world, event);
+        BulletSPI bulletSPI = ServiceLoader.load(BulletSPI.class).findFirst().orElseThrow();
+        world.getEventBus().publish(world, new SpawnEvent(bulletSPI.CreateBullet(enemy, bulletStart, bulletVelocity)));
+
     }
 
     @Override
