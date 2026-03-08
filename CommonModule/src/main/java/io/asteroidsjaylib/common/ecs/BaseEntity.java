@@ -3,7 +3,6 @@ package io.asteroidsjaylib.common.ecs;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 /// Base entity class.
 /// Contains a collection of components.
@@ -11,7 +10,6 @@ import java.util.TreeMap;
 public abstract class BaseEntity {
     private boolean toBeRemoved = false;
     private final Map<Class<? extends BaseComponent>, BaseComponent> components = new HashMap<>();
-    private final Map<Integer, BaseComponent> renderComponents = new TreeMap<>();
 
     public <T extends BaseComponent> void addComponent(T component){
         components.putIfAbsent(component.getClass(), component);
@@ -61,37 +59,4 @@ public abstract class BaseEntity {
         this.toBeRemoved = toBeRemoved;
     }
 
-    /**
-     * Adds a RenderComponent to the entity.
-     * @param renderComponent the RenderComponent to add.
-     * @param zIndex defines the order in which the components are rendered on a per-entity basis.
-     * @return boolean indicating successful insertion. Only one RenderComponent per zIndex.
-     */
-    public boolean addRenderComponent(BaseComponent renderComponent, int zIndex){
-        return renderComponents.putIfAbsent(zIndex, renderComponent) != null;
-    }
-
-    public Collection<BaseComponent> getRenderComponents() {
-        return renderComponents.values();
-    }
-
-    public boolean hasRenderComponent(Class<?> renderComponentType){
-        for (BaseComponent component : renderComponents.values()){
-            if (renderComponentType.isAssignableFrom(component.getClass())){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public <T extends BaseComponent> T getRenderComponent(Class<T> renderComponentClass) {
-
-        for (BaseComponent rc : renderComponents.values()) {
-            if (renderComponentClass.isAssignableFrom(rc.getClass())) {
-                return renderComponentClass.cast(rc);
-            }
-        }
-
-        return null;
-    }
 }

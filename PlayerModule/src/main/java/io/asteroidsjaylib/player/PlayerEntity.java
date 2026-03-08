@@ -53,12 +53,13 @@ public class PlayerEntity extends BaseEntity {
         }
         xs[0] = 60;
 
+        RenderTag renderTag = new RenderTag(50);
+
         BaseShape shape = new Polygon(xs, ys, BLUE, GetColor(0x00ffffff), 4);
-
         ShapeComponent shapeComponent = new ShapeComponent(shape);
-        this.addRenderComponent(shapeComponent, 0);
+        renderTag.addRenderComponent(shapeComponent, 0);
 
-        this.addComponent(new RenderTag(50));
+        this.addComponent(renderTag);
 
         OutOfBoundsComponent outOfBoundsComponent = new OutOfBoundsComponent();
         outOfBoundsComponent.boundsAction = BoundsAction.WRAP;

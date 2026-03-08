@@ -43,15 +43,15 @@ public class RenderSystem extends BulkSystem {
 
             RenderTag renderTag = entity.getComponent(RenderTag.class);
             if(renderTag.isAbsolutePosition()){
-                for (BaseComponent component : entity.getRenderComponents()){
-                    FinalPlacement result = getFinalPlacement(entity, (RenderComponent) component);
+                for (RenderComponent component : renderTag.getRenderComponents()){
+                    FinalPlacement result = getFinalPlacement(entity, component);
 
                     result.renderComponent().draw(result.position(), result.angle());
                 }
                 continue;
             }
 
-            for (BaseComponent component : entity.getRenderComponents()){
+            for (RenderComponent component : renderTag.getRenderComponents()){
 
                 // Apply camera offset
                 rlPushMatrix();
@@ -61,13 +61,13 @@ public class RenderSystem extends BulkSystem {
                         0
                 );
 
-                FinalPlacement result = getFinalPlacement(entity, (RenderComponent) component);
+                FinalPlacement result = getFinalPlacement(entity, component);
 
                 for (int i = -1; i <= 1; i++) {
                     for (int j = -1; j <= 1; j++) {
                         rlPushMatrix();
                         rlTranslatef(i * w, j * h, 0);
-                        ((RenderComponent) component).draw(result.position(), result.angle);
+                        component.draw(result.position(), result.angle);
                         rlPopMatrix();
                     }
                 }

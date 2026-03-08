@@ -39,11 +39,13 @@ public class BulletEntity extends BaseEntity{
         circleColliderComponent.radius = 2.5;
         this.addComponent(circleColliderComponent);
 
+        RenderTag renderTag = new RenderTag(10);
+
         BaseShape shape = new Ellipse(5, 5, LIGHTGRAY);
         ShapeComponent shapeComponent = new ShapeComponent(shape);
-        this.addRenderComponent(shapeComponent, 0);
+        renderTag.addRenderComponent(shapeComponent, 0);
 
-        this.addComponent(new RenderTag(10));
+        this.addComponent(renderTag);
 
         OutOfBoundsComponent outOfBoundsComponent = new OutOfBoundsComponent();
         outOfBoundsComponent.boundsAction = BoundsAction.WRAP;

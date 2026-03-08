@@ -4,6 +4,7 @@ import io.asteroidsjaylib.common.World;
 import io.asteroidsjaylib.common.ecs.BaseComponent;
 import io.asteroidsjaylib.common.ecs.BaseEntity;
 import io.asteroidsjaylib.common.ecs.IteratingSystem;
+import io.asteroidsjaylib.rendercommon.RenderTag;
 import io.asteroidsjaylib.rendercommon.TextComponent;
 import io.asteroidsjaylib.scorecommon.IncrementScoreEvent;
 import io.asteroidsjaylib.scorecommon.ScoreTag;
@@ -31,11 +32,16 @@ public class ScoreSystem extends IteratingSystem {
 
     @Override
     public void processEntity(World world, BaseEntity entity, double deltaTime) {
-        if(!entity.hasRenderComponent(TextComponent.class)) return;
+
+        if(!entity.hasComponent(RenderTag.class)) return;
+
+        RenderTag renderTag = entity.getComponent(RenderTag.class);
+
+        if(!renderTag.hasRenderComponent(TextComponent.class)) return;
 
         ScoreTag scoreTag = entity.getComponent(ScoreTag.class);
 
-        TextComponent textComponent = entity.getRenderComponent(TextComponent.class);
+        TextComponent textComponent = renderTag.getRenderComponent(TextComponent.class);
         textComponent.text = "Score: " + scoreTag.score;
 
     }

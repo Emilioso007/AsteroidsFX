@@ -56,11 +56,13 @@ public class AsteroidEntity extends BaseEntity {
             ys[i] = Math.sin(i*angleBetween)*random.nextInt(min, max);
         }
 
+        RenderTag renderTag = new RenderTag(30);
+
         BaseShape shape = new Polygon(xs, ys, DARKGRAY, GRAY, 2);
         ShapeComponent shapeComponent = new ShapeComponent(shape);
-        this.addRenderComponent(shapeComponent, 0);
+        renderTag.addRenderComponent(shapeComponent, 0);
 
-        this.addComponent(new RenderTag(30));
+        this.addComponent(renderTag);
 
         OutOfBoundsComponent outOfBoundsComponent = new OutOfBoundsComponent();
         outOfBoundsComponent.boundsAction = BoundsAction.WRAP;

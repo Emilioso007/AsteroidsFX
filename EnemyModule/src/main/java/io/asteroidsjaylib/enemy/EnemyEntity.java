@@ -33,11 +33,13 @@ public class EnemyEntity extends BaseEntity {
         angleComponent.angle = 0;
         this.addComponent(angleComponent);
 
+        RenderTag renderTag = new RenderTag(20);
+
         BaseShape shape = new Ellipse(60, 40, GetColor(0x8b0000ff), RED, 4);
         ShapeComponent shapeComponent = new ShapeComponent(shape);
-        this.addRenderComponent(shapeComponent, 0);
+        renderTag.addRenderComponent(shapeComponent, 0);
 
-        this.addComponent(new RenderTag(20));
+        this.addComponent(renderTag);
 
         OutOfBoundsComponent outOfBoundsComponent = new OutOfBoundsComponent();
         outOfBoundsComponent.boundsAction = BoundsAction.WRAP;

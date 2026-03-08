@@ -15,9 +15,11 @@ public class ScoreEntity extends BaseEntity {
 
         this.addComponent(new ScoreTag());
 
+        RenderTag renderTag = new RenderTag(100, true);
+
         TextComponent textComponent = new TextComponent("Score: ", 24, WHITE);
-        this.addRenderComponent(textComponent, 0);
-        this.addComponent(new RenderTag(100, true));
+        renderTag.addRenderComponent(textComponent, 0);
+        this.addComponent(renderTag);
 
         this.addComponent(new PositionComponent(new Vector(10, 10)));
 
