@@ -9,6 +9,7 @@ import io.asteroidsjaylib.common.ecs.BulkSystem;
 import io.asteroidsjaylib.physicscommon.AngleComponent;
 import io.asteroidsjaylib.physicscommon.PositionComponent;
 import io.asteroidsjaylib.rendercommon.RenderComponent;
+import io.asteroidsjaylib.rendercommon.RenderTag;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class RenderSystem extends BulkSystem {
 
     @Override
     public List<Class<? extends BaseComponent>> getSignature() {
-        return List.of(RenderComponent.class);
+        return List.of(RenderTag.class);
     }
 
     @Override
@@ -39,8 +40,8 @@ public class RenderSystem extends BulkSystem {
 
         // Order entities based on their zIndex in ascending order, meaning higher values gets drawn last
         entities.sort((a, b) -> {
-            RenderComponent ra = a.getComponent(RenderComponent.class);
-            RenderComponent rb = b.getComponent(RenderComponent.class);
+            RenderTag ra = a.getComponent(RenderTag.class);
+            RenderTag rb = b.getComponent(RenderTag.class);
             return Integer.compare(ra.getzIndex(), rb.getzIndex());
         });
 
@@ -48,23 +49,27 @@ public class RenderSystem extends BulkSystem {
         int h = world.getHeight();
 
         for (BaseEntity entity : entities) {
-            RenderComponent renderComponent = entity.getComponent(RenderComponent.class);
 
-            Raylib.Vector2 position = new Raylib.Vector2();
-            float angle = 0;
+            for (BaseComponent component : entity.getRenderComponents()){
 
-            PositionComponent positionComponent = entity.getComponent(PositionComponent.class);
-            if (positionComponent != null) position = positionComponent.pos.toRaylibVector2();
+                RenderComponent renderComponent = (RenderComponent)component;
 
-            AngleComponent angleComponent = entity.getComponent(AngleComponent.class);
-            if (angleComponent != null) angle = (float) Math.toDegrees(angleComponent.angle);
+                Raylib.Vector2 position = new Raylib.Vector2();
+                float angle = 0;
 
-            for (int i = -1; i <= 1; i++) {
-                for (int j = -1; j <= 1; j++) {
-                    rlPushMatrix();
-                    rlTranslatef(i * w, j * h, 0);
-                    renderComponent.draw(position, angle);
-                    rlPopMatrix();
+                PositionComponent positionComponent = entity.getComponent(PositionComponent.class);
+                if (positionComponent != null) position = positionComponent.pos.toRaylibVector2();
+
+                AngleComponent angleComponent = entity.getComponent(AngleComponent.class);
+                if (angleComponent != null) angle = (float) Math.toDegrees(angleComponent.angle);
+
+                for (int i = -1; i <= 1; i++) {
+                    for (int j = -1; j <= 1; j++) {
+                        rlPushMatrix();
+                        rlTranslatef(i * w, j * h, 0);
+                        renderComponent.draw(position, angle);
+                        rlPopMatrix();
+                    }
                 }
             }
         }

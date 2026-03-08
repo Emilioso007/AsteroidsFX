@@ -8,6 +8,7 @@ import io.asteroidsjaylib.enemycommon.EnemyTag;
 import io.asteroidsjaylib.outofboundscommon.BoundsAction;
 import io.asteroidsjaylib.outofboundscommon.OutOfBoundsComponent;
 import io.asteroidsjaylib.physicscommon.*;
+import io.asteroidsjaylib.rendercommon.RenderTag;
 import io.asteroidsjaylib.rendercommon.ShapeComponent;
 import io.asteroidsjaylib.rendercommon.shapes.BaseShape;
 import io.asteroidsjaylib.rendercommon.shapes.Ellipse;
@@ -35,8 +36,9 @@ public class EnemyEntity extends BaseEntity {
 
         BaseShape shape = new Ellipse(60, 40, GetColor(0x8b0000ff), RED, 4);
         ShapeComponent shapeComponent = new ShapeComponent(shape);
-        shapeComponent.setzIndex(20);
-        this.addComponent(shapeComponent);
+        this.addRenderComponent(shapeComponent, 0);
+
+        this.addComponent(new RenderTag(20));
 
         OutOfBoundsComponent outOfBoundsComponent = new OutOfBoundsComponent();
         outOfBoundsComponent.boundsAction = BoundsAction.WRAP;

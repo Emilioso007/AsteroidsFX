@@ -7,6 +7,7 @@ import io.asteroidsjaylib.outofboundscommon.BoundsAction;
 import io.asteroidsjaylib.outofboundscommon.OutOfBoundsComponent;
 import io.asteroidsjaylib.physicscommon.*;
 import io.asteroidsjaylib.playercommon.PlayerTag;
+import io.asteroidsjaylib.rendercommon.RenderTag;
 import io.asteroidsjaylib.rendercommon.ShapeComponent;
 import io.asteroidsjaylib.rendercommon.shapes.BaseShape;
 import io.asteroidsjaylib.rendercommon.shapes.Polygon;
@@ -56,8 +57,9 @@ public class PlayerEntity extends BaseEntity {
         BaseShape shape = new Polygon(xs, ys, BLUE, GetColor(0x00ffffff), 4);
 
         ShapeComponent shapeComponent = new ShapeComponent(shape);
-        shapeComponent.setzIndex(50);
-        this.addComponent(shapeComponent);
+        this.addRenderComponent(shapeComponent, 0);
+
+        this.addComponent(new RenderTag(50));
 
         OutOfBoundsComponent outOfBoundsComponent = new OutOfBoundsComponent();
         //outOfBoundsComponent.topExtent = -60;

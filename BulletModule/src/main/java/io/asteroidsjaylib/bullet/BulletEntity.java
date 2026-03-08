@@ -10,6 +10,7 @@ import io.asteroidsjaylib.ownershipcommon.OwnershipComponent;
 import io.asteroidsjaylib.common.ecs.BaseEntity;
 import io.asteroidsjaylib.common.util.Vector;
 import io.asteroidsjaylib.physicscommon.*;
+import io.asteroidsjaylib.rendercommon.RenderTag;
 import io.asteroidsjaylib.rendercommon.ShapeComponent;
 import io.asteroidsjaylib.rendercommon.shapes.BaseShape;
 import io.asteroidsjaylib.rendercommon.shapes.Ellipse;
@@ -46,8 +47,9 @@ public class BulletEntity extends BaseEntity implements BulletSPI {
 
         BaseShape shape = new Ellipse(5, 5, LIGHTGRAY);
         ShapeComponent shapeComponent = new ShapeComponent(shape);
-        shapeComponent.setzIndex(10);
-        this.addComponent(shapeComponent);
+        this.addRenderComponent(shapeComponent, 0);
+
+        this.addComponent(new RenderTag(10));
 
         OutOfBoundsComponent outOfBoundsComponent = new OutOfBoundsComponent();
         //outOfBoundsComponent.leftExtent = -2.5;
