@@ -7,6 +7,7 @@ import io.asteroidsjaylib.common.World;
 import io.asteroidsjaylib.common.ecs.BaseEntity;
 import io.asteroidsjaylib.common.ecs.ResponseSystem;
 import io.asteroidsjaylib.physicscommon.*;
+import io.asteroidsjaylib.scorecommon.IncrementScoreEvent;
 
 public class AsteroidCollisionResponseSystem extends ResponseSystem {
     @Override
@@ -39,6 +40,9 @@ public class AsteroidCollisionResponseSystem extends ResponseSystem {
                 world.queueAddEntity(newAsteroid);
             }
         }
+
+        // Publish event
+        world.getEventBus().publish(world, new IncrementScoreEvent(asteroidSize+1));
 
     }
 }

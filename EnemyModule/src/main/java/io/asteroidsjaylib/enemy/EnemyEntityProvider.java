@@ -9,8 +9,4 @@ public class EnemyEntityProvider implements EntitySpi {
         world.addEntity(new EnemyEntity(world));
     }
 
-    @Override
-    public int getPriority() {
-        return 10;
-    }
 }

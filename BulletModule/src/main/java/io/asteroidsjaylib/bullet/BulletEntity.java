@@ -1,6 +1,5 @@
 package io.asteroidsjaylib.bullet;
 
-import io.asteroidsjaylib.bulletcommon.BulletSPI;
 import io.asteroidsjaylib.bulletcommon.BulletTag;
 import io.asteroidsjaylib.collisioncommon.CircleColliderComponent;
 import io.asteroidsjaylib.lifetimecommon.LifetimeComponent;
@@ -19,11 +18,7 @@ import static com.raylib.Colors.*;
 
 import java.time.Duration;
 
-public class BulletEntity extends BaseEntity implements BulletSPI {
-
-    public BulletEntity(){
-
-    }
+public class BulletEntity extends BaseEntity{
 
     public BulletEntity(BaseEntity owner, Vector startPosition, Vector velocity) {
 
@@ -33,8 +28,7 @@ public class BulletEntity extends BaseEntity implements BulletSPI {
 
         this.addComponent(new BulletTag());
 
-        PositionComponent positionComponent = new PositionComponent();
-        positionComponent.pos = startPosition;
+        PositionComponent positionComponent = new PositionComponent(startPosition);
         this.addComponent(positionComponent);
 
         VelocityComponent velocityComponent = new VelocityComponent();
@@ -52,20 +46,11 @@ public class BulletEntity extends BaseEntity implements BulletSPI {
         this.addComponent(new RenderTag(10));
 
         OutOfBoundsComponent outOfBoundsComponent = new OutOfBoundsComponent();
-        //outOfBoundsComponent.leftExtent = -2.5;
-        //outOfBoundsComponent.rightExtent = 2.5;
-        //outOfBoundsComponent.topExtent = -2.5;
-        //outOfBoundsComponent.bottomExtent = 2.5;
         outOfBoundsComponent.boundsAction = BoundsAction.WRAP;
         this.addComponent(outOfBoundsComponent);
 
         LifetimeComponent lifetimeComponent = new LifetimeComponent(Duration.ofSeconds(2));
         this.addComponent(lifetimeComponent);
 
-    }
-
-    @Override
-    public BaseEntity CreateBullet(BaseEntity owner, Vector startPosition, Vector velocity) {
-        return new BulletEntity(owner, startPosition, velocity);
     }
 }

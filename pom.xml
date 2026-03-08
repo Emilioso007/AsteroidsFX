@@ -36,6 +36,8 @@
         <module>SpawnModule</module>
         <module>LifetimeModule</module>
         <module>BackgroundModule</module>
+        <module>ScoreModule</module>
+        <module>ScoreCommonModule</module>
     </modules>
 
     <properties>

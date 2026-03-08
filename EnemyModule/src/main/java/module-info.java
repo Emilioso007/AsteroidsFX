@@ -18,6 +18,7 @@ module Enemy {
     requires PlayerCommon;
     requires SpawnCommon;
     requires BulletCommon;
+    requires ScoreCommon;
 
     provides EntitySpi with EnemyEntityProvider;
     provides BaseSystem with EnemySystem, EnemyCollisionResponseSystem;

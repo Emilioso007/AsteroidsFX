@@ -15,8 +15,4 @@ public class AsteroidProvider implements EntitySpi {
         world.addEntity(new AsteroidEntity(startPosition, AsteroidSizeComponent.LARGE));
     }
 
-    @Override
-    public int getPriority() {
-        return 0;
-    }
 }

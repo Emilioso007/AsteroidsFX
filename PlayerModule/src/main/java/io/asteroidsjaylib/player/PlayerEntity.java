@@ -21,8 +21,7 @@ public class PlayerEntity extends BaseEntity {
 
         this.addComponent(new PlayerTag());
 
-        PositionComponent positionComponent = new PositionComponent();
-        positionComponent.pos = startPosition;
+        PositionComponent positionComponent = new PositionComponent(startPosition);
         this.addComponent(positionComponent);
 
         VelocityComponent velocityComponent = new VelocityComponent();
@@ -62,10 +61,6 @@ public class PlayerEntity extends BaseEntity {
         this.addComponent(new RenderTag(50));
 
         OutOfBoundsComponent outOfBoundsComponent = new OutOfBoundsComponent();
-        //outOfBoundsComponent.topExtent = -60;
-        //outOfBoundsComponent.bottomExtent = 60;
-        //outOfBoundsComponent.leftExtent = -60;
-        //outOfBoundsComponent.rightExtent = 60;
         outOfBoundsComponent.boundsAction = BoundsAction.WRAP;
         this.addComponent(outOfBoundsComponent);
 

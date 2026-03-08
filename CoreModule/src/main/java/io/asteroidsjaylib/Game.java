@@ -9,7 +9,6 @@ import io.asteroidsjaylib.common.event.input.KeyReleasedEvent;
 import static com.raylib.Raylib.*;
 import static com.raylib.Colors.*;
 
-import java.util.Comparator;
 import java.util.ServiceLoader;
 
 public class Game {
@@ -98,10 +97,9 @@ public class Game {
 
     private void addEntities() {
         ServiceLoader<EntitySpi> entitySpis = ServiceLoader.load(EntitySpi.class);
-        entitySpis.stream()
-            .map(ServiceLoader.Provider::get)
-            .sorted(Comparator.comparingInt(EntitySpi::getPriority))
-            .forEach(entitySpi -> entitySpi.start(world));
+        for (EntitySpi entitySpi : entitySpis){
+            entitySpi.start(world);
+        }
     }
 
     private void keyPressed(World world, KeyPressedEvent event) {

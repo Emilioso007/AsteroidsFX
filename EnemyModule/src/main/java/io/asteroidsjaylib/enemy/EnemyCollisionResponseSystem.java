@@ -6,6 +6,7 @@ import io.asteroidsjaylib.common.ecs.BaseEntity;
 import io.asteroidsjaylib.common.ecs.ResponseSystem;
 import io.asteroidsjaylib.enemycommon.EnemyTag;
 import io.asteroidsjaylib.ownershipcommon.OwnershipComponent;
+import io.asteroidsjaylib.scorecommon.IncrementScoreEvent;
 
 public class EnemyCollisionResponseSystem extends ResponseSystem {
     @Override
@@ -30,5 +31,7 @@ public class EnemyCollisionResponseSystem extends ResponseSystem {
 
         // Mark enemy to be removed
         enemy.setToBeRemoved(true);
+
+        world.getEventBus().publish(world, new IncrementScoreEvent(5));
     }
 }

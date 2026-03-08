@@ -11,6 +11,7 @@ module Asteroid {
     requires RenderCommon;
     requires CollisionCommon;
     requires OutOfBoundsCommon;
+    requires ScoreCommon;
 
     provides EntitySpi with AsteroidProvider;
     provides BaseSystem with AsteroidCollisionResponseSystem;

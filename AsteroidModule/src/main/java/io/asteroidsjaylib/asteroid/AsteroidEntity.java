@@ -27,8 +27,7 @@ public class AsteroidEntity extends BaseEntity {
 
         Random random = new Random();
 
-        PositionComponent positionComponent = new PositionComponent();
-        positionComponent.pos = startPosition;
+        PositionComponent positionComponent = new PositionComponent(startPosition);
         this.addComponent(positionComponent);
 
         VelocityComponent velocityComponent = new VelocityComponent();
@@ -64,15 +63,11 @@ public class AsteroidEntity extends BaseEntity {
         this.addComponent(new RenderTag(30));
 
         OutOfBoundsComponent outOfBoundsComponent = new OutOfBoundsComponent();
-        //outOfBoundsComponent.rightExtent = 100;
-        //outOfBoundsComponent.leftExtent = -100;
-        //outOfBoundsComponent.bottomExtent = 100;
-        //outOfBoundsComponent.topExtent = -100;
         outOfBoundsComponent.boundsAction = BoundsAction.WRAP;
         this.addComponent(outOfBoundsComponent);
 
         CircleColliderComponent circleColliderComponent = new CircleColliderComponent();
-        circleColliderComponent.radius = (35 + size * 20)/2d;
+        circleColliderComponent.radius = (35 + size * 20);
         this.addComponent(circleColliderComponent);
 
     }

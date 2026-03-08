@@ -12,9 +12,4 @@ public class PlayerEntityProvider implements EntitySpi {
         world.addEntity(player);
         world.cameraLocation = player.getComponent(PositionComponent.class).pos;
     }
-
-    @Override
-    public int getPriority() {
-        return 0;
-    }
 }

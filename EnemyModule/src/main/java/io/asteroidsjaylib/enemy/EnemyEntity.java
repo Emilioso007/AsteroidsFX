@@ -22,8 +22,7 @@ public class EnemyEntity extends BaseEntity {
 
         this.addComponent(new EnemyTag());
 
-        PositionComponent positionComponent = new PositionComponent();
-        positionComponent.pos = new Vector(world.getWidth() * 0.25f, world.getHeight() * 0.5f);
+        PositionComponent positionComponent = new PositionComponent(new Vector(world.getWidth() * 0.25f, world.getHeight() * 0.5f));
         this.addComponent(positionComponent);
 
         VelocityComponent velocityComponent = new VelocityComponent();

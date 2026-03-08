@@ -5,4 +5,8 @@ import io.asteroidsjaylib.common.util.Vector;
 
 public class PositionComponent extends BaseComponent {
     public Vector pos;
+
+    public PositionComponent(Vector pos){
+        this.pos = pos;
+    }
 }

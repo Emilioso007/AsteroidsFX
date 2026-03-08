@@ -74,4 +74,24 @@ public abstract class BaseEntity {
     public Collection<BaseComponent> getRenderComponents() {
         return renderComponents.values();
     }
+
+    public boolean hasRenderComponent(Class<?> renderComponentType){
+        for (BaseComponent component : renderComponents.values()){
+            if (renderComponentType.isAssignableFrom(component.getClass())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public <T extends BaseComponent> T getRenderComponent(Class<T> renderComponentClass) {
+
+        for (BaseComponent rc : renderComponents.values()) {
+            if (renderComponentClass.isAssignableFrom(rc.getClass())) {
+                return renderComponentClass.cast(rc);
+            }
+        }
+
+        return null;
+    }
 }

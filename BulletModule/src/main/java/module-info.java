@@ -1,5 +1,5 @@
 import io.asteroidsjaylib.bullet.BulletCollisionResponseSystem;
-import io.asteroidsjaylib.bullet.BulletEntity;
+import io.asteroidsjaylib.bullet.BulletProvider;
 import io.asteroidsjaylib.bulletcommon.BulletSPI;
 import io.asteroidsjaylib.common.ecs.BaseSystem;
 
@@ -16,5 +16,5 @@ module Bullet {
     requires LifetimeCommon;
 
     provides BaseSystem with BulletCollisionResponseSystem;
-    provides BulletSPI with BulletEntity;
+    provides BulletSPI with BulletProvider;
 }
