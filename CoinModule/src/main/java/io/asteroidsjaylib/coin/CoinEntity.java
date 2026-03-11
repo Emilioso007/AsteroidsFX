@@ -1,6 +1,5 @@
 package io.asteroidsjaylib.coin;
 
-import io.asteroidsjaylib.coincommon.CoinSPI;
 import io.asteroidsjaylib.coincommon.CoinTag;
 import io.asteroidsjaylib.collisioncommon.CircleColliderComponent;
 import io.asteroidsjaylib.common.ecs.BaseEntity;
@@ -15,9 +14,7 @@ import io.asteroidsjaylib.rendercommon.shapes.Ellipse;
 import static com.raylib.Colors.*;
 import static com.raylib.Raylib.*;
 
-public class CoinEntity extends BaseEntity implements CoinSPI {
-
-    public CoinEntity(){}
+public class CoinEntity extends BaseEntity {
 
     public CoinEntity(Vector startPosition, Vector startVelocity, int value) {
         this.addComponent(new PositionComponent(startPosition));
@@ -40,10 +37,5 @@ public class CoinEntity extends BaseEntity implements CoinSPI {
         circleColliderComponent.radius = 8;
         this.addComponent(circleColliderComponent);
 
-    }
-
-    @Override
-    public BaseEntity createCoin(Vector startPosition, Vector startVelocity, int value) {
-        return new CoinEntity(startPosition, startVelocity, value);
     }
 }

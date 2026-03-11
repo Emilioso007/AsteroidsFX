@@ -1,5 +1,5 @@
 import io.asteroidsjaylib.coin.CoinCollisionResponseSystem;
-import io.asteroidsjaylib.coin.CoinEntity;
+import io.asteroidsjaylib.coin.CoinProvider;
 import io.asteroidsjaylib.coincommon.CoinSPI;
 import io.asteroidsjaylib.common.ecs.BaseSystem;
 
@@ -13,6 +13,6 @@ module Coin {
     requires PlayerCommon;
     requires ScoreCommon;
 
-    provides CoinSPI with CoinEntity;
+    provides CoinSPI with CoinProvider;
     provides BaseSystem with CoinCollisionResponseSystem;
 }
