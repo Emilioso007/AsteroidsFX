@@ -10,7 +10,7 @@ public class BackgroundEntity extends BaseEntity {
 
         RenderTag renderTag = new RenderTag(0);
 
-        ImageComponent imageComponent = new ImageComponent("stars.png", BackgroundEntity.class);
+        ImageComponent imageComponent = new ImageComponent("stars.png", 1600, 1600);
         renderTag.addRenderComponent(imageComponent, 0);
 
         this.addComponent(renderTag);

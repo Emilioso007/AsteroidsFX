@@ -1,47 +1,59 @@
 package io.asteroidsjaylib.rendercommon;
 
-import com.raylib.Colors;
 import com.raylib.Raylib;
 import com.raylib.Raylib.Texture;
 
 import java.io.IOException;
 
+import static com.raylib.Colors.WHITE;
 import static com.raylib.Raylib.*;
 
 public class ImageComponent extends RenderComponent {
 
-    private Texture image;
-    public float scale;
+    public Texture texture;
 
-    public ImageComponent(String path, Class<?> callerClass){
-        this(path, 1, callerClass);
-    }
-    public ImageComponent(String path, float scale, Class<?> callerClass){
-
+    /// Create an image component from a path with a width and height.
+    /// @param path the path to the image as seen from the caller class.
+    /// @param width the width of the image used in-game.
+    /// @param height the height of the image used in-game.
+    public ImageComponent(String path, int width, int height){
         try {
 
-            Class<?> loaderClass = (callerClass != null) ? callerClass : getClass();
-            var is = loaderClass.getResourceAsStream("/" + path);
-            if (is == null) throw new RuntimeException("Could not find " + path + "!");
+            Class<?> caller = StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE).getCallerClass();
+
+            // getting the resource as if you were in the caller class
+            var is = caller.getResourceAsStream("/" + path);
+
+            if(is == null) throw new RuntimeException("Could not find " + path + " in " + caller.getName());
 
             byte[] data = is.readAllBytes();
+            is.close();
 
-            Image img = LoadImageFromMemory(".png", data, data.length);
+            // extracting the file extension
+            String extension = path.substring(path.lastIndexOf(".")).toLowerCase();
 
-            image = LoadTextureFromImage(img);
+            Image img = LoadImageFromMemory(extension, data, data.length);
+
+            // if width and height are set (non-negative), resize the image to reduce footprint in vram later.
+            if (width > 0 && height > 0) {
+                ImageResize(img, width, height);
+            }
+
+            texture = LoadTextureFromImage(img);
 
             UnloadImage(img);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-
-        this.scale = scale;
-
     }
 
     @Override
     public void draw(Vector2 position, float angle) {
-        Raylib.DrawTextureEx(image, position, angle, scale, Colors.WHITE);
+        rlPushMatrix();
+        rlTranslatef(position.x(), position.y(), 0);
+        rlRotatef(angle, 0 ,0, 1);
+        Raylib.DrawTexture(texture, 0, 0, WHITE);
+        rlPopMatrix();
     }
 }
