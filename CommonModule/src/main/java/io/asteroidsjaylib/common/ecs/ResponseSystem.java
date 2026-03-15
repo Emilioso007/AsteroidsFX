@@ -12,5 +12,5 @@ public abstract class ResponseSystem extends BaseSystem {
     }
 
     @Override
-    public final void update(World world, List<BaseEntity> entities, double deltaTime){}
+    public final void update(World world, List<BaseEntity> entities, float deltaTime){}
 }

@@ -23,7 +23,7 @@ public class CoinCollisionResponseSystem extends ResponseSystem {
         if(!other.hasComponent(PlayerTag.class)) return;
 
         coin.setToBeRemoved(true);
-        world.getEventBus().publish(world, new IncrementScoreEvent(coin.getComponent(CoinTag.class).value));
+        world.getEventBus().publish(world, new IncrementScoreEvent(coin.getComponent(CoinTag.class).orElseThrow().value));
 
     }
 }

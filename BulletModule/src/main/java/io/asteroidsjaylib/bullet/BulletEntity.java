@@ -36,7 +36,7 @@ public class BulletEntity extends BaseEntity{
         this.addComponent(velocityComponent);
 
         CircleColliderComponent circleColliderComponent = new CircleColliderComponent();
-        circleColliderComponent.radius = 2.5;
+        circleColliderComponent.radius = 2.5f;
         this.addComponent(circleColliderComponent);
 
         RenderTag renderTag = new RenderTag(10);

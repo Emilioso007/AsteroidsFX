@@ -4,6 +4,7 @@ import io.asteroidsjaylib.common.ecs.BaseComponent;
 import io.asteroidsjaylib.common.ecs.BaseEntity;
 import io.asteroidsjaylib.common.World;
 import io.asteroidsjaylib.common.ecs.IteratingSystem;
+import io.asteroidsjaylib.common.util.Vector;
 import io.asteroidsjaylib.outofboundscommon.OutOfBoundsComponent;
 import io.asteroidsjaylib.physicscommon.*;
 
@@ -28,14 +29,14 @@ public class OutOfBoundsSystem extends IteratingSystem {
     }
 
     @Override
-    public void processEntity(World world, BaseEntity entity, double deltaTime) {
-        PositionComponent positionComponent = entity.getComponent(PositionComponent.class);
-        OutOfBoundsComponent outOfBoundsComponent = entity.getComponent(OutOfBoundsComponent.class);
+    public void processEntity(World world, BaseEntity entity, float deltaTime) {
+        PositionComponent positionComponent = entity.getComponent(PositionComponent.class).orElseThrow();
+        OutOfBoundsComponent outOfBoundsComponent = entity.getComponent(OutOfBoundsComponent.class).orElseThrow();
 
-        double leftEdge = positionComponent.pos.x + outOfBoundsComponent.leftExtent; // x + negativeExtent
-        double rightEdge = positionComponent.pos.x + outOfBoundsComponent.rightExtent; // x + positiveExtent
-        double topEdge = positionComponent.pos.y + outOfBoundsComponent.topExtent; // y + negativeExtent
-        double bottomEdge = positionComponent.pos.y + outOfBoundsComponent.bottomExtent; // y + positiveExtent
+        float leftEdge = positionComponent.pos.x() + outOfBoundsComponent.leftExtent;
+        float rightEdge = positionComponent.pos.x() + outOfBoundsComponent.rightExtent;
+        float topEdge = positionComponent.pos.y() + outOfBoundsComponent.topExtent;
+        float bottomEdge = positionComponent.pos.y() + outOfBoundsComponent.bottomExtent;
 
         // For WRAP and REMOVE: check if completely outside
         boolean exitLeft = rightEdge < minX;
@@ -52,33 +53,31 @@ public class OutOfBoundsSystem extends IteratingSystem {
         switch (outOfBoundsComponent.boundsAction){
 
             case WRAP:
-                if(exitLeft) positionComponent.pos.x = maxX - outOfBoundsComponent.leftExtent;
-                if(exitRight) positionComponent.pos.x = minX - outOfBoundsComponent.rightExtent;
-                if(exitTop) positionComponent.pos.y = maxY - outOfBoundsComponent.topExtent;
-                if(exitBottom) positionComponent.pos.y = minY - outOfBoundsComponent.bottomExtent;
+                if(exitLeft) positionComponent.pos.x(maxX - outOfBoundsComponent.leftExtent);
+                if(exitRight) positionComponent.pos.x(minX - outOfBoundsComponent.rightExtent);
+                if(exitTop) positionComponent.pos.y(maxY - outOfBoundsComponent.topExtent);
+                if(exitBottom) positionComponent.pos.y(minY - outOfBoundsComponent.bottomExtent);
                 break;
 
             case BOUNCE:
 
                 // 2D movement
-                VelocityComponent velocityComponent = entity.getComponent(VelocityComponent.class);
-                if(velocityComponent != null){
-                    if(hitLeft) {
-                        positionComponent.pos.x = minX - outOfBoundsComponent.leftExtent;
-                        velocityComponent.vel.x *= -1;
-                    }
-                    if(hitRight) {
-                        positionComponent.pos.x = maxX - outOfBoundsComponent.rightExtent;
-                        velocityComponent.vel.x *= -1;
-                    }
-                    if(hitTop) {
-                        positionComponent.pos.y = minY - outOfBoundsComponent.topExtent;
-                        velocityComponent.vel.y *= -1;
-                    }
-                    if(hitBottom) {
-                        positionComponent.pos.y = maxY - outOfBoundsComponent.bottomExtent;
-                        velocityComponent.vel.y *= -1;
-                    }
+                Vector vel = entity.getComponent(VelocityComponent.class).orElseThrow().vel;
+                if (hitLeft) {
+                    positionComponent.pos.x(minX - outOfBoundsComponent.leftExtent);
+                    vel.x(vel.x() * -1);
+                }
+                if(hitRight) {
+                    positionComponent.pos.x(maxX - outOfBoundsComponent.rightExtent);
+                    vel.x(vel.x() * -1);
+                }
+                if(hitTop) {
+                    positionComponent.pos.y(minY - outOfBoundsComponent.topExtent);
+                    vel.y(vel.y() * -1);
+                }
+                if(hitBottom) {
+                    positionComponent.pos.y(maxY - outOfBoundsComponent.bottomExtent);
+                    vel.y(vel.y() * -1);
                 }
 
                 break;

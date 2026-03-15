@@ -22,9 +22,9 @@ public class RotationSystem extends IteratingSystem {
     }
 
     @Override
-    public void processEntity(World world, BaseEntity entity, double deltaTime) {
-        AngleComponent angleComponent = entity.getComponent(AngleComponent.class);
-        RotationComponent rotationComponent = entity.getComponent(RotationComponent.class);
+    public void processEntity(World world, BaseEntity entity, float deltaTime) {
+        AngleComponent angleComponent = entity.getComponent(AngleComponent.class).orElseThrow();
+        RotationComponent rotationComponent = entity.getComponent(RotationComponent.class).orElseThrow();
 
         angleComponent.angle += rotationComponent.dAngle * deltaTime;
     }

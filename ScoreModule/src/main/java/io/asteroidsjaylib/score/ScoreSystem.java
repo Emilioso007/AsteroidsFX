@@ -26,20 +26,20 @@ public class ScoreSystem extends IteratingSystem {
 
         BaseEntity scoreEntity = world.getEntitiesWith(ScoreTag.class).getFirst();
 
-        scoreEntity.getComponent(ScoreTag.class).score += incrementScoreEvent.amount;
+        scoreEntity.getComponent(ScoreTag.class).orElseThrow().score += incrementScoreEvent.amount;
 
     }
 
     @Override
-    public void processEntity(World world, BaseEntity entity, double deltaTime) {
+    public void processEntity(World world, BaseEntity entity, float deltaTime) {
 
         if(!entity.hasComponent(RenderTag.class)) return;
 
-        RenderTag renderTag = entity.getComponent(RenderTag.class);
+        RenderTag renderTag = entity.getComponent(RenderTag.class).orElseThrow();
 
         if(!renderTag.hasRenderComponent(TextComponent.class)) return;
 
-        ScoreTag scoreTag = entity.getComponent(ScoreTag.class);
+        ScoreTag scoreTag = entity.getComponent(ScoreTag.class).orElseThrow();
 
         TextComponent textComponent = renderTag.getRenderComponent(TextComponent.class);
         textComponent.text = "Score: " + scoreTag.score;

@@ -8,8 +8,8 @@ import io.asteroidsjaylib.physicscommon.PositionComponent;
 public class PlayerEntityProvider implements EntitySpi {
     @Override
     public void start(World world) {
-        PlayerEntity player = new PlayerEntity(new Vector(world.getWidth() /2.0, world.getHeight() /2.0));
+        PlayerEntity player = new PlayerEntity(new Vector((float) (world.getWidth() /2.0), (float) (world.getHeight() /2.0)));
         world.addEntity(player);
-        world.cameraLocation = player.getComponent(PositionComponent.class).pos;
+        world.cameraLocation = player.getComponent(PositionComponent.class).orElseThrow().pos;
     }
 }

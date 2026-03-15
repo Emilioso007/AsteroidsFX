@@ -4,6 +4,7 @@ import io.asteroidsjaylib.common.World;
 import io.asteroidsjaylib.common.ecs.BaseComponent;
 import io.asteroidsjaylib.common.ecs.BaseEntity;
 import io.asteroidsjaylib.common.ecs.IteratingSystem;
+import io.asteroidsjaylib.common.util.Vector;
 import io.asteroidsjaylib.physicscommon.DragComponent;
 import io.asteroidsjaylib.physicscommon.VelocityComponent;
 
@@ -17,18 +18,18 @@ public class DragSystem extends IteratingSystem {
     }
 
     @Override
-    public void processEntity(World world, BaseEntity entity, double deltaTime) {
-        VelocityComponent velocityComponent = entity.getComponent(VelocityComponent.class);
-        DragComponent dragComponent = entity.getComponent(DragComponent.class);
+    public void processEntity(World world, BaseEntity entity, float deltaTime) {
+        Vector velocity = entity.getComponent(VelocityComponent.class).orElseThrow().vel;
+        float drag = entity.getComponent(DragComponent.class).orElseThrow().drag;
 
-        if (dragComponent.drag == 0) {
-            velocityComponent.vel.mult(0);
+        if (drag == 0) {
+            velocity.mult(0);
         } else {
-            velocityComponent.vel.mult(Math.pow(dragComponent.drag, deltaTime));
+            velocity.mult((float) Math.pow(drag, deltaTime));
         }
 
-        if(velocityComponent.vel.mag()<0.01){
-            velocityComponent.vel.mult(0);
+        if(velocity.mag()<0.01){
+            velocity.mult(0);
         }
     }
 

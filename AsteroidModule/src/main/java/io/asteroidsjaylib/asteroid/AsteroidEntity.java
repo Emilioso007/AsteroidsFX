@@ -17,7 +17,7 @@ import java.util.Random;
 
 public class AsteroidEntity extends BaseEntity {
 
-    public AsteroidEntity(Vector startPosition, int size){
+    public AsteroidEntity(Vector startPosition, Vector startVelocity, int size){
 
         this.addComponent(new AsteroidTag());
 
@@ -30,8 +30,7 @@ public class AsteroidEntity extends BaseEntity {
         PositionComponent positionComponent = new PositionComponent(startPosition);
         this.addComponent(positionComponent);
 
-        VelocityComponent velocityComponent = new VelocityComponent();
-        velocityComponent.vel = Vector.fromAngle(random.nextDouble(Math.PI*2)).setMag(random.nextDouble(50, 250));
+        VelocityComponent velocityComponent = new VelocityComponent(startVelocity);
         this.addComponent(velocityComponent);
 
         AngleComponent angleComponent = new AngleComponent();
@@ -39,7 +38,7 @@ public class AsteroidEntity extends BaseEntity {
         this.addComponent(angleComponent);
 
         RotationComponent rotationComponent = new RotationComponent();
-        rotationComponent.dAngle = Math.toRadians(random.nextInt(45, 135));
+        rotationComponent.dAngle = random.nextInt(45, 135);
         this.addComponent(rotationComponent);
 
         int points = random.nextInt(4, 13);

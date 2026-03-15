@@ -3,6 +3,7 @@ package io.asteroidsjaylib.common.ecs;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 /// Base entity class.
 /// Contains a collection of components.
@@ -19,22 +20,22 @@ public abstract class BaseEntity {
         components.remove(componentType);
     }
 
-    public <T extends BaseComponent> T getComponent(Class<T> componentType) {
+    public <T extends BaseComponent> Optional<T> getComponent(Class<T> componentType) {
 
         // Exact key match first
         BaseComponent component = components.get(componentType);
         if (component != null) {
-            return componentType.cast(component);
+            return Optional.of(componentType.cast(component));
         }
 
         // Fall back to assignability search (handles subclass components)
         for (BaseComponent c : components.values()) {
             if (componentType.isAssignableFrom(c.getClass())) {
-                return componentType.cast(c);
+                return Optional.of(componentType.cast(c));
             }
         }
 
-        return null;
+        return Optional.empty();
     }
 
     public Collection<BaseComponent> getComponents(){

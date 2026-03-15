@@ -7,13 +7,8 @@ import io.asteroidsjaylib.outofboundscommon.BoundsAction;
 import io.asteroidsjaylib.outofboundscommon.OutOfBoundsComponent;
 import io.asteroidsjaylib.physicscommon.*;
 import io.asteroidsjaylib.playercommon.PlayerTag;
+import io.asteroidsjaylib.rendercommon.ImageComponent;
 import io.asteroidsjaylib.rendercommon.RenderTag;
-import io.asteroidsjaylib.rendercommon.ShapeComponent;
-import io.asteroidsjaylib.rendercommon.shapes.BaseShape;
-import io.asteroidsjaylib.rendercommon.shapes.Polygon;
-
-import static com.raylib.Colors.*;
-import static com.raylib.Raylib.GetColor;
 
 public class PlayerEntity extends BaseEntity {
 
@@ -40,25 +35,14 @@ public class PlayerEntity extends BaseEntity {
         this.addComponent(rotationComponent);
 
         DragComponent dragComponent = new DragComponent();
-        dragComponent.drag = 0.25;
+        dragComponent.drag = 0.25F;
         this.addComponent(dragComponent);
 
-
-        double[] xs = new double[3];
-        double[] ys = new double[3];
-
-        for(int i = 0; i < 3; i++){
-            xs[i] = Math.cos(Math.toRadians(i*360f/3))*40;
-            ys[i] = Math.sin(Math.toRadians(i*360f/3))*40;
-        }
-        xs[0] = 60;
-
         RenderTag renderTag = new RenderTag(50);
-
-        BaseShape shape = new Polygon(xs, ys, BLUE, GetColor(0x00ffffff), 4);
-        ShapeComponent shapeComponent = new ShapeComponent(shape);
-        renderTag.addRenderComponent(shapeComponent, 0);
-
+        ImageComponent imageComponent = new ImageComponent("spaceship.png", 76, 76);
+        imageComponent.xoffset = -38;
+        imageComponent.yoffset = -38;
+        renderTag.addRenderComponent(imageComponent, 0);
         this.addComponent(renderTag);
 
         OutOfBoundsComponent outOfBoundsComponent = new OutOfBoundsComponent();
@@ -66,7 +50,7 @@ public class PlayerEntity extends BaseEntity {
         this.addComponent(outOfBoundsComponent);
 
         CircleColliderComponent circleColliderComponent = new CircleColliderComponent();
-        circleColliderComponent.radius = 50;
+        circleColliderComponent.radius = 38;
 
         this.addComponent(circleColliderComponent);
 

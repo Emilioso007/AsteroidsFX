@@ -4,8 +4,8 @@ import io.asteroidsjaylib.common.ecs.BaseComponent;
 
 public class OutOfBoundsComponent extends BaseComponent {
     public BoundsAction boundsAction;
-    public double leftExtent;
-    public double rightExtent;
-    public double topExtent;
-    public double bottomExtent;
+    public float leftExtent;
+    public float rightExtent;
+    public float topExtent;
+    public float bottomExtent;
 }

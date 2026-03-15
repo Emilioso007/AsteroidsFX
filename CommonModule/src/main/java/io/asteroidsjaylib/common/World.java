@@ -41,7 +41,7 @@ public final class World {
         return eventBus;
     }
 
-    public void tick(double deltaTime){
+    public void tick(float deltaTime){
         this.deltaTime = deltaTime;
 
         eventBus.updateInputBus(this);
@@ -58,7 +58,7 @@ public final class World {
         entitiesToAdd.clear();
     }
 
-    private void runSystem(BaseSystem system, double deltaTime) {
+    private void runSystem(BaseSystem system, float deltaTime) {
         List<Class<? extends BaseComponent>> signature = system.getSignature();
 
         if (signature == null || signature.isEmpty()) {

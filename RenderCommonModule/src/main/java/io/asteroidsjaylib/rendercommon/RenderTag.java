@@ -32,11 +32,9 @@ public class RenderTag extends BaseComponent {
         return absolutePosition;
     }
 
-    /**
-     * Adds a RenderComponent to the entity.
-     * @param renderComponent the RenderComponent to add.
-     * @param zIndex defines the order in which the components are rendered on a per-entity basis.
-     */
+    /// Adds a RenderComponent to the entity.
+    /// @param renderComponent the RenderComponent to add.
+    /// @param zIndex defines the order in which the components are rendered on a per-entity basis.
     public void addRenderComponent(RenderComponent renderComponent, int zIndex){
         renderComponents.putIfAbsent(zIndex, renderComponent);
     }

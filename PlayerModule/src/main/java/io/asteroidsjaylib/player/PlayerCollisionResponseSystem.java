@@ -26,9 +26,10 @@ public class PlayerCollisionResponseSystem extends ResponseSystem {
         if (collider.hasComponent(CoinTag.class)) return;
 
         // If collider owner is player, do nothing
-        if (collider.hasComponent(OwnershipComponent.class)
-                && collider.getComponent(OwnershipComponent.class).owner.hasComponent(PlayerTag.class))
+        var ownership = collider.getComponent(OwnershipComponent.class);
+        if (ownership.isPresent() && ownership.get().owner.hasComponent(PlayerTag.class)) {
             return;
+        }
 
         // Mark player to be removed
         player.setToBeRemoved(true);

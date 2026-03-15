@@ -29,8 +29,8 @@ public class CoinEntity extends BaseEntity {
 
         String text = value+"";
         TextComponent textComponent = new TextComponent(text, 12, BLACK);
-        textComponent.xoffset = -(double) MeasureText(text, 12) / 2;
-        textComponent.yoffset = -12.0 / 2;
+        textComponent.xoffset = (float) -MeasureText(text, 12) / 2;
+        textComponent.yoffset = (float) (-12.0 / 2);
         renderTag.addRenderComponent(textComponent, 1);
 
         this.addComponent(renderTag);

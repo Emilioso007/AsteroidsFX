@@ -33,10 +33,10 @@ public class PlayerMovementSystem extends IteratingSystem {
         BaseEntity player = world.getEntitiesWith(PlayerTag.class).getFirst();
         switch (event.keyCode){
             case KEY_LEFT, KEY_A:
-                player.getComponent(RotationComponent.class).dAngle = -Math.PI;
+                player.getComponent(RotationComponent.class).orElseThrow().dAngle = (float) -90;
                 break;
             case KEY_RIGHT, KEY_D:
-                player.getComponent(RotationComponent.class).dAngle = Math.PI;
+                player.getComponent(RotationComponent.class).orElseThrow().dAngle = (float) 90;
                 break;
             case KEY_UP, KEY_W:
                 accelerating = true;
@@ -51,7 +51,7 @@ public class PlayerMovementSystem extends IteratingSystem {
         switch (event.keyCode){
             case KEY_LEFT, KEY_A:
             case KEY_RIGHT, KEY_D:
-                player.getComponent(RotationComponent.class).dAngle = 0;
+                player.getComponent(RotationComponent.class).orElseThrow().dAngle = 0;
                 break;
             case KEY_UP, KEY_W:
                 accelerating = false;
@@ -59,13 +59,13 @@ public class PlayerMovementSystem extends IteratingSystem {
     }
 
     @Override
-    public void processEntity(World world, BaseEntity player, double deltaTime) {
+    public void processEntity(World world, BaseEntity player, float deltaTime) {
         if(!accelerating) return;
 
-        AccelerationComponent acceleration = player.getComponent(AccelerationComponent.class);
-        double angle = player.getComponent(AngleComponent.class).angle;
+        Vector acceleration = player.getComponent(AccelerationComponent.class).orElseThrow().acc;
+        float angle = player.getComponent(AngleComponent.class).orElseThrow().angle;
         int force = 2500;
-        acceleration.acc.add(Vector.fromAngle(angle).setMag(force));
+        acceleration.add(Vector.fromAngle(angle).setMag(force));
     }
 
     @Override

@@ -35,21 +35,25 @@ public class AsteroidCollisionResponseSystem extends ResponseSystem {
         asteroid.setToBeRemoved(true);
 
         // Optionally split asteroid
-        int asteroidSize = asteroid.getComponent(AsteroidSizeComponent.class).size;
+        int asteroidSize = asteroid.getComponent(AsteroidSizeComponent.class).map(c -> c.size).orElseThrow();
         if (asteroidSize > AsteroidSizeComponent.SMALL){
             for(int i = 0; i < 2; i++){
-                AsteroidEntity newAsteroid = new AsteroidEntity(asteroid.getComponent(PositionComponent.class).pos.copy(), asteroidSize - 1);
-                newAsteroid.getComponent(VelocityComponent.class).vel =
-                        collider.getComponent(VelocityComponent.class).vel.copy()
-                                .rotate(Math.toRadians(60 + i * 240))
-                                .setMag(asteroid.getComponent(VelocityComponent.class).vel.mag());
+
+                Vector position = asteroid.getComponent(PositionComponent.class).map(c -> c.pos.copy()).orElseThrow();
+
+                float magnitude = (float) (50 + 200 * Math.random());
+
+                Vector velocity = collider.getComponent(VelocityComponent.class).map(c -> c.vel.copy()).orElseThrow();
+                velocity.rotate(60 + i * 240).setMag(magnitude);
+
+                AsteroidEntity newAsteroid = new AsteroidEntity(position, velocity, asteroidSize - 1);
                 world.queueAddEntity(newAsteroid);
             }
         }
 
         // Publish event
         CoinSPI coinSPI = ServiceLoader.load(CoinSPI.class).findFirst().orElseThrow();
-        Vector pos = asteroid.getComponent(PositionComponent.class).pos.copy();
+        Vector pos = asteroid.getComponent(PositionComponent.class).orElseThrow().pos.copy();
         Vector vel = Vector.randomVector(25);
         world.getEventBus().publish(world, new SpawnEvent(coinSPI.createCoin(pos, vel, asteroidSize+1)));
 

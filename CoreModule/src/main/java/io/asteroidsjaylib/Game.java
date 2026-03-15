@@ -3,6 +3,7 @@ package io.asteroidsjaylib;
 import io.asteroidsjaylib.common.ecs.EntitySpi;
 import io.asteroidsjaylib.common.World;
 import io.asteroidsjaylib.common.ecs.BaseSystem;
+import io.asteroidsjaylib.common.event.input.KeyDownEvent;
 import io.asteroidsjaylib.common.event.input.KeyPressedEvent;
 import io.asteroidsjaylib.common.event.input.KeyReleasedEvent;
 
@@ -32,24 +33,6 @@ public class Game {
         world.screenWidth = screenWidth;
         world.screenHeight = screenHeight;
 
-
-        /*
-        Canvas canvas = new Canvas(screenWidth, screenHeight);
-        gc = canvas.getGraphicsContext2D();
-
-        world.setGraphicsContext(gc);
-
-        Group root = new Group(canvas);
-        Scene scene = new Scene(root);
-
-        scene.setOnKeyPressed(event -> world.getEventBus().publish(world, new KeyPressedEvent(event.getCode())));
-        scene.setOnKeyReleased(event -> world.getEventBus().publish(world, new KeyReleasedEvent(event.getCode())));
-
-        window.setScene(scene);
-        window.setTitle("AsteroidsFX");
-        window.show();
-         */
-
         // ADD ENTITIES
         addEntities();
 
@@ -73,17 +56,16 @@ public class Game {
     }
 
     public void processInput() {
-        // 1. Handle "Pressed" events (using the internal queue)
-        int key;
-        while ((key = GetKeyPressed()) != 0) {
-            world.getEventBus().publish(world, new KeyPressedEvent(key));
-        }
-
-        // 2. Handle "Released" events
-        // Raylib doesn't have a Release Queue, so we check specific keys
-        // or track the "down" state manually as shown below.
-        if (IsKeyReleased(KEY_SPACE)) {
-            world.getEventBus().publish(world, new KeyReleasedEvent(KEY_SPACE));
+        for (int i = 1; i <= 366; i++) { // Should be all keys, hopefully
+            if (IsKeyPressed(i)) {
+                world.getEventBus().publish(world, new KeyPressedEvent(i));
+            }
+            if (IsKeyReleased(i)) {
+                world.getEventBus().publish(world, new KeyReleasedEvent(i));
+            }
+            if (IsKeyDown(i)) {
+                world.getEventBus().publish(world, new KeyDownEvent(i));
+            }
         }
     }
 

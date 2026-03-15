@@ -28,8 +28,8 @@ public class EnemySystem extends IntervalIteratingSystem {
 
         BaseEntity player = world.getEntitiesWith(PlayerTag.class).getFirst();
 
-        PositionComponent enemyPosition = enemy.getComponent(PositionComponent.class);
-        PositionComponent playerPosition = player.getComponent(PositionComponent.class);
+        PositionComponent enemyPosition = enemy.getComponent(PositionComponent.class).orElseThrow();
+        PositionComponent playerPosition = player.getComponent(PositionComponent.class).orElseThrow();
 
         if(Vector.dist(enemyPosition.pos, playerPosition.pos) > 400) return;
 

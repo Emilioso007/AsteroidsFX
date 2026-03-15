@@ -24,23 +24,23 @@ public class CollisionSystem extends BaseSystem {
     }
 
     @Override
-    public void update(World world, List<BaseEntity> entities, double deltaTime) {
+    public void update(World world, List<BaseEntity> entities, float deltaTime) {
         for(int i = 0; i < entities.size() - 1; i++){
 
             BaseEntity collider = entities.get(i);
 
-            PositionComponent colliderPosition = collider.getComponent(PositionComponent.class);
-            CircleColliderComponent colliderCircle = collider.getComponent(CircleColliderComponent.class);
+            Vector colliderPosition = collider.getComponent(PositionComponent.class).orElseThrow().pos;
+            float colliderCircle = collider.getComponent(CircleColliderComponent.class).orElseThrow().radius;
 
             for(int j = i + 1; j < entities.size(); j++){
 
                 BaseEntity target = entities.get(j);
 
-                PositionComponent targetPosition = target.getComponent(PositionComponent.class);
-                CircleColliderComponent targetCircle = target.getComponent(CircleColliderComponent.class);
+                Vector targetPosition = target.getComponent(PositionComponent.class).orElseThrow().pos;
+                float targetCircle = target.getComponent(CircleColliderComponent.class).orElseThrow().radius;
 
-                double distanceBetweenCenters = Vector.dist(colliderPosition.pos, targetPosition.pos);
-                double radiusSum = colliderCircle.radius + targetCircle.radius;
+                double distanceBetweenCenters = Vector.dist(colliderPosition, targetPosition);
+                double radiusSum = colliderCircle + targetCircle;
                 if(distanceBetweenCenters <= radiusSum){
                     world.getEventBus().publish(world, new CollisionEvent(collider, target));
                 }

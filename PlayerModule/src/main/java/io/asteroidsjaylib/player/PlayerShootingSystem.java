@@ -53,7 +53,7 @@ public class PlayerShootingSystem extends IteratingSystem {
     }
 
     @Override
-    public void processEntity(World world, BaseEntity player, double deltaTime) {
+    public void processEntity(World world, BaseEntity player, float deltaTime) {
         // Always track time since last shot
         timeSinceLastShot += deltaTime;
 
@@ -71,8 +71,8 @@ public class PlayerShootingSystem extends IteratingSystem {
     }
 
     private void shoot(World world, BaseEntity player) {
-        PositionComponent position = player.getComponent(PositionComponent.class);
-        AngleComponent angle = player.getComponent(AngleComponent.class);
+        PositionComponent position = player.getComponent(PositionComponent.class).orElseThrow();
+        AngleComponent angle = player.getComponent(AngleComponent.class).orElseThrow();
 
         Vector startPosition = position.pos.copy().add(Vector.fromAngle(angle.angle).setMag(60));
         Vector velocity = Vector.fromAngle(angle.angle).setMag(600);
